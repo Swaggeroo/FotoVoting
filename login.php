@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+   if($_SERVER["REQUEST_METHOD"] == "POST"){
+
 require "php/dbConnection.php";
 
 //check if variables are set
@@ -16,6 +18,9 @@ if(!isset($_POST["userpassword"])){
 $username = stripslashes(htmlspecialchars(trim($_POST["username"])));
 $password = stripslashes(htmlspecialchars(trim($_POST["userpassword"])));
 
+
+
+}
 
 
 ?>

@@ -79,5 +79,32 @@ public function addUser($username, $password){
     $sqlStatement->close();
 }
 
+public function getUserNameCount($userName){
+   $sqlQuery = "SELECT COUNT(userName) AS userNameCount FROM user WHERE userName = ?";
+
+   $statement = $this->dbKeyObject->prepare($sqlQuery);
+   $statement->bind_param("s", $userName);
+   $statement->execute();
+
+   $result = $statement->get_result();
+
+   $userNameCount = $result->fetch_assoc()["userNameCount"];
+
+   $statement->close();
+
+   return $userNameCount;
+}
+
+public function userNameExists($userName){
+   $userNameCount = $this->getUserNameCount($userName);
+
+   if($userNameCount >= 1){
+     return true;
+   }else{
+     return false;
+   }
+
+}
+
 }
 ?>
