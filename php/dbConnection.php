@@ -38,7 +38,7 @@ public function createBasicDatabaseStructure(){
 public function getUserIdForUsername($username){
      $sqlQuery = "SELECT userID FROM user WHERE userName = ?";
 
-     $sqlStatement = $this->$dbKeyObject->prepare($sqlQuery);
+     $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
      $sqlStatement->bind_param("s", $username);
      $sqlStatement->execute();
 
@@ -54,7 +54,7 @@ public function getUserIdForUsername($username){
 public function getPasswordForUserID($userID){
      $sqlQuery = "SELECT userPassword FROM user WHERE userID = ?";
 
-     $sqlStatement = $this->$dbKeyObject->prepare();
+     $sqlStatement = $this->dbKeyObject->prepare();
      $sqlStatement->bind_param("i", $userID);
      $sqlStatement->execute();
 
