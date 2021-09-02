@@ -12,10 +12,31 @@ h1{
   margin-left: 34.5%;
   margin-right: 34.5%;
   border-radius: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+#loginButton{
+  width: 50% !important;
+  margin-top: 5%;
+  margin-left: 25%;
+  margin-right: 25%;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.2em !important;
+}
+
 
 #loginForm input{
   text-align: center;
   width: 99%;
-  font-size: 0.9em;
+  font-size: 1em;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 0.5%;
+  border-radius: 10px;
+  border: none;
+  transition: 0.5s;
+}
+
+#loginForm input:hover{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8), 0 6px 20px 0 rgba(0, 0, 0, 0.7);
 }
