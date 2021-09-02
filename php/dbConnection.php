@@ -73,7 +73,7 @@ public function addUser($username, $password){
     $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
     $sqlStatement->bind_param("ss", $username, $password);
     if(!$sqlStatement->execute()){
-      die("Error:" $sqlStatement->error);
+      die("Error: ".$sqlStatement->error);
     }
 
     $sqlStatement->close();
