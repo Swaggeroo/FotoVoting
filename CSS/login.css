@@ -1,0 +1,21 @@
+h1{
+  text-align: center;
+}
+
+#loginForm{
+  width: 30%;
+  padding-left: 0.5%;
+  padding-right: 0.5%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  border: 2px solid black;
+  margin-left: 34.5%;
+  margin-right: 34.5%;
+  border-radius: 20px;
+}
+
+#loginForm input{
+  text-align: center;
+  width: 99%;
+  font-size: 0.9em;
+}
