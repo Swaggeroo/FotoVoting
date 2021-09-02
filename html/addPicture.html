@@ -14,6 +14,14 @@
 <body>
     <h1 align="center">Add Picture</h1>
 
+    <form align="center">
+        <label for="upload">Choose Picture</label>
+        <span id="file-chosen">No file chosen</span><br><br>
+        <img src="" id="uploadPreview" width="90%" height="auto">
+        <input type="file" id="upload" accept=".jpg,.jpeg,.png" hidden><br><br>
+        <button type="submit" class="submitButton">Upload</button>
+    </form>
+
     <hr>
     <footer>
         This Website was made by:
@@ -29,6 +37,6 @@
     </footer>
 
     <!---Javascripts-->
-    <script src="../scripts/projectSelection.js" defer></script>
+    <script src="../scripts/addPicture.js" defer></script>
 </body>
 </html>
