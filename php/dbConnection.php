@@ -31,7 +31,7 @@ public function createBasicDatabaseStructure(){
     );
 
     for($i = 0; $i < count($sqlStatements); $i++){
-       $db->query($sqlStatements[$i]);
+       $this->dbKeyObject->query($sqlStatements[$i]);
     }
 }
 
@@ -54,7 +54,7 @@ public function getUserIdForUsername($username){
 public function getPasswordForUserID($userID){
      $sqlQuery = "SELECT userPassword FROM user WHERE userID = ?";
 
-     $sqlStatement = $this->dbKeyObject->prepare();
+     $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
      $sqlStatement->bind_param("i", $userID);
      $sqlStatement->execute();
 
@@ -65,6 +65,18 @@ public function getPasswordForUserID($userID){
      $sqlStatement->close();
 
      return $password;
+}
+
+public function addUser($username, $password){
+    $sqlQuery = "INSERT INTO user (userName, userPassword) VALUES (?, ?)";
+
+    $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
+    $sqlStatement->bind_param("ss", $username, $password);
+    if(!$sqlStatement->execute()){
+      die("Error:" $sqlStatement->error);
+    }
+
+    $sqlStatement->close();
 }
 
 }
