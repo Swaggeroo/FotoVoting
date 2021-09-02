@@ -35,4 +35,37 @@ public function createBasicDatabaseStructure(){
     }
 }
 
+public function getUserIdForUsername($username){
+     $sqlQuery = "SELECT userID FROM user WHERE userName = ?";
+
+     $sqlStatement = $this->$dbKeyObject->prepare($sqlQuery);
+     $sqlStatement->bind_param("s", $username);
+     $sqlStatement->execute();
+
+     $result = $sqlStatement->get_result();
+
+     $userID = $result->fetch_assoc()["userID"];
+
+     $sqlStatement->close();
+
+     return $userID;
+}
+
+public function getPasswordForUserID($userID){
+     $sqlQuery = "SELECT userPassword FROM user WHERE userID = ?";
+
+     $sqlStatement = $this->$dbKeyObject->prepare();
+     $sqlStatement->bind_param("i", $userID);
+     $sqlStatement->execute();
+
+     $result = $sqlStatement->get_result();
+
+     $password = $result->fetch_assoc()["userID"];
+
+     $sqlStatement->close();
+
+     return $password;
+}
+
+}
 ?>
