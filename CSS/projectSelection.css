@@ -1,11 +1,6 @@
-.child {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.parent {
-    position: relative;
-    height: 70px;
+#projekte p{
+  padding-top: 0.5%;
+  padding-bottom: 0.5%;
+  font-weight: 200;
+  font-size: 1.5em;
 }
