@@ -1,3 +1,6 @@
+<?php
+  require "../php/checkPermission.php";
+?>
 <!DOCTYPE html>
 <html lang="de">
 <head>

@@ -60,7 +60,7 @@ public function getPasswordForUserID($userID){
 
      $result = $sqlStatement->get_result();
 
-     $password = $result->fetch_assoc()["userID"];
+     $password = $result->fetch_assoc()["userPassword"];
 
      $sqlStatement->close();
 

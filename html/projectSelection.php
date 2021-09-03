@@ -1,33 +1,41 @@
+<?php
+  require "../php/checkPermission.php";
+?>
 <!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Voting</title>
+    <title>Projekte</title>
 
     <!--basic Style-->
     <link rel="stylesheet" href="../style.css">
 
-    <link rel="stylesheet" href="../CSS/votingPage.css">
+    <link rel="stylesheet" href="../CSS/projectSelection.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
 </head>
 <body>
-    <a href="" style="position: absolute; top: 15px; margin-left: 85%; font-size: xxx-large" >
-        +
-    </a>
-    <h1 align="center" id="projectTitle">Title</h1>
+    <h1 align = center>Projekte</h1>
     <div align="center" style="width: 100%;">
-        <div id="pictures" style="width: 90%;">
-            <div class="picture-container">
-                <div class="bildmitbildunterschrift card animate__animated animate__bounceIn" style="margin: 1em;">
-                    <img src="../media/images/test2.jpg" alt="Picture-Voting" style="width:100%;height:auto;">
-                    <span class="nameTag">Peter</span>
+        <div id="projekte" style="width: 90%;">
+            <a href="http://www.google.com">
+                <div class="card projectButton">
+                    <p>Hallo</p>
                 </div>
-                <div class="flex-container wrap row">
-                    <button class="votingButton like card">&#10084;Like</button>
-                    <button class="votingButton best card">&#11088;Best</button>
+                <div class="card projectButton">
+                    <p>Hallo</p>
                 </div>
-            </div>
+                <div class="card projectButton">
+                    <p>Hallo</p>
+                </div>
+                <div class="card projectButton">
+                    <p>Hallo</p>
+                </div>
+                <div class="card projectButton">
+                    <p>Hallo</p>
+                </div>
+            </a>
         </div>
     </div>
 
@@ -46,6 +54,6 @@
     </footer>
 
     <!---Javascripts-->
-    <script src="../scripts/votingPage.js" defer></script>
+    <script src="../scripts/projectSelection.js" defer></script>
 </body>
 </html>
