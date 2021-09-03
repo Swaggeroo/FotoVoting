@@ -40,7 +40,7 @@ if(password_verify($password, $serverPasswordHash)){
   $_SESSION["userLoggedIn"] = true;
   $_SESSION["userID"] = $userID;
   echo "<script>
-    location.href= 'html/projectSelection.php';
+    location.href= 'sites/projectSelection.php';
   </script>";
 }else{
   echo "<script>

@@ -1,5 +1,5 @@
 <?php
-  require "../php/checkPermission.php";
+  //require "../php/checkPermission.php";
 ?>
 <!DOCTYPE html>
 <html lang="de">
@@ -17,11 +17,12 @@
 <body>
     <h1 align="center">Add Picture</h1>
 
-    <form align="center">
+    <form align="center" enctype="multipart/form-data" action="../php/uploadPicture.php" method="POST">
         <label for="upload">Choose Picture</label>
         <span id="file-chosen">No file chosen</span><br><br>
         <img src="" id="uploadPreview" width="90%" height="auto">
-        <input type="file" id="upload" accept=".jpg,.jpeg,.png" hidden><br><br>
+        <input type="hidden" name="Max_File_Size" value="15000000">
+        <input type="file" name="upload" id="upload" accept=".jpg,.jpeg,.png" hidden><br><br>
         <button type="submit" class="submitButton">Upload</button>
     </form>
 
