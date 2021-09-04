@@ -140,5 +140,37 @@ public function userNameExists($userName){
 
 }
 
+public function getLikes($picID){
+    $sqlQuery = "SELECT COUNT(userID) FROM picturelikes WHERE pictureID = ?";
+
+    $statement = $this->dbKeyObject->prepare($sqlQuery);
+    $statement->bind_param("i", $picID);
+    $statement->execute();
+
+    $result = $statement->get_result();
+
+    $likeCount = $result->fetch_assoc()["userIDCount"];
+
+    $statement->close();
+
+    return $likeCount;
+}
+
+public function getBests($picID){
+    $sqlQuery = "SELECT COUNT(userID) FROM picturebests WHERE pictureID = ?";
+
+    $statement = $this->dbKeyObject->prepare($sqlQuery);
+    $statement->bind_param("i", $picID);
+    $statement->execute();
+
+    $result = $statement->get_result();
+
+    $bestCount = $result->fetch_assoc()["userIDCount"];
+
+    $statement->close();
+
+    return $bestCount;
+}
+
 }
 ?>
