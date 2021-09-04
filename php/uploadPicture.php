@@ -14,6 +14,8 @@ try {
 
     $project = $_GET['project'];
 
+    //TODO Test if user has uploaded already
+
     // Undefined | Multiple Files | $_FILES Corruption Attack
     // If this request falls under any of them, treat it invalid.
     if (

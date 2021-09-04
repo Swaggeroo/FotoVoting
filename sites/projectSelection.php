@@ -24,13 +24,19 @@
     <div align="center" style="width: 100%;">
         <div id="projekte" style="width: 90%;">
             <?php
-                $testArray = array("p1","p2","p3");
-                foreach($testArray as $project){
-                    echo "<a href=\"./votingPage.php?project=$project\">";
-                    echo "<div class=\"card projectButton\">";
-                    echo"<p>$project</p>";
-                    echo"</div>";
-                    echo"</a>";
+                $path = "../uploads";
+                if (!file_exists($path)) {
+                    mkdir($path, 0777, true);
+                }
+                $contentArray = scandir($path);
+                foreach($contentArray as $project){
+                    if (!is_dir($project)){
+                        echo "<a href=\"./votingPage.php?project=$project\">";
+                        echo "<div class=\"card projectButton\">";
+                        echo"<p>$project</p>";
+                        echo"</div>";
+                        echo"</a>";
+                    }
                 }
             ?>
         </div>
