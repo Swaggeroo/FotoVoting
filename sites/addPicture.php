@@ -1,4 +1,5 @@
 <?php
+  //TODO
   //require "../php/checkPermission.php";
 ?>
 <!DOCTYPE html>
@@ -20,7 +21,7 @@
     <form align="center" enctype="multipart/form-data" action="../php/uploadPicture.php" method="POST">
         <label for="upload">Choose Picture</label>
         <span id="file-chosen">No file chosen</span><br><br>
-        <img src="" id="uploadPreview" width="90%" height="auto">
+        <img src="" id="uploadPreview" width="90%" height="auto" alt="preview">
         <input type="hidden" name="Max_File_Size" value="15000000">
         <input type="file" name="upload" id="upload" accept=".jpg,.jpeg,.png" hidden><br><br>
         <button type="submit" class="submitButton">Upload</button>
@@ -32,10 +33,10 @@
         <br>
         <div align="center">
             <a href="https://github.com/Swaggeroo">
-                <img src="https://img.shields.io/github/followers/Swaggeroo?color=green&label=Swaggeroo&logo=github&style=flat-square">
+                <img src="https://img.shields.io/github/followers/Swaggeroo?color=green&label=Swaggeroo&logo=github&style=flat-square" alt="Swaggeroo">
             </a>
             <a href="https://github.com/BumBumGame">
-                <img src="https://img.shields.io/github/followers/BumBumGame?color=purple&label=BumBumGame&logo=github&style=flat-square">
+                <img src="https://img.shields.io/github/followers/BumBumGame?color=purple&label=BumBumGame&logo=github&style=flat-square" alt="BumBumGame">
             </a>
         </div>
     </footer>

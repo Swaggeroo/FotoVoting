@@ -1,5 +1,6 @@
 <?php
-  require "../php/checkPermission.php";
+  //TODO
+  //require "../php/checkPermission.php";
 ?>
 <!DOCTYPE html>
 <html lang="de">
@@ -18,7 +19,7 @@
     <a href="" style="position: absolute; top: 15px; margin-left: 85%; font-size: xxx-large" >
         +
     </a>
-    <h1 align="center" id="projectTitle">Title</h1>
+    <h1 align="center" id="projectTitle"><?php echo $_GET['project'] ?></h1>
     <div align="center" style="width: 100%;">
         <div id="pictures" style="width: 90%;">
             <div class="picture-container">
@@ -40,10 +41,10 @@
         <br>
         <div align="center">
             <a href="https://github.com/Swaggeroo">
-                <img src="https://img.shields.io/github/followers/Swaggeroo?color=green&label=Swaggeroo&logo=github&style=flat-square">
+                <img src="https://img.shields.io/github/followers/Swaggeroo?color=green&label=Swaggeroo&logo=github&style=flat-square" alt="Swaggeroo">
             </a>
             <a href="https://github.com/BumBumGame">
-                <img src="https://img.shields.io/github/followers/BumBumGame?color=purple&label=BumBumGame&logo=github&style=flat-square">
+                <img src="https://img.shields.io/github/followers/BumBumGame?color=purple&label=BumBumGame&logo=github&style=flat-square" alt="BumBumGame">
             </a>
         </div>
     </footer>

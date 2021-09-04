@@ -1,5 +1,6 @@
 <?php
-  require "../php/checkPermission.php";
+  //TODO
+  //require "../php/checkPermission.php";
 ?>
 <!DOCTYPE html>
 <html lang="de">
@@ -19,23 +20,16 @@
     <h1 align = center>Projekte</h1>
     <div align="center" style="width: 100%;">
         <div id="projekte" style="width: 90%;">
-            <a href="http://www.google.com">
-                <div class="card projectButton">
-                    <p>Hallo</p>
-                </div>
-                <div class="card projectButton">
-                    <p>Hallo</p>
-                </div>
-                <div class="card projectButton">
-                    <p>Hallo</p>
-                </div>
-                <div class="card projectButton">
-                    <p>Hallo</p>
-                </div>
-                <div class="card projectButton">
-                    <p>Hallo</p>
-                </div>
-            </a>
+            <?php
+                $testArray = array("p1","p2","p3");
+                foreach($testArray as $project){
+                    echo "<a href=\"./votingPage.php?project=$project\">";
+                    echo "<div class=\"card projectButton\">";
+                    echo"<p>$project</p>";
+                    echo"</div>";
+                    echo"</a>";
+                }
+            ?>
         </div>
     </div>
 
@@ -45,10 +39,10 @@
         <br>
         <div align="center">
             <a href="https://github.com/Swaggeroo">
-                <img src="https://img.shields.io/github/followers/Swaggeroo?color=green&label=Swaggeroo&logo=github&style=flat-square">
+                <img src="https://img.shields.io/github/followers/Swaggeroo?color=green&label=Swaggeroo&logo=github&style=flat-square" alt="Swaggeroo">
             </a>
             <a href="https://github.com/BumBumGame">
-                <img src="https://img.shields.io/github/followers/BumBumGame?color=purple&label=BumBumGame&logo=github&style=flat-square">
+                <img src="https://img.shields.io/github/followers/BumBumGame?color=purple&label=BumBumGame&logo=github&style=flat-square" alt="BumBumGame">
             </a>
         </div>
     </footer>
