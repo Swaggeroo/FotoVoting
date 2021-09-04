@@ -3,6 +3,13 @@
   //require "../php/checkPermission.php";
   if (!empty($_GET['message'])) {
       echo "<script>alert(\"".$_GET['message']."\");</script>";
+      if (!empty($_GET['project'])){
+          header("Location: ./votingPage.php?project=".$_GET['project']);
+      }else{
+          $message = 'Invalid parameters.';
+          header("Location: ./projectSelection.php?message=".$message);
+          die();
+      }
   }
 ?>
 <!DOCTYPE html>
@@ -19,10 +26,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 </head>
 <body>
+    <h1 align="center" id="projectTitle"><?php echo $_GET['project'] ?></h1>
     <a href="./addPicture.php?project=<?php echo $_GET["project"] ?>" style="position: absolute; top: 15px; margin-left: 85%; font-size: xxx-large" >
         +
     </a>
-    <h1 align="center" id="projectTitle"><?php echo $_GET['project'] ?></h1>
 
     <div align="center" style="width: 100%;">
         <div id="pictures" style="width: 90%;">
