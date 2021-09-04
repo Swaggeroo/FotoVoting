@@ -95,6 +95,8 @@ try {
         die();
     }
 
+    //TODO Insert into Database
+
     $message = 'File is uploaded successfully.';
     echo $message;
     header("Location: ../sites/votingPage.php?project=".$project."&message=".$message);
