@@ -141,7 +141,7 @@ public function userNameExists($userName){
 }
 
 public function getLikes($picID){
-    $sqlQuery = "SELECT COUNT(userID) FROM picturelikes WHERE pictureID = ?";
+    $sqlQuery = "SELECT COUNT(userID) AS likeCount FROM picturelikes WHERE pictureID = ?";
 
     $statement = $this->dbKeyObject->prepare($sqlQuery);
     $statement->bind_param("i", $picID);
@@ -149,7 +149,7 @@ public function getLikes($picID){
 
     $result = $statement->get_result();
 
-    $likeCount = $result->fetch_assoc()["userIDCount"];
+    $likeCount = $result->fetch_assoc()["likeCount"];
 
     $statement->close();
 
@@ -157,7 +157,7 @@ public function getLikes($picID){
 }
 
 public function getBests($picID){
-    $sqlQuery = "SELECT COUNT(userID) FROM picturebests WHERE pictureID = ?";
+    $sqlQuery = "SELECT COUNT(userID) AS bestCount FROM picturebests WHERE pictureID = ?";
 
     $statement = $this->dbKeyObject->prepare($sqlQuery);
     $statement->bind_param("i", $picID);
@@ -165,12 +165,99 @@ public function getBests($picID){
 
     $result = $statement->get_result();
 
-    $bestCount = $result->fetch_assoc()["userIDCount"];
+    $bestCount = $result->fetch_assoc()["bestCount"];
 
     $statement->close();
 
     return $bestCount;
 }
+
+public function hasLiked($picID, $userID){
+    $sqlQuery = "SELECT COUNT(userID) AS userIDCount FROM picturelikes WHERE userID = ? AND pictureID = ?";
+    $statement = $this->dbKeyObject->prepare($sqlQuery);
+    $statement->bind_param("ii", $userID, $picID);
+    $statement->execute();
+
+    $result = $statement->get_result();
+
+    $haveLiked = $result->fetch_assoc()["userIDCount"];
+
+    $statement->close();
+
+    if($haveLiked >= 1){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+public function addLike($picID, $userID){
+    if($this->hasLiked($picID,$userID)){
+        return false;
+    }else{
+        $sqlQuery = "INSERT INTO picturelikes (pictureID, userID) VALUES (?, ?)";
+
+        $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
+        $sqlStatement->bind_param("ii", $picID, $userID);
+        if(!$sqlStatement->execute()){
+            die("Error: ".$sqlStatement->error);
+        }
+
+        $sqlStatement->close();
+        return true;
+    }
+}
+
+public function getProjectIDFromPicID($picID){
+    $sqlQuery = "SELECT projectID AS projectID FROM pictures WHERE pictureID = ?";
+    $statement = $this->dbKeyObject->prepare($sqlQuery);
+    $statement->bind_param("i", $picID);
+    $statement->execute();
+
+    $result = $statement->get_result();
+
+    $projectID = $result->fetch_assoc()["projectID"];
+
+    $statement->close();
+    return $projectID;
+}
+
+public function userBested($projectID, $userID){
+    $sqlQuery = "SELECT COUNT(pictureID) AS bestCount FROM picturebests WHERE projectID = ? AND userID = ?";
+    $statement = $this->dbKeyObject->prepare($sqlQuery);
+    $statement->bind_param("ii", $projectID, $userID);
+    $statement->execute();
+
+    $result = $statement->get_result();
+
+    $bestCount = $result->fetch_assoc()["bestCount"];
+
+    $statement->close();
+    if ($bestCount >= 1){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+    public function addBest($picID, $userID){
+        $projectID = $this->getProjectIDFromPicID($picID);
+
+        if (!$this->userBested($projectID,$userID)){
+            $sqlQuery = "INSERT INTO pictureBests (pictureID, userID, projectID) VALUES (?, ?, ?)";
+
+            $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
+            $sqlStatement->bind_param("iii", $picID, $userID, $projectID);
+            if(!$sqlStatement->execute()){
+                die("Error: ".$sqlStatement->error);
+            }
+
+            $sqlStatement->close();
+            return true;
+        }else{
+            return false;
+        }
+    }
 
 }
 ?>
