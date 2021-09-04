@@ -49,11 +49,13 @@
                 $contentArray = scandir($path);
                 foreach($contentArray as $project){
                     if (!is_dir($project)){
-                        echo "<a href=\"./votingPage.php?project=$project\">";
-                        echo "<div class=\"card projectButton\">";
-                        echo"<p>$project</p>";
-                        echo"</div>";
-                        echo"</a>";
+                        echo "
+                            <a href=\"./votingPage.php?project=$project\">
+                                <div class=\"card projectButton\">
+                                    <p>$project</p>
+                                </div>
+                            </a>
+                        ";
                     }
                 }
             ?>
