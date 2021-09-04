@@ -5,6 +5,14 @@
 header('Content-Type: text/plain; charset=utf-8');
 
 try {
+    if (empty($_GET['project'])){
+        $message = 'Invalid parameters.';
+        echo $message;
+        header("Location: ../sites/projectSelection.php?message=".$message);
+        die();
+    }
+
+    $project = $_GET['project'];
 
     // Undefined | Multiple Files | $_FILES Corruption Attack
     // If this request falls under any of them, treat it invalid.
@@ -12,30 +20,45 @@ try {
         !isset($_FILES['upload']['error']) ||
         is_array($_FILES['upload']['error'])
     ) {
-        throw new RuntimeException('Invalid parameters.');
+        $message = 'Invalid parameters.';
+        echo $message;
+        header("Location: ../sites/votingPage.php?project=".$project."&message=".$message);
+        die();
     }
+
 
     // Check $_FILES['upfile']['error'] value.
     switch ($_FILES['upload']['error']) {
         case UPLOAD_ERR_OK:
             break;
         case UPLOAD_ERR_NO_FILE:
-            throw new RuntimeException('No file sent.');
+            $message = 'No file sent.';
+            echo $message;
+            header("Location: ../sites/votingPage.php?project=".$project."&message=".$message);
+            die();
         case UPLOAD_ERR_INI_SIZE:
         case UPLOAD_ERR_FORM_SIZE:
-            throw new RuntimeException('Exceeded filesize limit.');
+            $message = 'Exceeded filesize limit. (15 MB)';
+            echo $message;
+            header("Location: ../sites/votingPage.php?project=".$project."&message=".$message);
+            die();
         default:
-            throw new RuntimeException('Unknown errors.');
+            $message = 'Unknown errors.';
+            echo $message;
+            header("Location: ../sites/votingPage.php?project=".$project."&message=".$message);
+            die();
     }
 
     // You should also check filesize here.
     if ($_FILES['upload']['size'] > 15000000) {
-        throw new RuntimeException('Exceeded filesize limit.');
+        $message = 'Exceeded filesize limit. (15 MB)';
+        echo $message;
+        header("Location: ../sites/votingPage.php?project=".$project."&message=".$message);
+        die();
     }
 
     // DO NOT TRUST $_FILES['upfile']['mime'] VALUE !!
     // Check MIME Type by yourself.
-    /*
     $finfo = new finfo(FILEINFO_MIME_TYPE);
     if (false === $ext = array_search(
             $finfo->file($_FILES['upload']['tmp_name']),
@@ -45,23 +68,37 @@ try {
             ),
             true
         )) {
-        throw new RuntimeException('Invalid file format.');
-    }*/
+        $message = 'Invalid file format.';
+        echo $message;
+        header("Location: ../sites/votingPage.php?project=".$project."&message=".$message);
+        die();
+    }
 
     // You should name it uniquely.
     // DO NOT USE $_FILES['upfile']['name'] WITHOUT ANY VALIDATION !!
     // On this example, obtain safe unique name from its binary data.
+    $format = '../uploads/'.$project.'/%s.%s';
+    $path = "../uploads/".$project."/";
+    if (!file_exists($path)) {
+        mkdir($path, 0777, true);
+    }
     if (!move_uploaded_file(
         $_FILES['upload']['tmp_name'],
-        sprintf('./uploads/%s.%s',
+        sprintf($format,
             sha1_file($_FILES['upload']['tmp_name']),
             $ext
         )
     )) {
-        throw new RuntimeException('Failed to move uploaded file.');
+        $message = 'Failed to move uploaded file.';
+        echo $message;
+        header("Location: ../sites/votingPage.php?project=".$project."&message=".$message);
+        die();
     }
 
-    echo 'File is uploaded successfully.';
+    $message = 'File is uploaded successfully.';
+    echo $message;
+    header("Location: ../sites/votingPage.php?project=".$project."&message=".$message);
+    die();
 
 } catch (RuntimeException $e) {
 

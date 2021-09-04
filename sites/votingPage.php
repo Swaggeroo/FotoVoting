@@ -1,12 +1,15 @@
 <?php
   //TODO
   //require "../php/checkPermission.php";
+  if (!empty($_GET['message'])) {
+      echo "<script>alert(\"".$_GET['message']."\");</script>";
+  }
 ?>
 <!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Voting</title>
+    <title>Voting (<?php echo $_GET['project']?>)</title>
 
     <!--basic Style-->
     <link rel="stylesheet" href="../style.css">
@@ -16,7 +19,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 </head>
 <body>
-    <a href="" style="position: absolute; top: 15px; margin-left: 85%; font-size: xxx-large" >
+    <a href="./addPicture.php?project=<?php echo $_GET["project"] ?>" style="position: absolute; top: 15px; margin-left: 85%; font-size: xxx-large" >
         +
     </a>
     <h1 align="center" id="projectTitle"><?php echo $_GET['project'] ?></h1>
