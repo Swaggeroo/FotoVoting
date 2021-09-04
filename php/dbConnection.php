@@ -27,7 +27,41 @@ public function __destruct(){
 
 public function createBasicDatabaseStructure(){
     $sqlStatements = array(
-       "CREATE TABLE user (userID INTEGER NOT NULL AUTO_INCREMENT, userName VARCHAR(255), userPassword VARCHAR(300), PRIMARY KEY (userID))"
+        "CREATE TABLE user(
+            userID INTEGER NOT NULL AUTO_INCREMENT, 
+            userName VARCHAR(255), 
+            userPassword VARCHAR(300), 
+            PRIMARY KEY (userID))
+        ",
+        "CREATE TABLE projects(
+            projectID INT NOT NULL AUTO_INCREMENT, 
+            projectName VARCHAR(500) NOT NULL, 
+            PRIMARY KEY (projectID))
+        ",
+        "CREATE TABLE pictures( 
+            picID INT NOT NULL AUTO_INCREMENT,
+            picFileName VARCHAR(1000) NOT NULL, 
+            projectID INT NOT NULL, 
+            userID INT NOT NULL, 
+            PRIMARY KEY (picID),
+            FOREIGN KEY(userID) REFERENCES fotovote.user(userID),
+            FOREIGN KEY(projectID) REFERENCES fotovote.projects(projectID)
+            )
+        ",
+        "CREATE TABLE picturelikes( 
+            pictureID INT NOT NULL , 
+            userID INT NOT NULL ,
+	        FOREIGN KEY (pictureID) REFERENCES fotovote.pictures(picID),
+            FOREIGN KEY (userID) REFERENCES fotovote.user(userID)
+        )",
+        "CREATE TABLE picturebests(
+            pictureID INT NOT NULL, 
+            userID INT NOT NULL,
+            projectID INT NOT NULL,
+	        FOREIGN KEY (pictureID) REFERENCES fotovote.pictures(picID),
+            FOREIGN KEY (userID) REFERENCES fotovote.user(userID),
+            FOREIGN KEY (projectID) REFERENCES fotovote.projects(projectID)
+        );"
     );
 
     for($i = 0; $i < count($sqlStatements); $i++){
