@@ -77,6 +77,7 @@
                                 </div>
                             </div> 
                         ";
+                        //TODO switch to project and picture id for better database communication
                         //TODO Get Username - On nametag and alt
                         //TODO Button action
                     }

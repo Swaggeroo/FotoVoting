@@ -45,6 +45,7 @@
         <input type="file" name="upload" id="upload" accept=".jpg,.jpeg,.png" hidden><br><br>
         <button type="submit" class="submitButton">Upload</button>
     </form>
+    <!--TODO Button to confirm ownmade -->
 
     <hr>
     <footer>
