@@ -11,6 +11,7 @@
           die();
       }
   }
+  //TODO test if project is existent
 ?>
 <!DOCTYPE html>
 <html lang="de">
