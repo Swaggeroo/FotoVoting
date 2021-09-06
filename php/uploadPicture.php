@@ -12,6 +12,18 @@ try {
         die();
     }
 
+
+    require "../php/dbConnection.php";
+
+    $db = new db();
+    if (!$db->projectExists($_GET['project'])) {
+        $message = 'Project not found.';
+        header("Location: ./projectSelection.php?message=".$message);
+        die();
+    }else{
+        $projectName = $db->getProjectName($_GET['project']);
+    }
+
     $project = $_GET['project'];
 
     //TODO Test if user has uploaded already
@@ -79,8 +91,8 @@ try {
     // You should name it uniquely.
     // DO NOT USE $_FILES['upfile']['name'] WITHOUT ANY VALIDATION !!
     // On this example, obtain safe unique name from its binary data.
-    $format = '../uploads/'.$project.'/%s.%s';
-    $path = "../uploads/".$project."/";
+    $format = '../uploads/'.$projectName.'/%s.%s';
+    $path = "../uploads/".$projectName."/";
     if (!file_exists($path)) {
         mkdir($path, 0777, true);
     }

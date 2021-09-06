@@ -285,6 +285,22 @@ public function projectExists($projectID){
     }
 }
 
+public function getProjectName($projectID){
+    $sqlQuery = "SELECT projectName AS projectName FROM projects WHERE projectID = ?";
+
+    $statement = $this->dbKeyObject->prepare($sqlQuery);
+    $statement->bind_param("i", $projectID);
+    $statement->execute();
+
+    $result = $statement->get_result();
+
+    $projectName = $result->fetch_assoc()["projectName"];
+
+    $statement->close();
+
+    return $projectName;
+}
+
 
     //TODO Remove Like
     //TODO Remove Best

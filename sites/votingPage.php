@@ -17,14 +17,15 @@
       $message = 'Project not found.';
       header("Location: ./projectSelection.php?message=".$message);
       die();
+  }else{
+      $projectName = $db->getProjectName($_GET['project']);
   }
-  //TODO test if project is existent
 ?>
 <!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Voting (<?php echo htmlspecialchars($_GET['project'])?>)</title>
+    <title>Voting (<?php echo htmlspecialchars($projectName)?>)</title>
 
     <!--basic Style-->
     <link rel="stylesheet" href="../style.css">
@@ -69,14 +70,14 @@
                     die();
                 }
 
-                $pictures = scandir("../uploads/".$project);
+                $pictures = scandir("../uploads/".$projectName);
 
                 foreach ($pictures as $picture) {
                     if (!is_dir($picture)){
                         echo "
                             <div class=\"picture-container\">   
                                 <div class=\"bildmitbildunterschrift card animate__animated animate__bounceIn\" style=\"margin: 1em;\">
-                                    <img src=\"../uploads/".$project."/".$picture."\" alt=\"Name\" style=\"width:100%;height:auto;\">
+                                    <img src=\"../uploads/".$projectName."/".$picture."\" alt=\"Name\" style=\"width:100%;height:auto;\">
                                     <span class=\"nameTag\">".$picture."</span>
                                 </div>
                                 <div class=\"flex-container wrap row\">
