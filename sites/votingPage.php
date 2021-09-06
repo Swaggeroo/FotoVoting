@@ -2,10 +2,8 @@
   //TODO
   //require "../php/checkPermission.php";
   if (!empty($_GET['message'])) {
-      echo "<script>alert(\"".$_GET['message']."\");</script>";
-      if (!empty($_GET['project'])){
-          header("Location: ./votingPage.php?project=".$_GET['project']);
-      }else{
+      echo "<script>alert(\"".htmlspecialchars($_GET['message'])."\");window.location.replace(\"./votingPage.php?project=".htmlspecialchars($_GET['project'])."\");</script>";
+      if (empty($_GET['project'])) {
           $message = 'Invalid parameters.';
           header("Location: ./projectSelection.php?message=".$message);
           die();
@@ -17,7 +15,7 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Voting (<?php echo $_GET['project']?>)</title>
+    <title>Voting (<?php echo htmlspecialchars($_GET['project'])?>)</title>
 
     <!--basic Style-->
     <link rel="stylesheet" href="../style.css">
@@ -46,8 +44,8 @@
     <meta name="theme-color" content="#ffffff">
 </head>
 <body>
-    <h1 align="center" id="projectTitle"><?php echo $_GET['project'] ?></h1>
-    <a href="./addPicture.php?project=<?php echo $_GET["project"] ?>" style="position: absolute; top: 15px; margin-left: 85%; font-size: xxx-large" >
+    <h1 align="center" id="projectTitle"><?php echo htmlspecialchars($_GET['project']) ?></h1>
+    <a href="./addPicture.php?project=<?php echo htmlspecialchars($_GET["project"]) ?>" style="position: absolute; top: 15px; margin-left: 85%; font-size: xxx-large" >
         +
     </a>
 

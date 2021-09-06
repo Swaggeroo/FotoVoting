@@ -1,12 +1,13 @@
 <?php
   //TODO
   //require "../php/checkPermission.php";
+  //TODO check if project is existent
 ?>
 <!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Add Picture (<?php echo $_GET['project']?>)</title>
+    <title>Add Picture (<?php echo htmlspecialchars($_GET['project'])?>)</title>
 
     <!--basic Style-->
     <link rel="stylesheet" href="../style.css">
@@ -35,9 +36,9 @@
     <meta name="theme-color" content="#ffffff">
 </head>
 <body>
-    <h1 align="center">Add Picture (<?php echo $_GET['project']?>)</h1>
+    <h1 align="center">Add Picture (<?php echo htmlspecialchars($_GET['project'])?>)</h1>
 
-    <form align="center" enctype="multipart/form-data" action="../php/uploadPicture.php?project=<?php echo $_GET['project']?>" method="POST">
+    <form align="center" enctype="multipart/form-data" action="../php/uploadPicture.php?project=<?php echo htmlspecialchars($_GET['project'])?>" method="POST">
         <label for="upload">Choose Picture</label>
         <span id="file-chosen">No file chosen</span><br><br>
         <img src="" id="uploadPreview" width="90%" height="auto">

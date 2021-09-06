@@ -2,7 +2,7 @@
   //TODO
   //require "../php/checkPermission.php";
   if (!empty($_GET['message'])) {
-      echo "<script>alert(\"".$_GET['message']."\");</script>";
+      echo "<script>alert(\"".htmlspecialchars($_GET['message'])."\");</script>";
   }
 ?>
 <!DOCTYPE html>
