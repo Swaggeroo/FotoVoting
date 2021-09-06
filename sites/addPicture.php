@@ -1,6 +1,7 @@
 <?php
   //TODO
   //require "../php/checkPermission.php";
+
     require "../php/dbConnection.php";
 
     $db = new db();
@@ -8,13 +9,15 @@
         $message = 'Project not found.';
         header("Location: ./projectSelection.php?message=".$message);
         die();
+    }else{
+        $projectName = $db->getProjectName($_GET['project']);
     }
 ?>
 <!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Add Picture (<?php echo htmlspecialchars($_GET['project'])?>)</title>
+    <title>Add Picture (<?php echo htmlspecialchars($projectName)?>)</title>
 
     <!--basic Style-->
     <link rel="stylesheet" href="../style.css">
@@ -43,7 +46,7 @@
     <meta name="theme-color" content="#ffffff">
 </head>
 <body>
-    <h1 align="center">Add Picture (<?php echo htmlspecialchars($_GET['project'])?>)</h1>
+    <h1 align="center">Add Picture (<?php echo htmlspecialchars($projectName)?>)</h1>
 
     <form align="center" enctype="multipart/form-data" action="../php/uploadPicture.php?project=<?php echo htmlspecialchars($_GET['project'])?>" method="POST">
         <label for="upload">Choose Picture</label>
