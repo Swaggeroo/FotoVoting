@@ -2,7 +2,7 @@
   //TODO
   //require "../php/checkPermission.php";
   if (!empty($_GET['message'])) {
-      echo "<script>alert(\"".htmlspecialchars($_GET['message'])."\");</script>";
+      echo "<script>alert(\"".htmlspecialchars($_GET['message'])."\");window.location.replace(\"./projectSelection.php\");</script>";
   }
 ?>
 <!DOCTYPE html>
