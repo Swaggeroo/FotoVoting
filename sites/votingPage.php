@@ -9,6 +9,15 @@
           die();
       }
   }
+
+  require "../php/dbConnection.php";
+
+  $db = new db();
+  if (!$db->projectExists($_GET['project'])) {
+      $message = 'Project not found.';
+      header("Location: ./projectSelection.php?message=".$message);
+      die();
+  }
   //TODO test if project is existent
 ?>
 <!DOCTYPE html>

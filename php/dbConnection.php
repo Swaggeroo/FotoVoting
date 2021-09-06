@@ -240,24 +240,50 @@ public function userBested($projectID, $userID){
     }
 }
 
-    public function addBest($picID, $userID){
-        $projectID = $this->getProjectIDFromPicID($picID);
+public function addBest($picID, $userID){
+    $projectID = $this->getProjectIDFromPicID($picID);
 
-        if (!$this->userBested($projectID,$userID)){
-            $sqlQuery = "INSERT INTO pictureBests (pictureID, userID, projectID) VALUES (?, ?, ?)";
+    if (!$this->userBested($projectID,$userID)){
+        $sqlQuery = "INSERT INTO pictureBests (pictureID, userID, projectID) VALUES (?, ?, ?)";
 
-            $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
-            $sqlStatement->bind_param("iii", $picID, $userID, $projectID);
-            if(!$sqlStatement->execute()){
-                die("Error: ".$sqlStatement->error);
-            }
-
-            $sqlStatement->close();
-            return true;
-        }else{
-            return false;
+        $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
+        $sqlStatement->bind_param("iii", $picID, $userID, $projectID);
+        if(!$sqlStatement->execute()){
+            die("Error: ".$sqlStatement->error);
         }
+
+        $sqlStatement->close();
+        return true;
+    }else{
+        return false;
     }
+}
+
+public function getProjectCount($projectID){
+    $sqlQuery = "SELECT COUNT(projectID) AS projectCount FROM projects WHERE projectID = ?";
+
+    $statement = $this->dbKeyObject->prepare($sqlQuery);
+    $statement->bind_param("i", $projectID);
+    $statement->execute();
+
+    $result = $statement->get_result();
+
+    $projectCount = $result->fetch_assoc()["projectCount"];
+
+    $statement->close();
+
+    return $projectCount;
+}
+
+public function projectExists($projectID){
+    $projectCount = $this->getProjectCount($projectID);
+
+    if($projectCount >= 1){
+        return true;
+    }else{
+        return false;
+    }
+}
 
 
     //TODO Remove Like

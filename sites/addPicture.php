@@ -1,7 +1,14 @@
 <?php
   //TODO
   //require "../php/checkPermission.php";
-  //TODO check if project is existent
+    require "../php/dbConnection.php";
+
+    $db = new db();
+    if (!$db->projectExists($_GET['project'])) {
+        $message = 'Project not found.';
+        header("Location: ./projectSelection.php?message=".$message);
+        die();
+    }
 ?>
 <!DOCTYPE html>
 <html lang="de">
