@@ -301,6 +301,36 @@ public function getProjectName($projectID){
     return $projectName;
 }
 
+public function getProjectNames()
+{
+    $sqlQuery = "SELECT projectName AS projectNames FROM projects";
+
+    $result = $this->dbKeyObject->query($sqlQuery);
+
+    $rows = array();
+    while($row = $result->fetch_array(MYSQLI_ASSOC)){
+        array_push($rows, $row);
+    }
+    return $rows;
+
+    //return json_encode($result->fetch_all(MYSQLI_ASSOC));
+}
+
+public function getProjectIDs()
+{
+    $sqlQuery = "SELECT projectID AS projectIDs FROM projects";
+
+    $result = $this->dbKeyObject->query($sqlQuery);
+
+    $rows = array();
+    while($row = $result->fetch_array(MYSQLI_ASSOC)){
+        array_push($rows, $row);
+    }
+    return $rows;
+
+    //return json_encode($result->fetch_all(MYSQLI_ASSOC));
+}
+
 
     //TODO Remove Like
     //TODO Remove Best

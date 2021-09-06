@@ -42,22 +42,22 @@
     <div align="center" style="width: 100%;">
         <div id="projekte" style="width: 90%;">
             <?php
-                $path = "../uploads";
-                if (!file_exists($path)) {
-                    mkdir($path, 0777, true);
+                require "../php/dbConnection.php";
+
+                $db = new db();
+                $projectIDs = $db->getProjectIDs();
+                $projectNames = $db->getProjectNames();
+
+                for ($x = 0; $x < count($projectIDs); $x++){
+                    echo "
+                        <a href=\"./votingPage.php?project=".$projectIDs[$x]["projectIDs"]."\">
+                            <div class=\"card projectButton\">
+                                <p>".$projectNames[$x]["projectNames"]."</p>
+                            </div>
+                        </a>
+                    ";
                 }
-                $contentArray = scandir($path);
-                foreach($contentArray as $project){
-                    if (!is_dir($project)){
-                        echo "
-                            <a href=\"./votingPage.php?project=$project\">
-                                <div class=\"card projectButton\">
-                                    <p>$project</p>
-                                </div>
-                            </a>
-                        ";
-                    }
-                }
+
             ?>
         </div>
     </div>

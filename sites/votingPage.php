@@ -54,7 +54,7 @@
     <meta name="theme-color" content="#ffffff">
 </head>
 <body>
-    <h1 align="center" id="projectTitle"><?php echo htmlspecialchars($_GET['project']) ?></h1>
+    <h1 align="center" id="projectTitle"><?php echo htmlspecialchars($projectName) ?></h1>
     <a href="./addPicture.php?project=<?php echo htmlspecialchars($_GET["project"]) ?>" style="position: absolute; top: 15px; margin-left: 85%; font-size: xxx-large" >
         +
     </a>
