@@ -372,6 +372,22 @@ public function addPicture($fileName,$projectID,$userID){
     return true;
 }
 
+public function getUserName($userID) {
+    $sqlQuery = "SELECT userName AS userName FROM user WHERE userID = ?";
+
+    $statement = $this->dbKeyObject->prepare($sqlQuery);
+    $statement->bind_param("i", $userID);
+    $statement->execute();
+
+    $result = $statement->get_result();
+
+    $userName = $result->fetch_assoc()["userName"];
+
+    $statement->close();
+
+    return $userName;
+}
+
     //TODO Remove Like
     //TODO Remove Best
     //TODO Add Picture
