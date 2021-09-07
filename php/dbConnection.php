@@ -392,7 +392,6 @@ public function getUserName($userID) {
     //TODO Remove Best
     //TODO Add Picture
     //TODO Remove Picture
-    //TODO Get Name from ID (USER)
     //TODO get likes
     //TODO get bests
     //TODO test if user has uploaded for project
