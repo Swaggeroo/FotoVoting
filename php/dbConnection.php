@@ -364,5 +364,7 @@ public function getPictureAuthorIDs($projectID){
     //TODO Add Picture
     //TODO Remove Picture
     //TODO Get Name from ID (USER)
+    //TODO get likes
+    //TODO get bests
 }
 ?>
