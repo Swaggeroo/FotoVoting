@@ -312,8 +312,6 @@ public function getProjectNames()
         array_push($rows, $row);
     }
     return $rows;
-
-    //return json_encode($result->fetch_all(MYSQLI_ASSOC));
 }
 
 public function getProjectIDs()
@@ -327,14 +325,29 @@ public function getProjectIDs()
         array_push($rows, $row);
     }
     return $rows;
-
-    //return json_encode($result->fetch_all(MYSQLI_ASSOC));
 }
 
+public function getPictureIDs($projectID){
+    $sqlQuery = "SELECT picID AS picIDs FROM pictures WHERE projectID = ?";
+
+    $statement = $this->dbKeyObject->prepare($sqlQuery);
+    $statement->bind_param("i", $projectID);
+    $statement->execute();
+
+    $result = $statement->get_result();
+
+    $rows = array();
+    while($row = $result->fetch_array(MYSQLI_ASSOC)){
+        array_push($rows, $row);
+    }
+    return $rows;
+}
 
     //TODO Remove Like
     //TODO Remove Best
     //TODO Add Picture
     //TODO Remove Picture
+    //TODO Get Name from ID (USER)
+    //TODO Get Picture Author IDs
 }
 ?>
