@@ -359,6 +359,19 @@ public function getPictureAuthorIDs($projectID){
     return $rows;
 }
 
+public function addPicture($fileName,$projectID,$userID){
+    $sqlQuery = "INSERT INTO pictures (picFileName, userID, projectID) VALUES (?, ?, ?)";
+
+    $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
+    $sqlStatement->bind_param("sii", $fileName, $userID, $projectID);
+    if(!$sqlStatement->execute()){
+        die("Error: ".$sqlStatement->error);
+    }
+
+    $sqlStatement->close();
+    return true;
+}
+
     //TODO Remove Like
     //TODO Remove Best
     //TODO Add Picture
@@ -366,5 +379,6 @@ public function getPictureAuthorIDs($projectID){
     //TODO Get Name from ID (USER)
     //TODO get likes
     //TODO get bests
+    //TODO test if user has uploaded for project
 }
 ?>
