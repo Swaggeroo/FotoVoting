@@ -408,9 +408,6 @@ public function hasUploaded($userID,$projectID){
 
     //TODO Remove Like
     //TODO Remove Best
-    //TODO Add Picture
     //TODO Remove Picture
-    //TODO get likes
-    //TODO get bests
 }
 ?>
