@@ -344,7 +344,7 @@ public function getPictureIDs($projectID){
 }
 
 public function getPictureAuthorIDs($projectID){
-    $sqlQuery = "SELECT authID AS authIDs FROM pictures WHERE projectID = ?";
+    $sqlQuery = "SELECT userID AS authIDs FROM pictures WHERE projectID = ?";
 
     $statement = $this->dbKeyObject->prepare($sqlQuery);
     $statement->bind_param("i", $projectID);
