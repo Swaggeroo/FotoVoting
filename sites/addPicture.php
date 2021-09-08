@@ -1,6 +1,5 @@
 <?php
-  //TODO
-  //require "../php/checkPermission.php";
+  require "../php/checkPermission.php";
 
     require "../php/dbConnection.php";
 

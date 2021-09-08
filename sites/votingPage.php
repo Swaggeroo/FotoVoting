@@ -1,6 +1,5 @@
 <?php
-  //TODO
-  //require "../php/checkPermission.php";
+  require "../php/checkPermission.php";
   if (!empty($_GET['message'])) {
       echo "<script>alert(\"".trim(stripslashes(htmlspecialchars($_GET['message'])))."\");window.location.replace(\"./votingPage.php?project=".trim(stripslashes(htmlspecialchars($_GET['project'])))."\");</script>";
       if (empty($_GET['project'])) {
