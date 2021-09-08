@@ -70,7 +70,7 @@
                 }
 
                 $pictureIDs = $db->getPictureIDs(intval($project));
-                echo intval($project);
+
                 $pictureAuthorIDs = $db->getPictureAuthorIDs(intval($project));
 
                 for ($x = 0; $x < count($pictureIDs); $x++){
