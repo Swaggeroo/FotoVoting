@@ -359,6 +359,22 @@ public function getPictureAuthorIDs($projectID){
     return $rows;
 }
 
+public function getPictureFileName($picID){
+    $sqlQuery = "SELECT picFileName AS picFileName FROM pictures WHERE picID = ?";
+
+    $statement = $this->dbKeyObject->prepare($sqlQuery);
+    $statement->bind_param("i", $picID);
+    $statement->execute();
+
+    $result = $statement->get_result();
+
+    $picFileName = $result->fetch_assoc()["picFileName"];
+
+    $statement->close();
+
+    return $picFileName;
+}
+
 public function addPicture($fileName,$projectID,$userID){
     $sqlQuery = "INSERT INTO pictures (picFileName, userID, projectID) VALUES (?, ?, ?)";
 
