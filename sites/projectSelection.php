@@ -39,7 +39,7 @@
 <body>
 
   <?php
-     include "#userNavigationBar.php"; 
+     include "#userNavigationBar.php";
    ?>
 
     <h1 align = center>Projekte</h1>
