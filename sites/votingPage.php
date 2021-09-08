@@ -2,7 +2,7 @@
   //TODO
   //require "../php/checkPermission.php";
   if (!empty($_GET['message'])) {
-      echo "<script>alert(\"".htmlspecialchars($_GET['message'])."\");window.location.replace(\"./votingPage.php?project=".htmlspecialchars($_GET['project'])."\");</script>";
+      echo "<script>alert(\"".trim(stripslashes(htmlspecialchars($_GET['message'])))."\");window.location.replace(\"./votingPage.php?project=".trim(stripslashes(htmlspecialchars($_GET['project'])))."\");</script>";
       if (empty($_GET['project'])) {
           $message = 'Invalid parameters.';
           header("Location: ./projectSelection.php?message=".$message);
@@ -75,7 +75,7 @@
                 foreach ($pictures as $picture) {
                     if (!is_dir($picture)){
                         echo "
-                            <div class=\"picture-container\">   
+                            <div class=\"picture-container\">
                                 <div class=\"bildmitbildunterschrift card animate__animated animate__bounceIn\" style=\"margin: 1em;\">
                                     <img src=\"../uploads/".$projectName."/".$picture."\" alt=\"Name\" style=\"width:100%;height:auto;\">
                                     <span class=\"nameTag\">".$picture."</span>
@@ -84,7 +84,7 @@
                                     <button class=\"votingButton like card\">&#10084;Like</button>
                                     <button class=\"votingButton best card\">&#11088;Best</button>
                                 </div>
-                            </div> 
+                            </div>
                         ";
                         //TODO switch to project and picture id for better database communication
                         //TODO Get Username - On nametag and alt

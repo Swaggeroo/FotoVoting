@@ -40,12 +40,12 @@ if(password_verify($password, $serverPasswordHash)){
   $_SESSION["userLoggedIn"] = true;
   $_SESSION["userID"] = $userID;
   echo "<script>
-    location.href= 'sites/projectSelection.php';
+    location.replace('sites/projectSelection.php');
   </script>";
 }else{
   echo "<script>
    alert('Falsches Passwort!');
-   location.href= 'index.html';
+   location.replace('index.html');
   </script>";
 }
 

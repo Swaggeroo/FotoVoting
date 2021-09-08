@@ -2,7 +2,7 @@
   //TODO
   //require "../php/checkPermission.php";
   if (!empty($_GET['message'])) {
-      echo "<script>alert(\"".htmlspecialchars($_GET['message'])."\");window.location.replace(\"./projectSelection.php\");</script>";
+      echo "<script>alert(\"".trim(stripslashes(htmlspecialchars($_GET['message'])))."\");window.location.replace(\"./projectSelection.php\");</script>";
   }
 ?>
 <!DOCTYPE html>
@@ -38,6 +38,11 @@
     <meta name="theme-color" content="#ffffff">
 </head>
 <body>
+
+  <?php
+     include "#userNavigationBar.php"; 
+   ?>
+
     <h1 align = center>Projekte</h1>
     <div align="center" style="width: 100%;">
         <div id="projekte" style="width: 90%;">
