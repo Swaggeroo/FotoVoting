@@ -1,6 +1,5 @@
 <?php
-//TODO
-//require "../php/checkPermission.php";
+require "../php/checkPermission.php";
 
 header('Content-Type: text/plain; charset=utf-8');
 
@@ -11,6 +10,8 @@ try {
         header("Location: ../sites/projectSelection.php?message=".$message);
         die();
     }
+
+    $userID = $_SESSION["userID"];
 
 
     require "../php/dbConnection.php";
@@ -26,7 +27,11 @@ try {
 
     $project = $_GET['project'];
 
-    //TODO Test if user has uploaded already
+    if ($db->hasUploaded($userID,$project)){
+        $message = 'You already uploaded a picture.';
+        header("Location: ../sites/votingPage.php?project=".$project."&message=".$message);
+        die();
+    }
 
     // Undefined | Multiple Files | $_FILES Corruption Attack
     // If this request falls under any of them, treat it invalid.
@@ -96,10 +101,11 @@ try {
     if (!file_exists($path)) {
         mkdir($path, 0777, true);
     }
+    $fileName = sha1_file($_FILES['upload']['tmp_name']);
     if (!move_uploaded_file(
         $_FILES['upload']['tmp_name'],
         sprintf($format,
-            sha1_file($_FILES['upload']['tmp_name']),
+            $fileName,
             $ext
         )
     )) {
@@ -109,7 +115,9 @@ try {
         die();
     }
 
-    //TODO Insert into Database
+    $fullFileName = $fileName.'.'.$ext;
+
+    $db->addPicture($fullFileName,$project,$userID);
 
     $message = 'File is uploaded successfully.';
     echo $message;
