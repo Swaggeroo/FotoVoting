@@ -87,29 +87,7 @@
                                 </div>
                             </div> 
                         ";
-                }
-
-
-                $pictures = scandir("../uploads/".$projectName);
-
-                foreach ($pictures as $picture) {
-                    if (!is_dir($picture)){
-                        echo "
-                            <div class=\"picture-container\">
-                                <div class=\"bildmitbildunterschrift card animate__animated animate__bounceIn\" style=\"margin: 1em;\">
-                                    <img src=\"../uploads/".$projectName."/".$picture."\" alt=\"Name\" style=\"width:100%;height:auto;\">
-                                    <span class=\"nameTag\">".$picture."</span>
-                                </div>
-                                <div class=\"flex-container wrap row\">
-                                    <button class=\"votingButton like card\">&#10084;Like</button>
-                                    <button class=\"votingButton best card\">&#11088;Best</button>
-                                </div>
-                            </div>
-                        ";
-                        //TODO switch to project and picture id for better database communication
-                        //TODO Get Username - On nametag and alt
                         //TODO Button action
-                    }
                 }
             ?>
         </div>
