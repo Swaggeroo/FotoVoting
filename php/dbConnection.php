@@ -388,12 +388,29 @@ public function getUserName($userID) {
     return $userName;
 }
 
+public function hasUploaded($userID,$projectID){
+    $sqlQuery = "SELECT COUNT(picID) AS uploadCount FROM pictures WHERE projectID = ? AND userID = ?";
+    $statement = $this->dbKeyObject->prepare($sqlQuery);
+    $statement->bind_param("ii", $projectID, $userID);
+    $statement->execute();
+
+    $result = $statement->get_result();
+
+    $uploadCount = $result->fetch_assoc()["uploadCount"];
+
+    $statement->close();
+    if ($uploadCount >= 1){
+        return true;
+    }else{
+        return false;
+    }
+}
+
     //TODO Remove Like
     //TODO Remove Best
     //TODO Add Picture
     //TODO Remove Picture
     //TODO get likes
     //TODO get bests
-    //TODO test if user has uploaded for project
 }
 ?>
