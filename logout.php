@@ -1,4 +1,6 @@
 <?php
+session_start();
+
  //Destroy session and go back to Login
  if(!session_destroy()){
    die("Error: Could not destroy session!");

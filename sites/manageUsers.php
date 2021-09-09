@@ -1,3 +1,9 @@
+<?php
+//Just temporary
+session_start();
+//------
+ ?>
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -7,7 +13,7 @@
     <!--basic Style-->
     <link rel="stylesheet" href="../style.css">
 
-    <link rel="stylesheet" href="../CSS/addNewUser.css">
+    <link rel="stylesheet" href="../CSS/manageUser.css">
 
     <!--favicon-->
     <link rel="apple-touch-icon" sizes="57x57" href="../media/favicon/apple-icon-57x57.png">
@@ -30,6 +36,36 @@
 </head>
 <body>
 
+  <?php
+     include "#userNavigationBar.php";
+   ?>
+
+ <form id="addUserForm" action="../php/addUser.php" method="POST">
+   <input type="text" name="userName" placeholder="Benutzername" required/>
+   <input type="password" name="userPassword" placeholder="Passwort" required/>
+    UserAccountLevel: <select name="userAccountLevel">
+      <option value="1">1</option>
+      <option value="2">2</option>
+    </select>
+   <input type="submit" value="+" />
+ </form>
+
+  <div align="center" style="width: 100%;">
+    <table id="userTable">
+      <tr>
+        <td>BumBumGame</td>
+        <td>
+          <a class="editUser">&#x270E;
+          </a>
+        </td>
+        <td>
+          <a class="deleteUser">&#10006;
+          </a>
+        </td>
+        <input type="hidden" value="0">
+      </tr>
+    </table>
+  </div>
 
 </body>
 

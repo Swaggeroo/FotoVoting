@@ -32,6 +32,7 @@ public function createBasicDatabaseStructure():void{
             userName VARCHAR(255),
             userPassword VARCHAR(300),
             userAccountLevel INTEGER NOT NULL,
+            acceptedTerms BOOL NOT NULL DEFAULT false,
             PRIMARY KEY (userID))
         ",
         "CREATE TABLE projects(
@@ -141,7 +142,7 @@ public function changeUsersUserName($userID, $newUsername):void{
    $sqlStatement->bind_param("is", $userID, $newUsername);
    $sqlStatement->execute();
 
-   $sqlStatement->close(); 
+   $sqlStatement->close();
 }
 
 public function getUserNameCount($userName):int{
@@ -471,7 +472,7 @@ public function getUserAccountLevel($userID){
 }
 
 public function hasAcceptedTerms($userID){
-    $sqlQuery = "SELECT acceptedTerms AS acceptedTerms FROM user WHERE userID = ?";
+    $sqlQuery = "SELECT acceptedTerms FROM user WHERE userID = ?";
 
     $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
     $sqlStatement->bind_param("i", $userID);
