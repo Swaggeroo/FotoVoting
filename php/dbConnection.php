@@ -117,7 +117,7 @@ public function addUser($username, $password, $userAccountLevel):void{
 public function deleteUser($userID):void{
    $sqlQuery = "DELETE FROM user WHERE userID = ?";
 
-   $sqlStatement = $this->dbKeyObject->prepare();
+   $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
    $sqlStatement->bind_param("i", $userID);
    $sqlStatement->execute();
 
@@ -127,7 +127,7 @@ public function deleteUser($userID):void{
 public function changeUserPassword($userID, $newPassword):void{
    $sqlQuery = "UPDATE user SET userPassword = ? WHERE userID = ?";
 
-   $sqlStatement = $this->dbKeyObject->prepare();
+   $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
    $sqlStatement->bind_param("is", $userID, $newPassword);
    $sqlStatement->execute();
 
@@ -137,7 +137,7 @@ public function changeUserPassword($userID, $newPassword):void{
 public function changeUsersUserName($userID, $newUsername):void{
    $sqlQuery = "UPDATE user SET userName = ? WHERE userID = ?";
 
-   $sqlStatement = $this->dbKeyObject->prepare();
+   $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
    $sqlStatement->bind_param("is", $userID, $newUsername);
    $sqlStatement->execute();
 
@@ -468,6 +468,37 @@ public function getUserAccountLevel($userID){
   $sqlStatement->close();
 
   return $userAccountLevel;
+}
+
+public function hasAcceptedTerms($userID){
+    $sqlQuery = "SELECT acceptedTerms AS acceptedTerms FROM user WHERE userID = ?";
+
+    $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
+    $sqlStatement->bind_param("i", $userID);
+
+    $sqlStatement->execute();
+
+    $result = $sqlStatement->get_result();
+
+    $acceptedTerms = $result->fetch_assoc()["acceptedTerms"];
+
+    $sqlStatement->close();
+
+    if ($acceptedTerms <= 0){
+        return false;
+    }else{
+        return true;
+    }
+}
+
+public function acceptTerms($userID){
+    $sqlQuery = "UPDATE user SET acceptedTerms = 1 WHERE userID = ?";
+
+    $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
+    $sqlStatement->bind_param("i", $userID);
+    $sqlStatement->execute();
+
+    $sqlStatement->close();
 }
 
     //TODO Remove Like
