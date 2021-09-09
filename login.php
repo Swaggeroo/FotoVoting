@@ -35,20 +35,56 @@ $userID = $db->getUserIdForUsername($username);
 
 $serverPasswordHash = $db->getPasswordForUserID($userID);
 
-//Check Password
-if(password_verify($password, $serverPasswordHash)){
-  $_SESSION["userLoggedIn"] = true;
-  $_SESSION["userID"] = $userID;
-  $_SESSION["userAccountLevel"] = $db->getUserAccountLevel($userID);
-  echo "<script>
+if (!$db->hasAcceptedTerms($userID)){
+    echo"
+        Du musst die <a href=\"./sites/Datenschutz.html\">Nutzungsbedingungen</a> und <a href=\"./sites/Datenschutz.html\">Datenschutzerklärung</a> akzeptieren.<br>
+        <button id='accept'>Akzeptieren</button><button id='cancel'>Ablehnen</button> 
+    ";
+    echo "<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js\"></script>";
+    echo "<script>
+    document.getElementById(\"cancel\").addEventListener(\"click\",function (){       
+       alert('Du musst es akzepiteren um die Webseite zu nutzen!');
+       location.replace('index.html');
+   });
+
+   document.getElementById(\"accept\").addEventListener(\"click\",function (){
+       jQuery.ajax({
+            type: \"POST\",
+            url: './php/acceptTermsAjax.php',
+            dataType: 'json',
+            data: {functionname: 'accept', arguments: [".$userID."]},
+        
+            success: function (obj, textstatus) {
+                          if( !('error' in obj) ) {
+                              alert(\"Erfolgreich, bitte melde dich neu an\");
+                              location.replace('index.html');
+                          }
+                          else {
+                              console.log(obj.error);
+                          }
+                    }
+        });
+   })
+   //location.replace('index.html');
+    </script>";
+}else{
+    //Check Password
+    if(password_verify($password, $serverPasswordHash)){
+        $_SESSION["userLoggedIn"] = true;
+        $_SESSION["userID"] = $userID;
+        $_SESSION["userAccountLevel"] = $db->getUserAccountLevel($userID);
+        echo "<script>
     location.replace('sites/projectSelection.php');
   </script>";
-}else{
-  echo "<script>
+    }else{
+        echo "<script>
    alert('Falsches Passwort!');
    location.replace('index.html');
   </script>";
+    }
 }
+
+
 
 }
 
