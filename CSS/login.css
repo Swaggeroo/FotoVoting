@@ -40,3 +40,10 @@ h1{
 #loginForm input:hover{
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
 }
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  #loginForm{
+    max-width: 90% !important;
+  }
+}
