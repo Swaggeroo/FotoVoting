@@ -24,6 +24,7 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Voting (<?php echo htmlspecialchars($projectName)?>)</title>
 
     <!--basic Style-->

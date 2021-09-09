@@ -16,6 +16,7 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.7">
     <title>Add Picture (<?php echo htmlspecialchars($projectName)?>)</title>
 
     <!--basic Style-->

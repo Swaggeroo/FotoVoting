@@ -10,4 +10,9 @@
   background-color: #ececec;
 }
 
-
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  #projekte p{
+    font-size: 1.7em;
+  }
+}
