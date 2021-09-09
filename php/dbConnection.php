@@ -25,7 +25,7 @@ public function __destruct(){
 }
 
 
-public function createBasicDatabaseStructure(){
+public function createBasicDatabaseStructure():void{
     $sqlStatements = array(
         "CREATE TABLE user(
             userID INTEGER NOT NULL AUTO_INCREMENT,
@@ -70,7 +70,7 @@ public function createBasicDatabaseStructure(){
     }
 }
 
-public function getUserIdForUsername($username){
+public function getUserIdForUsername($username):int{
      $sqlQuery = "SELECT userID FROM user WHERE userName = ?";
 
      $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
@@ -86,7 +86,7 @@ public function getUserIdForUsername($username){
      return $userID;
 }
 
-public function getPasswordForUserID($userID){
+public function getPasswordForUserID($userID):String{
      $sqlQuery = "SELECT userPassword FROM user WHERE userID = ?";
 
      $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
@@ -102,11 +102,11 @@ public function getPasswordForUserID($userID){
      return $password;
 }
 
-public function addUser($username, $password){
-    $sqlQuery = "INSERT INTO user (userName, userPassword) VALUES (?, ?)";
+public function addUser($username, $password, $userAccountLevel):void{
+    $sqlQuery = "INSERT INTO user (userName, userPassword, userAccountLevel) VALUES (?, ?, ?)";
 
     $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
-    $sqlStatement->bind_param("ss", $username, $password);
+    $sqlStatement->bind_param("ssi", $username, $password, $userAccountLevel);
     if(!$sqlStatement->execute()){
       die("Error: ".$sqlStatement->error);
     }
@@ -114,7 +114,7 @@ public function addUser($username, $password){
     $sqlStatement->close();
 }
 
-public function getUserNameCount($userName){
+public function getUserNameCount($userName):int{
    $sqlQuery = "SELECT COUNT(userName) AS userNameCount FROM user WHERE userName = ?";
 
    $statement = $this->dbKeyObject->prepare($sqlQuery);
@@ -130,7 +130,7 @@ public function getUserNameCount($userName){
    return $userNameCount;
 }
 
-public function userNameExists($userName){
+public function userNameExists($userName):bool{
    $userNameCount = $this->getUserNameCount($userName);
 
    if($userNameCount >= 1){
@@ -141,7 +141,7 @@ public function userNameExists($userName){
 
 }
 
-public function getLikes($picID){
+public function getLikes($picID):int{
     $sqlQuery = "SELECT COUNT(userID) AS likeCount FROM picturelikes WHERE pictureID = ?";
 
     $statement = $this->dbKeyObject->prepare($sqlQuery);
@@ -157,7 +157,7 @@ public function getLikes($picID){
     return $likeCount;
 }
 
-public function getBests($picID){
+public function getBests($picID):int{
     $sqlQuery = "SELECT COUNT(userID) AS bestCount FROM picturebests WHERE pictureID = ?";
 
     $statement = $this->dbKeyObject->prepare($sqlQuery);
@@ -173,7 +173,7 @@ public function getBests($picID){
     return $bestCount;
 }
 
-public function hasLiked($picID, $userID){
+public function hasLiked($picID, $userID):bool{
     $sqlQuery = "SELECT COUNT(userID) AS userIDCount FROM picturelikes WHERE userID = ? AND pictureID = ?";
     $statement = $this->dbKeyObject->prepare($sqlQuery);
     $statement->bind_param("ii", $userID, $picID);
@@ -192,7 +192,7 @@ public function hasLiked($picID, $userID){
     }
 }
 
-public function addLike($picID, $userID){
+public function addLike($picID, $userID):bool{
     if($this->hasLiked($picID,$userID)){
         return false;
     }else{
@@ -209,7 +209,7 @@ public function addLike($picID, $userID){
     }
 }
 
-public function getProjectIDFromPicID($picID){
+public function getProjectIDFromPicID($picID):int{
     $sqlQuery = "SELECT projectID AS projectID FROM pictures WHERE pictureID = ?";
     $statement = $this->dbKeyObject->prepare($sqlQuery);
     $statement->bind_param("i", $picID);
@@ -223,7 +223,7 @@ public function getProjectIDFromPicID($picID){
     return $projectID;
 }
 
-public function userBested($projectID, $userID){
+public function userBested($projectID, $userID):bool{
     $sqlQuery = "SELECT COUNT(pictureID) AS bestCount FROM picturebests WHERE projectID = ? AND userID = ?";
     $statement = $this->dbKeyObject->prepare($sqlQuery);
     $statement->bind_param("ii", $projectID, $userID);
@@ -241,7 +241,7 @@ public function userBested($projectID, $userID){
     }
 }
 
-public function addBest($picID, $userID){
+public function addBest($picID, $userID):bool{
     $projectID = $this->getProjectIDFromPicID($picID);
 
     if (!$this->userBested($projectID,$userID)){
@@ -260,7 +260,7 @@ public function addBest($picID, $userID){
     }
 }
 
-public function getProjectCount($projectID){
+public function getProjectCount($projectID):int{
     $sqlQuery = "SELECT COUNT(projectID) AS projectCount FROM projects WHERE projectID = ?";
 
     $statement = $this->dbKeyObject->prepare($sqlQuery);
@@ -276,7 +276,7 @@ public function getProjectCount($projectID){
     return $projectCount;
 }
 
-public function projectExists($projectID){
+public function projectExists($projectID):bool{
     $projectCount = $this->getProjectCount($projectID);
 
     if($projectCount >= 1){
@@ -286,7 +286,7 @@ public function projectExists($projectID){
     }
 }
 
-public function getProjectName($projectID){
+public function getProjectName($projectID):String{
     $sqlQuery = "SELECT projectName AS projectName FROM projects WHERE projectID = ?";
 
     $statement = $this->dbKeyObject->prepare($sqlQuery);
