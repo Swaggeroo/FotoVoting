@@ -40,7 +40,6 @@ if (!$db->hasAcceptedTerms($userID)){
         Du musst die <a href=\"./sites/Datenschutz.html\">Nutzungsbedingungen</a> und <a href=\"./sites/Datenschutz.html\">Datenschutzerklärung</a> akzeptieren.<br>
         <button id='accept'>Akzeptieren</button><button id='cancel'>Ablehnen</button> 
     ";
-    echo "<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js\"></script>";
     echo "<script>
     document.getElementById(\"cancel\").addEventListener(\"click\",function (){       
        alert('Du musst es akzepiteren um die Webseite zu nutzen!');
@@ -48,22 +47,16 @@ if (!$db->hasAcceptedTerms($userID)){
    });
 
    document.getElementById(\"accept\").addEventListener(\"click\",function (){
-       jQuery.ajax({
-            type: \"POST\",
-            url: './php/acceptTermsAjax.php',
-            dataType: 'json',
-            data: {functionname: 'accept', arguments: [".$userID."]},
-        
-            success: function (obj, textstatus) {
-                          if( !('error' in obj) ) {
-                              alert(\"Erfolgreich, bitte melde dich neu an\");
-                              location.replace('index.html');
-                          }
-                          else {
-                              console.log(obj.error);
-                          }
-                    }
-        });
+       let oReq = new XMLHttpRequest();
+       let parms = \"userID=".$userID."\";
+       oReq.addEventListener(\"load\",function() {
+            alert(\"Erfolgreich, bitte melde dich neu an\");
+            location.replace('index.html');
+       })
+       oReq.open(\"POST\",\"./php/acceptTermsAjax.php\");
+       oReq.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+       oReq.send(parms);
+       //location.replace('index.html');
    })
    //location.replace('index.html');
     </script>";
