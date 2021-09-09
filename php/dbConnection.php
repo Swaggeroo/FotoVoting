@@ -114,6 +114,36 @@ public function addUser($username, $password, $userAccountLevel):void{
     $sqlStatement->close();
 }
 
+public function deleteUser($userID):void{
+   $sqlQuery = "DELETE FROM user WHERE userID = ?";
+
+   $sqlStatement = $this->dbKeyObject->prepare();
+   $sqlStatement->bind_param("i", $userID);
+   $sqlStatement->execute();
+
+   $sqlStatement->close();
+}
+
+public function changeUserPassword($userID, $newPassword):void{
+   $sqlQuery = "UPDATE user SET userPassword = ? WHERE userID = ?";
+
+   $sqlStatement = $this->dbKeyObject->prepare();
+   $sqlStatement->bind_param("is", $userID, $newPassword);
+   $sqlStatement->execute();
+
+   $sqlStatement->close();;
+}
+
+public function changeUsersUserName($userID, $newUsername):void{
+   $sqlQuery = "UPDATE user SET userName = ? WHERE userID = ?";
+
+   $sqlStatement = $this->dbKeyObject->prepare();
+   $sqlStatement->bind_param("is", $userID, $newUsername);
+   $sqlStatement->execute();
+
+   $sqlStatement->close(); 
+}
+
 public function getUserNameCount($userName):int{
    $sqlQuery = "SELECT COUNT(userName) AS userNameCount FROM user WHERE userName = ?";
 

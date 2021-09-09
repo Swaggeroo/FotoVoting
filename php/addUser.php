@@ -7,7 +7,7 @@ if(!isset($_SESSION)){
     function error($errorMsg){
       die("<script>
       alert('".$errorMsg."');
-      window.location.replace('../sites/addNewUser.php');
+      window.location.replace('../sites/manageUsers.php');
       </script>");
     }
 
@@ -47,6 +47,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
    //Save to Database
    $db->addUser($username, $passwordHash, $userAccountLevel);
+
+   echo "<script>
+    alert('Erfolgreich hinzugefügt!');
+    window.location.replace('../sites/manageUsers.php');
+   </script>";
 
  }
  ?>
