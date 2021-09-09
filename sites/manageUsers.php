@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Add Picture (<?php echo htmlspecialchars($projectName)?>)</title>
+    <title>Manage Users</title>
 
     <!--basic Style-->
     <link rel="stylesheet" href="../style.css">
