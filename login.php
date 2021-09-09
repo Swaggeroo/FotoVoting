@@ -39,6 +39,7 @@ $serverPasswordHash = $db->getPasswordForUserID($userID);
 if(password_verify($password, $serverPasswordHash)){
   $_SESSION["userLoggedIn"] = true;
   $_SESSION["userID"] = $userID;
+  $_SESSION["userAccountLevel"] = $db->getUserAccountLevel($userID);
   echo "<script>
     location.replace('sites/projectSelection.php');
   </script>";

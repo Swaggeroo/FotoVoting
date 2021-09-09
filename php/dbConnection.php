@@ -28,34 +28,35 @@ public function __destruct(){
 public function createBasicDatabaseStructure(){
     $sqlStatements = array(
         "CREATE TABLE user(
-            userID INTEGER NOT NULL AUTO_INCREMENT, 
-            userName VARCHAR(255), 
-            userPassword VARCHAR(300), 
+            userID INTEGER NOT NULL AUTO_INCREMENT,
+            userName VARCHAR(255),
+            userPassword VARCHAR(300),
+            userAccountLevel INTEGER NOT NULL,
             PRIMARY KEY (userID))
         ",
         "CREATE TABLE projects(
-            projectID INT NOT NULL AUTO_INCREMENT, 
-            projectName VARCHAR(500) NOT NULL, 
+            projectID INT NOT NULL AUTO_INCREMENT,
+            projectName VARCHAR(500) NOT NULL,
             PRIMARY KEY (projectID))
         ",
-        "CREATE TABLE pictures( 
+        "CREATE TABLE pictures(
             picID INT NOT NULL AUTO_INCREMENT,
-            picFileName VARCHAR(1000) NOT NULL, 
-            projectID INT NOT NULL, 
-            userID INT NOT NULL, 
+            picFileName VARCHAR(1000) NOT NULL,
+            projectID INT NOT NULL,
+            userID INT NOT NULL,
             PRIMARY KEY (picID),
             FOREIGN KEY(userID) REFERENCES fotovote.user(userID),
             FOREIGN KEY(projectID) REFERENCES fotovote.projects(projectID)
             )
         ",
-        "CREATE TABLE picturelikes( 
-            pictureID INT NOT NULL , 
+        "CREATE TABLE picturelikes(
+            pictureID INT NOT NULL ,
             userID INT NOT NULL ,
 	        FOREIGN KEY (pictureID) REFERENCES fotovote.pictures(picID),
             FOREIGN KEY (userID) REFERENCES fotovote.user(userID)
         )",
         "CREATE TABLE picturebests(
-            pictureID INT NOT NULL, 
+            pictureID INT NOT NULL,
             userID INT NOT NULL,
             projectID INT NOT NULL,
 	        FOREIGN KEY (pictureID) REFERENCES fotovote.pictures(picID),
@@ -420,6 +421,23 @@ public function hasUploaded($userID,$projectID){
     }else{
         return false;
     }
+}
+
+public function getUserAccountLevel($userID){
+  $sqlQuery = "SELECT userAccountLevel FROM user WHERE userID = ?";
+
+  $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
+  $sqlStatement->bind_param("i", $userID);
+
+  $sqlStatement->execute();
+
+  $result = $sqlStatement->get_result();
+
+  $userAccountLevel = $result->fetch_assoc()["userAccountLevel"];
+
+  $sqlStatement->close();
+
+  return $userAccountLevel;
 }
 
     //TODO Remove Like
