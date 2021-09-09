@@ -34,6 +34,9 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
+    <!---JavaScript's-->
+    <script src="../scripts/votingPage.js" defer></script>
+
     <!--favicon-->
     <link rel="apple-touch-icon" sizes="57x57" href="../media/favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="../media/favicon/apple-icon-60x60.png">
@@ -82,8 +85,8 @@
                                     <span class=\"nameTag\">".$db->getUserName(intval($pictureAuthorIDs[$x]["authIDs"]))."</span>
                                 </div>
                                 <div class=\"flex-container wrap row\">
-                                    <button class=\"votingButton like card\">&#10084;Like (".$db->getLikes(intval($pictureIDs[$x]["picIDs"])).")</button>
-                                    <button class=\"votingButton best card\">&#11088;Best (".$db->getBests(intval($pictureIDs[$x]["picIDs"])).")</button>
+                                    <button class=\"votingButton like card\" id='like".$pictureIDs[$x]["picIDs"]."' onclick=\"like(".$pictureIDs[$x]["picIDs"].")\">&#10084;Like (".$db->getLikes(intval($pictureIDs[$x]["picIDs"])).")</button>
+                                    <button class=\"votingButton best card\" id='best".$pictureIDs[$x]["picIDs"]."' onclick=\"best(".$pictureIDs[$x]["picIDs"].")\">&#11088;Best (".$db->getBests(intval($pictureIDs[$x]["picIDs"])).")</button>
                                 </div>
                             </div> 
                         ";
@@ -107,8 +110,5 @@
             <a href="./Datenschutz.html">Datenschutz</a>
         </div>
     </footer>
-
-    <!---Javascripts-->
-    <script src="../scripts/votingPage.js" defer></script>
 </body>
 </html>
