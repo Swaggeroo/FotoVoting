@@ -4,6 +4,7 @@ require "../php/checkPermission.php";
 header('Content-Type: text/plain; charset=utf-8');
 
 try {
+
     if (empty($_GET['project'])){
         $message = 'Invalid parameters.';
         echo $message;
@@ -26,6 +27,13 @@ try {
     }
 
     $project = $_GET['project'];
+
+    $legalCheck = $_POST['legalCheck'];
+    if ($legalCheck != 'true'){
+        $message = 'You have to accept the requirements.';
+        header("Location: ../sites/votingPage.php?project=".$project."&message=".$message);
+        die();
+    }
 
     if ($db->hasUploaded($userID,$project)){
         $message = 'You already uploaded a picture.';

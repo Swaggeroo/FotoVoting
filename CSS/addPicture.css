@@ -13,7 +13,7 @@
     transition: background-color .6s ease;
 }
 
-label {
+.chosePicture {
     background-color: #08ad10;
     color: white;
     padding: 0.5rem;
@@ -21,4 +21,9 @@ label {
     border-radius: 0.3rem;
     cursor: pointer;
     margin-top: 1rem;
+}
+
+#bedingungenLink {
+    text-decoration: underline;
+    color: blue;
 }
