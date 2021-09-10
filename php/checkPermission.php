@@ -13,7 +13,7 @@ if(!$_SESSION["userLoggedIn"]){
 
 //Check if terms have been accepted
 if(!$_SESSION["acceptedTerms"]){
-  include "acceptTerms.php";
+  include "#acceptTerms.php";
   die();
 }
 
