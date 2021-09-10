@@ -25,7 +25,7 @@ public function __destruct(){
 }
 
 
-public function createBasicDatabaseStructure():void{
+public function createBasicDatabaseStructure(){
     $sqlStatements = array(
         "CREATE TABLE user(
             userID INTEGER NOT NULL AUTO_INCREMENT,
@@ -115,7 +115,7 @@ public function addUser($username, $password, $userAccountLevel){
     $sqlStatement->close();
 }
 
-public function deleteUser($userID):void{
+public function deleteUser($userID){
    $sqlQuery = "DELETE FROM user WHERE userID = ?";
 
    $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
@@ -125,7 +125,7 @@ public function deleteUser($userID):void{
    $sqlStatement->close();
 }
 
-public function changeUserPassword($userID, $newPassword):void{
+public function changeUserPassword($userID, $newPassword){
    $sqlQuery = "UPDATE user SET userPassword = ? WHERE userID = ?";
 
    $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
@@ -135,7 +135,7 @@ public function changeUserPassword($userID, $newPassword):void{
    $sqlStatement->close();;
 }
 
-public function changeUsersUserName($userID, $newUsername):void{
+public function changeUsersUserName($userID, $newUsername){
    $sqlQuery = "UPDATE user SET userName = ? WHERE userID = ?";
 
    $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
