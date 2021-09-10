@@ -40,6 +40,7 @@ if (!$db->hasAcceptedTerms($userID)){
         Du musst die <a href=\"./sites/Datenschutz.html\">Nutzungsbedingungen</a> und <a href=\"./sites/Datenschutz.html\">Datenschutzerklärung</a> akzeptieren.<br>
         <button id='accept'>Akzeptieren</button><button id='cancel'>Ablehnen</button> 
     ";
+    //TODO Nutzungsbedingungen einfügen
     echo "<script>
     document.getElementById(\"cancel\").addEventListener(\"click\",function (){       
        alert('Du musst es akzepiteren um die Webseite zu nutzen!');
