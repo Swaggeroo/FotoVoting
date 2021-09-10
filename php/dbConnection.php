@@ -261,7 +261,7 @@ public function addLike($picID, $userID):bool{
 }
 
 public function getProjectIDFromPicID($picID):int{
-    $sqlQuery = "SELECT projectID AS projectID FROM pictures WHERE pictureID = ?";
+    $sqlQuery = "SELECT projectID AS projectID FROM pictures WHERE picID = ?";
     $statement = $this->dbKeyObject->prepare($sqlQuery);
     $statement->bind_param("i", $picID);
     $statement->execute();
