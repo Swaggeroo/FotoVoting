@@ -502,8 +502,42 @@ public function acceptTerms($userID){
     $sqlStatement->close();
 }
 
-    //TODO Remove Like
-    //TODO Remove Best
-    //TODO Remove Picture
+public function removeLike($userID,$picID){
+    $sqlQuery = "DELETE FROM picturelikes WHERE userID = ? AND pictureID = ?";
+
+    $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
+    $sqlStatement->bind_param("ii", $userID, $picID);
+    $sqlStatement->execute();
+
+    $sqlStatement->close();
+}
+
+public function removeBest($userID, $picID){
+    $sqlQuery = "DELETE FROM picturebests WHERE userID = ? AND pictureID = ?";
+
+    $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
+    $sqlStatement->bind_param("ii", $userID, $picID);
+    $sqlStatement->execute();
+
+    $sqlStatement->close();
+}
+
+public function getBestedID($userID, $projectID){
+    $sqlQuery = "SELECT pictureID AS pictureID FROM picturebests WHERE userID = ? AND projectID = ?";
+
+    $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
+    $sqlStatement->bind_param("ii", $userID, $projectID);
+
+    $sqlStatement->execute();
+
+    $result = $sqlStatement->get_result();
+
+    $picID = $result->fetch_assoc()["pictureID"];
+
+    $sqlStatement->close();
+
+    return $picID;
+}
+    //TODO Remove Picture (also from filesystem)
 }
 ?>
