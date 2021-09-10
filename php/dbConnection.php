@@ -296,7 +296,7 @@ public function addBest($picID, $userID):bool{
     $projectID = $this->getProjectIDFromPicID($picID);
 
     if (!$this->userBested($projectID,$userID)){
-        $sqlQuery = "INSERT INTO pictureBests (pictureID, userID, projectID) VALUES (?, ?, ?)";
+        $sqlQuery = "INSERT INTO picturebests (pictureID, userID, projectID) VALUES (?, ?, ?)";
 
         $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
         $sqlStatement->bind_param("iii", $picID, $userID, $projectID);
