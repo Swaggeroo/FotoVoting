@@ -86,11 +86,11 @@
                                 </div>
                                 <div class=\"flex-container wrap row\">
                                     <button class=\"votingButton like card\" id='like".$pictureIDs[$x]["picIDs"]."' onclick=\"like(".$pictureIDs[$x]["picIDs"].")\">&#10084;Like (".$db->getLikes(intval($pictureIDs[$x]["picIDs"])).")</button>
-                                    <button class=\"votingButton best card\" id='best".$pictureIDs[$x]["picIDs"]."' onclick=\"best(".$pictureIDs[$x]["picIDs"].")\">&#11088;Best (".$db->getBests(intval($pictureIDs[$x]["picIDs"])).")</button>
+                                    <button class=\"votingButton best card\" id='best".$pictureIDs[$x]["picIDs"]."' onclick=\"best(".$pictureIDs[$x]["picIDs"].",".$project.")\">&#11088;Best (".$db->getBests(intval($pictureIDs[$x]["picIDs"])).")</button>
                                 </div>
                             </div> 
                         ";
-                        //TODO Button action
+                        //TODO Button response
                 }
             ?>
         </div>
