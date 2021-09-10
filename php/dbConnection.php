@@ -103,7 +103,7 @@ public function getPasswordForUserID($userID):String{
      return $password;
 }
 
-public function addUser($username, $password, $userAccountLevel):void{
+public function addUser($username, $password, $userAccountLevel){
     $sqlQuery = "INSERT INTO user (userName, userPassword, userAccountLevel) VALUES (?, ?, ?)";
 
     $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
