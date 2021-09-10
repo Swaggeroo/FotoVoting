@@ -88,7 +88,6 @@
                     if (intval($db->hasLiked(intval($pictureIDs[$x]["picIDs"]), $userID))){
                         $liked = 'liked';
                     }
-                    //TODO liked
                     echo "
                             <div class=\"picture-container\">   
                                 <div class=\"bildmitbildunterschrift card animate__animated animate__bounceIn\" style=\"margin: 1em;\">
