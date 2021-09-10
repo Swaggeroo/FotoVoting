@@ -145,6 +145,26 @@ public function changeUsersUserName($userID, $newUsername):void{
    $sqlStatement->close();
 }
 
+public function getAllUsers(){
+   $sqlQuery = "SELECT userName,userID,userAccountLevel FROM user";
+
+   $result = $this->dbKeyObject->query($sqlQuery);
+
+   $outputArray = array();
+
+   $counter = 0;
+   while($row = $result->fetch_assoc()){
+      $outputArray[$counter][0] = $row["userName"];
+      $outputArray[$counter][1] = $row["userID"];
+      $outputArray[$counter][2] = $row["userAccountLevel"];
+
+      $counter++;
+   }
+
+   return $outputArray;
+
+}
+
 public function getUserNameCount($userName):int{
    $sqlQuery = "SELECT COUNT(userName) AS userNameCount FROM user WHERE userName = ?";
 
