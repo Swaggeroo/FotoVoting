@@ -3,10 +3,11 @@ function best(picID, projectID){
     let oReq = new XMLHttpRequest();
     let parms = "picID="+picID+"&projectID="+projectID;
     oReq.addEventListener("load",function() {
-        if(!document.getElementById("best"+picID).classList.contains("bested")){
-            document.getElementById("best"+picID).classList.add("bested");
+        let element = document.getElementById("best"+picID);
+        if(!element.classList.contains("bested")){
+            element.classList.add("bested");
         }else {
-            document.getElementById("best"+picID).classList.remove("bested");
+            element.classList.remove("bested");
         }
     })
     oReq.open("POST","../php/bestManager.php");
@@ -19,10 +20,11 @@ function like(picID){
     let oReq = new XMLHttpRequest();
     let parms = "picID="+picID;
     oReq.addEventListener("load",function() {
-        if (!document.getElementById("like"+picID).classList.contains("liked")){
-            document.getElementById("like"+picID).classList.add("liked");
+        let element = document.getElementById("like"+picID);
+        if (!element.classList.contains("liked")){
+            element.classList.add("liked");
         }else{
-            document.getElementById("like"+picID).classList.remove("liked");
+            element.classList.remove("liked");
         }
     })
     oReq.open("POST","../php/likeManager.php");
