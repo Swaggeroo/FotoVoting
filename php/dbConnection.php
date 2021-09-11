@@ -116,6 +116,30 @@ public function addUser($username, $password, $userAccountLevel){
 }
 
 public function deleteUser($userID){
+    //DELETE User Content
+    //bests
+    $sqlQuery = "DELETE FROM picturebests WHERE userID = ?";
+    $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
+    $sqlStatement->bind_param("i", $userID);
+    $sqlStatement->execute();
+    $sqlStatement->close();
+
+    //likes
+    $sqlQuery = "DELETE FROM picturelikes WHERE userID = ?";
+    $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
+    $sqlStatement->bind_param("i", $userID);
+    $sqlStatement->execute();
+    $sqlStatement->close();
+
+    //pictures
+    $sqlQuery = "DELETE FROM pictures WHERE userID = ?";
+    $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
+    $sqlStatement->bind_param("i", $userID);
+    $sqlStatement->execute();
+    $sqlStatement->close();
+    //TODO also from Filesystem
+
+    //Delete User
    $sqlQuery = "DELETE FROM user WHERE userID = ?";
 
    $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
