@@ -41,8 +41,15 @@
     <?php
       //only show addButton if User has Admin level
       if($_SESSION["userAccountLevel"] >= 2){
-        echo "<div id='addButton'>
-          Hinzufügen +
+        echo "
+        <div id='navEdit'>
+        <div id='NavBarEditButton'>
+          Bearbeiten &#x270E;
+        </div>
+          <div id='NavBarEditDropDown'>
+            <p>Benutzerverwaltung</p>
+            <p>Projekt hinzufügen</p>
+        </div>
         </div>";
       }
      ?>

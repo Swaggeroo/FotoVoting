@@ -4,6 +4,7 @@
   padding: 0.5%;
   background: black;
   position: sticky;
+  z-index: 1;
   top: 0%;
   left: 0%;
   color: white;
@@ -47,12 +48,66 @@
   user-select: none;
 }
 
-#addButton{
+#navEdit{
   display: inline-block;
+  position: relative;
+}
+
+#NavBarEditDropDown{
+    position: absolute;
+    background: #404040;
+    color: #FFFFFF;
+    text-align: center;
+    border-radius: 10px;
+    padding: 0px;
+    z-index: 2;
+    margin-top: 13%;
+    padding: 10px;
+    opacity: 0.9;
+    box-shadow: 3px 3px 2px 1px rgba(0, 0, 0, 0.8);
+
+    display: none;
+}
+
+#NavBarEditDropDown:after{
+    content: '';
+    position: absolute;
+    display: block;
+    width: 0;
+    z-index: 3;
+    border-style: solid;
+    border-color: #404040 transparent;
+    border-width: 0 16px 15px;
+    top: -15px;
+    left: 30%;
+    margin-left: -16px;
+}
+
+#NavBarEditDropDown p{
+   font-size: 1.1em;
+   font-family: inherit;
+   user-select: none;
+   cursor: pointer;
+
+   border-bottom: 2px solid rgba(255, 255, 255, 0);
+   text-shadow: 1px 1px 2px rgba(255, 255, 255, 0);
+
+   transition: 0.3s;
+}
+
+#NavBarEditDropDown p:hover{
+   border-bottom: 2px solid rgba(255, 255, 255, 0.9);
+   text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+#NavBarEditButton{
   margin-right: 25px;
   font-size: 1.1em;
   border: 2px solid white;
-  padding: 3px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 6px;
+  padding-right: 6px;
   border-radius: 7px;
   font-weight: 600;
   text-shadow: none;
@@ -62,7 +117,7 @@
   user-select: none;
 }
 
-#addButton:hover{
+#NavBarEditButton:hover{
   text-shadow: -2px -2px 2px rgba(255,255,255, 0.6);
   box-shadow: 2px 2px 2px rgba(255, 255, 255, 0.6);
 }
