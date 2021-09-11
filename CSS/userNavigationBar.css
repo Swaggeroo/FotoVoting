@@ -4,14 +4,8 @@
   padding: 0.5%;
   background: black;
   position: sticky;
-<<<<<<< HEAD
-  z-index: 1;
   top: 0%;
   left: 0%;
-=======
-  top: 0;
-  left: 0;
->>>>>>> eabc5267e873408850ff053390b0bca5e6104b59
   color: white;
   display: flex;
   justify-content: space-between;
