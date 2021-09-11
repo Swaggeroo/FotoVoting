@@ -132,7 +132,7 @@ public function changeUserPassword($userID, $newPassword){
    $sqlStatement->bind_param("is", $userID, $newPassword);
    $sqlStatement->execute();
 
-   $sqlStatement->close();;
+   $sqlStatement->close();
 }
 
 public function changeUsersUserName($userID, $newUsername){
@@ -145,7 +145,8 @@ public function changeUsersUserName($userID, $newUsername){
    $sqlStatement->close();
 }
 
-public function getAllUsers(){
+public function getAllUsers(): array
+{
    $sqlQuery = "SELECT userName,userID,userAccountLevel FROM user";
 
    $result = $this->dbKeyObject->query($sqlQuery);
@@ -353,7 +354,7 @@ public function getProjectName($projectID):String{
     return $projectName;
 }
 
-public function getProjectNames()
+public function getProjectNames(): array
 {
     $sqlQuery = "SELECT projectName AS projectNames FROM projects";
 
@@ -366,7 +367,7 @@ public function getProjectNames()
     return $rows;
 }
 
-public function getProjectIDs()
+public function getProjectIDs(): array
 {
     $sqlQuery = "SELECT projectID AS projectIDs FROM projects";
 
@@ -379,7 +380,8 @@ public function getProjectIDs()
     return $rows;
 }
 
-public function getPictureIDs($projectID){
+public function getPictureIDs($projectID): array
+{
     $sqlQuery = "SELECT picID AS picIDs FROM pictures WHERE projectID = ?";
 
     $statement = $this->dbKeyObject->prepare($sqlQuery);
@@ -395,7 +397,8 @@ public function getPictureIDs($projectID){
     return $rows;
 }
 
-public function getPictureAuthorIDs($projectID){
+public function getPictureAuthorIDs($projectID): array
+{
     $sqlQuery = "SELECT userID AS authIDs FROM pictures WHERE projectID = ?";
 
     $statement = $this->dbKeyObject->prepare($sqlQuery);
@@ -456,7 +459,8 @@ public function getUserName($userID) {
     return $userName;
 }
 
-public function hasUploaded($userID,$projectID){
+public function hasUploaded($userID,$projectID): bool
+{
     $sqlQuery = "SELECT COUNT(picID) AS uploadCount FROM pictures WHERE projectID = ? AND userID = ?";
     $statement = $this->dbKeyObject->prepare($sqlQuery);
     $statement->bind_param("ii", $projectID, $userID);
@@ -491,7 +495,8 @@ public function getUserAccountLevel($userID){
   return $userAccountLevel;
 }
 
-public function hasAcceptedTerms($userID){
+public function hasAcceptedTerms($userID): bool
+{
     $sqlQuery = "SELECT acceptedTerms FROM user WHERE userID = ?";
 
     $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);

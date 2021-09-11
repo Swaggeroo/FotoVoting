@@ -1,4 +1,4 @@
-var logOutButton = document.getElementById("logOutButton");
+let logOutButton = document.getElementById("logOutButton");
 
 function logOut(){
  window.location.replace("../logout.php");

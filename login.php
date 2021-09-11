@@ -26,7 +26,7 @@ $db = new db();
 
 if(!$db->userNameExists($username)){
   die("<script>
-   alert('Benutzername nicht gefunuden');
+   alert('Benutzername nicht gefunden');
    location.href= 'index.html';
   </script>");
 }

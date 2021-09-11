@@ -1,11 +1,11 @@
 #userNavigationBar{
   width: 99%;
-  margin: 0%;
+  margin: 0;
   padding: 0.5%;
   background: black;
   position: sticky;
-  top: 0%;
-  left: 0%;
+  top: 0;
+  left: 0;
   color: white;
   display: flex;
   justify-content: space-between;
@@ -38,7 +38,7 @@
 
 #logOutButton{
   display: inline-block;
-  right: 0%;
+  right: 0;
   font-size: 1.2em;
   cursor: pointer;
   text-shadow: none;
