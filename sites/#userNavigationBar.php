@@ -12,10 +12,6 @@
        }
      }
 
-      if(str_contains($backtrackPage, "https://")){
-        $backtrackPage = "";
-      }
-
     }
 
 ?>
