@@ -7,12 +7,18 @@
         return '' === $needle || false !== strpos($haystack, $needle);
     }
 }
-
     $backtrackPage = "";
-
     if(isset($_GET["back"])){
       $backtrackPage = trim(stripslashes(htmlspecialchars($_GET["back"])));
-      //Check if link is only relative
+       //Check if backtrackPage is valid
+       $parsedUrl = parse_url($backtrackPage);
+       if(isset($parsedUrl["host"])){
+
+        if($parsedUrl["host"] != $_SERVER['HTTP_HOST']){
+          $backtrackPage = "";
+       }
+     }
+
       if(str_contains($backtrackPage, "https://")){
         $backtrackPage = "";
       }
@@ -27,7 +33,7 @@
   <?php
      //load going back button only if there backtrack link is given
      if(strlen($backtrackPage) > 0){
-       echo "<div id='userGoBackButton' data-value='".$backtrackPage."'>
+       echo "<div id='userGoBackButton' data-link='".$backtrackPage."'>
          &#10132;
        </div>";
      }
@@ -47,7 +53,7 @@
           Bearbeiten &#x270E;
         </div>
           <div id='NavBarEditDropDown'>
-            <p>Benutzerverwaltung</p>
+            <p id='goToUserManagementButton'>Benutzerverwaltung</p>
             <p>Projekt hinzufügen</p>
         </div>
         </div>";
