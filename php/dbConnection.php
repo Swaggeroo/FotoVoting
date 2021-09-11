@@ -131,13 +131,38 @@ public function deleteUser($userID){
     $sqlStatement->execute();
     $sqlStatement->close();
 
+    //Delete pictures from file system
+    $sqlQuery = "SELECT picFileName, projectID FROM pictures WHERE userID = ?";
+
+    $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
+    $sqlStatement->bind_param("i", $userID);
+    $sqlStatement->execute();
+    $result = $sqlStatement->get_result();
+
+    $counter = 0;
+    while($row = $result->fetch_assoc()){
+        $projectName = $this->getProjectName(intval($row[$counter]['projectID']));
+        $fileName = $row[$counter]['picFileName'];
+
+        $sqlStatement->close();
+
+        $file = "../uploads/".$projectName."/".$fileName;
+
+        if(file_exists(realpath($file))) {
+            unlink(realpath($file));
+        }
+
+        $counter++;
+    }
+
+
+
     //pictures
     $sqlQuery = "DELETE FROM pictures WHERE userID = ?";
     $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
     $sqlStatement->bind_param("i", $userID);
     $sqlStatement->execute();
     $sqlStatement->close();
-    //TODO also from Filesystem
 
     //Delete User
    $sqlQuery = "DELETE FROM user WHERE userID = ?";
