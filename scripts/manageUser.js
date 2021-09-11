@@ -2,9 +2,9 @@ const deleteUserForm = document.getElementById("deleteUserForm");
 const deleteUserIDInput = document.getElementById("delteUserIDInput");
 
 //Get all delete Buttons
-var deleteButtons = document.getElementsByClassName("deleteUser");
+let deleteButtons = document.getElementsByClassName("deleteUser");
 //Get all Usernames
-var usernames = document.getElementsByClassName("username");
+let usernames = document.getElementsByClassName("username");
 
 function deleteUser(){
   if(!confirm("Den Benutzer "+ usernames[parseInt(this.getAttribute("data-index"))].textContent +" wirklich löschen?")){
@@ -21,7 +21,7 @@ function deleteUser(){
 
 
 //Add all Eventlisteners for delete
-for(var i = 0; i < deleteButtons.length; i++){
+for(let i = 0; i < deleteButtons.length; i++){
   //save index for later
   deleteButtons[i].setAttribute("data-index", i);
   //-------
