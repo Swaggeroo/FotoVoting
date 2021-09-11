@@ -45,3 +45,18 @@ function generateNewText(content, addNumber){
     const contentAfter = content.substring(content.indexOf(")"));
     return contentBefore + (number + addNumber) + contentAfter;
 }
+
+function deletePic (picID){
+    let answer = confirm("Willst du wirklich das Bild löschen?")
+    if(answer){
+        console.log("Delete "+picID);
+        let oReq = new XMLHttpRequest();
+        let parms = "picID="+picID;
+        oReq.open("POST","../php/deleteManager.php");
+        oReq.addEventListener('load',function(){
+            window.location.reload();
+        })
+        oReq.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        oReq.send(parms);
+    }
+}

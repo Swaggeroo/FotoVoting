@@ -588,7 +588,7 @@ public function getBestedID($userID, $projectID){
     return $picID;
 }
 
-public function removePicture($picID){
+public function deletePicture($picID){
     $sqlQuery = "SELECT picFileName, projectID FROM pictures WHERE picID = ?";
 
     $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
@@ -599,7 +599,7 @@ public function removePicture($picID){
     $row = $result->fetch_assoc();
 
     $projectName = $this->getProjectName(intval($row['projectID']));
-    $fileName = $row['fileName'];
+    $fileName = $row['picFileName'];
 
     $sqlStatement->close();
 

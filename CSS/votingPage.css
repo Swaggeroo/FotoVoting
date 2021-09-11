@@ -66,3 +66,11 @@
 .bested{
     background: #08ad10 !important;
 }
+
+.deleteButton{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 10%;
+    height: auto;
+}
