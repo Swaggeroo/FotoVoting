@@ -9,6 +9,10 @@
   font-size: 1.6em;
 }
 
+#userTable .username{
+  width: 62%;
+}
+
 #userTable .editUser{
 
 }
@@ -44,4 +48,8 @@
 
 #addUserForm select{
   font-size: 1em;
+}
+
+#deleteUserForm{
+  display: none;
 }

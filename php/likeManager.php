@@ -7,6 +7,6 @@ $db = new db();
 if (!$db->hasLiked(intval($_POST['picID']),intval($_SESSION['userID']))){
     $db->addLike(intval($_POST['picID']),intval($_SESSION['userID']));
 }else{
-    //TODO Remove like
+    $db->removeLike(intval($_SESSION['userID']),intval($_POST['picID']));
 }
 ?>

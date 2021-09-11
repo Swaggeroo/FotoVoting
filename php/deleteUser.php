@@ -16,7 +16,7 @@ function error($errorMsg){
      }
 
      //Get Data
-     $userID = tirm(stripslashes(htmlspecialchars($_POST["userID"])));
+     $userID = trim(stripslashes(htmlspecialchars($_POST["userID"])));
 
      require "dbConnection.php";
      //Delete user
@@ -27,7 +27,7 @@ function error($errorMsg){
      //Go back
      echo "<script>
       alert('Erfolgreich gelöscht!');
-      window.location.reload('../sites/manageUsers.php');
+      window.location.replace('../sites/manageUsers.php');
      </script>";
 
   }

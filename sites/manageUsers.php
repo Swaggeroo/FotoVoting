@@ -9,11 +9,14 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <title>Manage Users</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!--basic Style-->
     <link rel="stylesheet" href="../style.css">
 
     <link rel="stylesheet" href="../CSS/manageUser.css">
+
+    <script src="../scripts/manageUser.js" defer></script>
 
     <!--favicon-->
     <link rel="apple-touch-icon" sizes="57x57" href="../media/favicon/apple-icon-57x57.png">
@@ -40,6 +43,10 @@ session_start();
      include "#userNavigationBar.php";
    ?>
 
+   <form id="deleteUserForm" action="../php/deleteUser.php" method="POST">
+       <input type="hidden" value="" name="userID" id="delteUserIDInput"/>
+   </form>
+
  <form id="addUserForm" action="../php/addUser.php" method="POST">
    <input type="text" name="userName" placeholder="Benutzername" required/>
    <input type="password" name="userPassword" placeholder="Passwort" required/>
@@ -53,17 +60,37 @@ session_start();
   <div align="center" style="width: 100%;">
     <table id="userTable">
       <tr>
-        <td>BumBumGame</td>
-        <td>
-          <a class="editUser">&#x270E;
-          </a>
-        </td>
-        <td>
-          <a class="deleteUser">&#10006;
-          </a>
-        </td>
-        <input type="hidden" value="0">
+        <th>Benutzername</th>
+        <th>AccountLevel</th>
+        <th>Edit</th>
+        <th>Delete</th>
       </tr>
+      <?php
+          //Load all user from database
+          require "../php/dbConnection.php";
+
+          $db = new db();
+
+          $userData = $db->getAllUsers();
+
+          for($i = 0; $i < count($userData); $i++){
+            echo "
+            <tr>
+              <td class='username'>".$userData[$i][0]."</td>
+              <td class='userAccountLevel'>
+               ".$userData[$i][2]."
+              </td>
+              <td>
+               <a class='editUser' data-id='".$userData[$i][1]."'>&#x270E;
+                </a></td>
+              <td>
+              <a class='deleteUser' data-id='".$userData[$i][1]."'>&#10006;
+              </a>
+              </td>
+            </tr>
+            ";
+          }
+       ?>
     </table>
   </div>
 

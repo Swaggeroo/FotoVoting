@@ -58,3 +58,11 @@
 .like{
     background: #FC6E51;
 }
+
+.liked{
+    background: #08ad10 !important;
+}
+
+.bested{
+    background: #08ad10 !important;
+}

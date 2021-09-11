@@ -77,7 +77,17 @@
 
                 $pictureAuthorIDs = $db->getPictureAuthorIDs(intval($project));
 
+                $userID = intval($_SESSION['userID']);
+
                 for ($x = 0; $x < count($pictureIDs); $x++){
+                    $bested = '';
+                    $liked = '';
+                    if (intval($db->getBestedID($userID,$project)) == intval($pictureIDs[$x]["picIDs"])){
+                        $bested = 'bested';
+                    }
+                    if (intval($db->hasLiked(intval($pictureIDs[$x]["picIDs"]), $userID))){
+                        $liked = 'liked';
+                    }
                     echo "
                             <div class=\"picture-container\">   
                                 <div class=\"bildmitbildunterschrift card animate__animated animate__bounceIn\" style=\"margin: 1em;\">
@@ -85,12 +95,12 @@
                                     <span class=\"nameTag\">".$db->getUserName(intval($pictureAuthorIDs[$x]["authIDs"]))."</span>
                                 </div>
                                 <div class=\"flex-container wrap row\">
-                                    <button class=\"votingButton like card\" id='like".$pictureIDs[$x]["picIDs"]."' onclick=\"like(".$pictureIDs[$x]["picIDs"].")\">&#10084;Like (".$db->getLikes(intval($pictureIDs[$x]["picIDs"])).")</button>
-                                    <button class=\"votingButton best card\" id='best".$pictureIDs[$x]["picIDs"]."' onclick=\"best(".$pictureIDs[$x]["picIDs"].")\">&#11088;Best (".$db->getBests(intval($pictureIDs[$x]["picIDs"])).")</button>
+                                    <button class=\"votingButton like card ".$liked."\" id='like".$pictureIDs[$x]["picIDs"]."' onclick=\"like(".$pictureIDs[$x]["picIDs"].")\">&#10084;Like (".$db->getLikes(intval($pictureIDs[$x]["picIDs"])).")</button>
+                                    <button class=\"votingButton best card ".$bested."\" id='best".$pictureIDs[$x]["picIDs"]."' onclick=\"best(".$pictureIDs[$x]["picIDs"].",".$project.")\">&#11088;Best (".$db->getBests(intval($pictureIDs[$x]["picIDs"])).")</button>
                                 </div>
                             </div> 
                         ";
-                        //TODO Button action
+                        //TODO Button response
                 }
             ?>
         </div>

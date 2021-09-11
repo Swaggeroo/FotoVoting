@@ -25,7 +25,7 @@ public function __destruct(){
 }
 
 
-public function createBasicDatabaseStructure():void{
+public function createBasicDatabaseStructure(){
     $sqlStatements = array(
         "CREATE TABLE user(
             userID INTEGER NOT NULL AUTO_INCREMENT,
@@ -103,7 +103,7 @@ public function getPasswordForUserID($userID):String{
      return $password;
 }
 
-public function addUser($username, $password, $userAccountLevel):void{
+public function addUser($username, $password, $userAccountLevel){
     $sqlQuery = "INSERT INTO user (userName, userPassword, userAccountLevel) VALUES (?, ?, ?)";
 
     $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
@@ -115,7 +115,7 @@ public function addUser($username, $password, $userAccountLevel):void{
     $sqlStatement->close();
 }
 
-public function deleteUser($userID):void{
+public function deleteUser($userID){
    $sqlQuery = "DELETE FROM user WHERE userID = ?";
 
    $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
@@ -125,7 +125,7 @@ public function deleteUser($userID):void{
    $sqlStatement->close();
 }
 
-public function changeUserPassword($userID, $newPassword):void{
+public function changeUserPassword($userID, $newPassword){
    $sqlQuery = "UPDATE user SET userPassword = ? WHERE userID = ?";
 
    $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
@@ -135,7 +135,7 @@ public function changeUserPassword($userID, $newPassword):void{
    $sqlStatement->close();;
 }
 
-public function changeUsersUserName($userID, $newUsername):void{
+public function changeUsersUserName($userID, $newUsername){
    $sqlQuery = "UPDATE user SET userName = ? WHERE userID = ?";
 
    $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
@@ -143,6 +143,26 @@ public function changeUsersUserName($userID, $newUsername):void{
    $sqlStatement->execute();
 
    $sqlStatement->close();
+}
+
+public function getAllUsers(){
+   $sqlQuery = "SELECT userName,userID,userAccountLevel FROM user";
+
+   $result = $this->dbKeyObject->query($sqlQuery);
+
+   $outputArray = array();
+
+   $counter = 0;
+   while($row = $result->fetch_assoc()){
+      $outputArray[$counter][0] = $row["userName"];
+      $outputArray[$counter][1] = $row["userID"];
+      $outputArray[$counter][2] = $row["userAccountLevel"];
+
+      $counter++;
+   }
+
+   return $outputArray;
+
 }
 
 public function getUserNameCount($userName):int{
@@ -241,7 +261,7 @@ public function addLike($picID, $userID):bool{
 }
 
 public function getProjectIDFromPicID($picID):int{
-    $sqlQuery = "SELECT projectID AS projectID FROM pictures WHERE pictureID = ?";
+    $sqlQuery = "SELECT projectID AS projectID FROM pictures WHERE picID = ?";
     $statement = $this->dbKeyObject->prepare($sqlQuery);
     $statement->bind_param("i", $picID);
     $statement->execute();
@@ -276,7 +296,7 @@ public function addBest($picID, $userID):bool{
     $projectID = $this->getProjectIDFromPicID($picID);
 
     if (!$this->userBested($projectID,$userID)){
-        $sqlQuery = "INSERT INTO pictureBests (pictureID, userID, projectID) VALUES (?, ?, ?)";
+        $sqlQuery = "INSERT INTO picturebests (pictureID, userID, projectID) VALUES (?, ?, ?)";
 
         $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
         $sqlStatement->bind_param("iii", $picID, $userID, $projectID);
@@ -502,8 +522,42 @@ public function acceptTerms($userID){
     $sqlStatement->close();
 }
 
-    //TODO Remove Like
-    //TODO Remove Best
-    //TODO Remove Picture
+public function removeLike($userID,$picID){
+    $sqlQuery = "DELETE FROM picturelikes WHERE userID = ? AND pictureID = ?";
+
+    $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
+    $sqlStatement->bind_param("ii", $userID, $picID);
+    $sqlStatement->execute();
+
+    $sqlStatement->close();
+}
+
+public function removeBest($userID, $picID){
+    $sqlQuery = "DELETE FROM picturebests WHERE userID = ? AND pictureID = ?";
+
+    $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
+    $sqlStatement->bind_param("ii", $userID, $picID);
+    $sqlStatement->execute();
+
+    $sqlStatement->close();
+}
+
+public function getBestedID($userID, $projectID){
+    $sqlQuery = "SELECT pictureID AS pictureID FROM picturebests WHERE userID = ? AND projectID = ?";
+
+    $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
+    $sqlStatement->bind_param("ii", $userID, $projectID);
+
+    $sqlStatement->execute();
+
+    $result = $sqlStatement->get_result();
+
+    $picID = $result->fetch_assoc()["pictureID"];
+
+    $sqlStatement->close();
+
+    return $picID;
+}
+    //TODO Remove Picture (also from filesystem)
 }
 ?>
