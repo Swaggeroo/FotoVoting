@@ -605,9 +605,25 @@ public function deletePicture($picID){
 
     $file = "../uploads/".$projectName."/".$fileName;
 
-    if(file_exists($file)) {
-        unlink($file);
+    if(file_exists(realpath($file))) {
+        unlink(realpath($file));
     }
+
+    $sqlQuery = "DELETE FROM picturelikes WHERE pictureID = ?";
+
+    $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
+    $sqlStatement->bind_param("i", $picID);
+    $sqlStatement->execute();
+
+    $sqlStatement->close();
+
+    $sqlQuery = "DELETE FROM picturebests WHERE pictureID = ?";
+
+    $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
+    $sqlStatement->bind_param("i", $picID);
+    $sqlStatement->execute();
+
+    $sqlStatement->close();
 
     $sqlQuery = "DELETE FROM pictures WHERE picID = ?";
 
