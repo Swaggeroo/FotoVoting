@@ -587,6 +587,36 @@ public function getBestedID($userID, $projectID){
 
     return $picID;
 }
-    //TODO Remove Picture (also from filesystem)
+
+public function removePicture($picID){
+    $sqlQuery = "SELECT picFileName, projectID FROM pictures WHERE picID = ?";
+
+    $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
+    $sqlStatement->bind_param("i", $picID);
+    $sqlStatement->execute();
+    $result = $sqlStatement->get_result();
+
+    $row = $result->fetch_assoc();
+
+    $projectName = $this->getProjectName(intval($row['projectID']));
+    $fileName = $row['fileName'];
+
+    $sqlStatement->close();
+
+    $file = "../uploads/".$projectName."/".$fileName;
+
+    if(file_exists($file)) {
+        unlink($file);
+    }
+
+    $sqlQuery = "DELETE FROM pictures WHERE picID = ?";
+
+    $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
+    $sqlStatement->bind_param("i", $picID);
+    $sqlStatement->execute();
+
+    $sqlStatement->close();
+}
+
 }
 ?>
