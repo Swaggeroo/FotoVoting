@@ -12,6 +12,7 @@ const closeCreateProjectWindowButton = document.getElementById("closeCreateProje
 const blackBackgroundCreateProjectWindow = document.getElementById("blackBackgroundCreateProjectWindow");
 const createProjectWindow = document.getElementById("createProjectWindow");
 const openCreateProjectWindowButton = document.getElementById("openCreateProjectWindowButton");
+const createProjectForm = document.getElementById("createProjectForm");
 
 //DropDown Buttons
 const goToUserManagementButton = document.getElementById("goToUserManagementButton");
@@ -84,6 +85,14 @@ function closeCreateProjectWindow(){
 
  }
 
+ function setBackTrackToCreateProject(){
+   let params = new URLSearchParams();
+
+   params.set("back", window.location.href);
+
+   createProjectForm.action += "?" + params.toString();
+ }
+
 //Set logoutbutton listener
 logOutButton.addEventListener("click", logOut);
 
@@ -103,5 +112,8 @@ goToUserManagementButton.addEventListener("click", goToUserManagement);
 }
 
 //Set eventlisteners for Create Project
+if(createProjectWindow != null){
 closeCreateProjectWindowButton.addEventListener("click", closeCreateProjectWindow);
 openCreateProjectWindowButton.addEventListener("click", openCreateProjectWindow);
+window.addEventListener("load", setBackTrackToCreateProject);
+}

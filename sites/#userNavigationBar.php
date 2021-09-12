@@ -30,7 +30,7 @@ if($_SESSION["userAccountLevel"] >= 2){
    </div>
 
    Projekt hinzufügen:
-   <form action='../php/createProject.php' method='POST'/>
+   <form id='createProjectForm' action='../php/createProject.php' method='POST'>
      <input type='text' name='projectName' placeholder='Projektname' required/>
      <br>
      <br>
