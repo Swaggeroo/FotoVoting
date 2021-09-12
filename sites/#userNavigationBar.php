@@ -16,6 +16,34 @@
 
 ?>
 
+
+<?php
+//only load menu if User has Admin level
+if($_SESSION["userAccountLevel"] >= 2){
+ echo "
+ <!--Create Project Window--->
+ <div id='blackBackgroundCreateProjectWindow'></div>
+
+ <div id='createProjectWindow'>
+   <div id='closeCreateProjectWindow'>
+    <span id='closeCreateProjectWindowButton'>&#10006;</span>
+   </div>
+
+   Projekt hinzufügen:
+   <form action='../php/createProject.php' method='POST'/>
+     <input type='text' name='projectName' placeholder='Projektname' required/>
+     <br>
+     <br>
+     <input type='submit' id='addProjectButton' value='Hinzufügen'/>
+   </form>
+ </div>
+ ";
+}
+ ?>
+
+
+<!------------------------------------------->
+<!--User navigation Bar ----->
 <div id="userNavigationBar">
 
 <div class="leftNavigationBarFlex">
@@ -43,7 +71,7 @@
         </div>
           <div id='NavBarEditDropDown'>
             <p id='goToUserManagementButton'>Benutzerverwaltung</p>
-            <p>Projekt hinzufügen</p>
+            <p id='openCreateProjectWindowButton'>Projekt erstellen</p>
         </div>
         </div>";
       }
@@ -55,5 +83,6 @@
  </div>
 
 </div>
+<!----------------------------------------------------------------------------------->
 
 <script src="../scripts/userNavigationBar.js"></script>

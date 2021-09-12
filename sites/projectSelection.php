@@ -53,6 +53,10 @@
                 $projectIDs = $db->getProjectIDs();
                 $projectNames = $db->getProjectNames();
 
+                if(count($projectIDs) == 0){
+                  echo "Keine Projekte vorhanden!";
+                }
+
                 for ($x = 0; $x < count($projectIDs); $x++){
                     echo "
                         <a href=\"./votingPage.php?project=".$projectIDs[$x]["projectIDs"]."\">

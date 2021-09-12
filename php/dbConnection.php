@@ -659,5 +659,19 @@ public function deletePicture($picID){
     $sqlStatement->close();
 }
 
+public function addProject($projectName){
+    $sqlQuery = "INSERT INTO projects (projectName) VALUES (?)";
+
+    $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
+    $sqlStatement->bind_param("s", $projectName);
+    if(!$sqlStatement->execute()){
+      $sqlStatement->close();
+      return false;
+    }
+
+    $sqlStatement->close();
+    return true;
+}
+
 }
 ?>

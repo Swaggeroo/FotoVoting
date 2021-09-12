@@ -7,6 +7,12 @@ const navigationEditButton = document.getElementById("NavBarEditButton");
 const navigationEditDropdown = document.getElementById("NavBarEditDropDown");
 var dropDownTimer;
 
+//Create project Buttons
+const closeCreateProjectWindowButton = document.getElementById("closeCreateProjectWindowButton");
+const blackBackgroundCreateProjectWindow = document.getElementById("blackBackgroundCreateProjectWindow");
+const createProjectWindow = document.getElementById("createProjectWindow");
+const openCreateProjectWindowButton = document.getElementById("openCreateProjectWindowButton");
+
 //DropDown Buttons
 const goToUserManagementButton = document.getElementById("goToUserManagementButton");
 
@@ -56,6 +62,28 @@ function goToUserManagement(){
    window.location.href = "manageUsers.php?" + params.toString();
 }
 
+function closeCreateProjectWindow(){
+  blackBackgroundCreateProjectWindow.style.opacity = "0";
+  createProjectWindow.style.opacity = "0";
+
+  setTimeout(function () {
+    blackBackgroundCreateProjectWindow.style.display = "none";
+    createProjectWindow.style.display = "none";
+  }, 200);
+ }
+
+ function openCreateProjectWindow(){
+   //Set display to normal
+   blackBackgroundCreateProjectWindow.style.display = "inline";
+   createProjectWindow.style.display = "inline";
+   //Set opacity
+   setTimeout(function (){
+     blackBackgroundCreateProjectWindow.style.opacity = "1";
+     createProjectWindow.style.opacity = "1";
+   },10);
+
+ }
+
 //Set logoutbutton listener
 logOutButton.addEventListener("click", logOut);
 
@@ -73,3 +101,7 @@ navigationEditDropdown.addEventListener("mouseleave", hideDropDownMenuFromEditBu
 //Set eventlistener for Usermangament button
 goToUserManagementButton.addEventListener("click", goToUserManagement);
 }
+
+//Set eventlisteners for Create Project
+closeCreateProjectWindowButton.addEventListener("click", closeCreateProjectWindow);
+openCreateProjectWindowButton.addEventListener("click", openCreateProjectWindow);
