@@ -1,7 +1,7 @@
 <?php
-//Just temporary
-session_start();
-//------
+  require "../php/checkPermission.php";
+
+  require "../php/onlyAdminLevel.php";
  ?>
 
 <!DOCTYPE html>

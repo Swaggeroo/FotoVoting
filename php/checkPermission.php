@@ -8,8 +8,7 @@ if(!isset($_SESSION["userLoggedIn"])){
 }
 
 if(!$_SESSION["userLoggedIn"]){
-  echo "<script>alert('Du musst dich neu anmelden.');window.location.replace(\"../index.html\");</script>";
-  die("Sie haben keine Berechtigung, auf diese Seite zuzugreifen");
+  die("<script>alert('Du musst erst anmelden.');window.location.replace(\"../index.html\");</script>");
 }
 
 //Check if terms have been accepted

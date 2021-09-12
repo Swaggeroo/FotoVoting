@@ -2,16 +2,13 @@
 
    require "checkPermission.php";
 
+   require "../php/onlyAdminLevel.php";
+
    function error($errorMsg){
      die("<script>
      alert('".$errorMsg."');
      window.location.replace('../sites/manageUsers.php');
      </script>");
-   }
-
-   //Check AccountLevel
-   if($_SESSION["userAccountLevel"] < 2){
-    error("Keine Berechtigung diesen Befehl auszuführen!");
    }
 
   if($_SERVER["REQUEST_METHOD"] == "POST"){

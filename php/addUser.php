@@ -1,8 +1,8 @@
 <?php
 
-if(!isset($_SESSION)){
- session_start();
-}
+require "../php/checkPermission.php";
+
+require "../php/onlyAdminLevel.php";
 
     function error($errorMsg){
       die("<script>
