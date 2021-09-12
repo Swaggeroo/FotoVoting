@@ -8,7 +8,7 @@ if(!isset($_SESSION["userLoggedIn"])){
 }
 
 if(!$_SESSION["userLoggedIn"]){
-  die("<script>alert('Du musst erst anmelden.');window.location.replace(\"../index.html\");</script>");
+  die("<script>alert('Du musst erst anmelden.');window.location.replace(\"../index.php\");</script>");
 }
 
 //Check if terms have been accepted
