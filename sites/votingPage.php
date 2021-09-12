@@ -104,7 +104,6 @@
                                 </div>
                             </div> 
                         ";
-                        //TODO Button response
                 }
             ?>
         </div>
