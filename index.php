@@ -1,3 +1,26 @@
+<?php
+   if(!isset($_SESSION)){
+    session_start();
+   }
+
+   //If session is still logged in: auto log in
+   //else: destroy session
+   if(isset($_SESSION["userLoggedIn"])){
+     //if userLoggedin and every other one is set: log in
+     if($_SESSION["userLoggedIn"] == true && isset($_SESSION["userID"]) && isset($_SESSION["userAccountLevel"]) && isset($_SESSION["acceptedTerms"])){
+       die("
+       <script>
+        window.location.replace('sites/projectSelection.php');
+       </script>
+       ");
+     }
+
+   }
+
+   session_destroy();
+
+ ?>
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
