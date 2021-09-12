@@ -7,7 +7,7 @@ session_start();
  }else{
   echo "<script>
    alert('Erfolgreich ausgeloggt!');
-   window.location.replace('index.html');
+   window.location.replace('index.php');
   </script>";
  }
 
