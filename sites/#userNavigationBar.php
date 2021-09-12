@@ -42,8 +42,8 @@ if($_SESSION["userAccountLevel"] >= 2){
  ?>
 
 
-<!------------------------------------------->
-<!--User navigation Bar ----->
+<!--###############################################################-->
+<!--User navigation Bar -->
 <div id="userNavigationBar">
 
 <div class="leftNavigationBarFlex">
@@ -83,6 +83,6 @@ if($_SESSION["userAccountLevel"] >= 2){
  </div>
 
 </div>
-<!----------------------------------------------------------------------------------->
+<!--###############################################################-->
 
 <script src="../scripts/userNavigationBar.js"></script>
