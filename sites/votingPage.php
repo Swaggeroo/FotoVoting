@@ -90,8 +90,11 @@
                     }
                     echo "
                             <div class=\"picture-container\">   
-                                <div class=\"bildmitbildunterschrift card animate__animated animate__bounceIn\" style=\"margin: 1em;\">
-                                    <button class=\"deleteButton\" onclick=\"deletePic(".$pictureIDs[$x]["picIDs"].")\"><img src=\"../media/images/trashbin.png\" width='100%' height='100%'></button>
+                                <div class=\"bildmitbildunterschrift card animate__animated animate__bounceIn\" style=\"margin: 1em;\">";
+                    if(intval($_SESSION['userAccountLevel']) == 2){
+                        echo"       <button class=\"deleteButton\" onclick=\"deletePic(".$pictureIDs[$x]["picIDs"].")\"><img src=\"../media/images/trashbin.png\" width='100%' height='100%'></button>";
+                    }
+                    echo "
                                     <img src=\"../uploads/".$projectName."/".$db->getPictureFileName(intval($pictureIDs[$x]["picIDs"]))."\" alt=\"Name\" style=\"width:100%;height:auto;\">
                                     <span class=\"nameTag\">".$db->getUserName(intval($pictureAuthorIDs[$x]["authIDs"]))."</span>
                                 </div>
