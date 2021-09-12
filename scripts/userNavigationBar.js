@@ -45,11 +45,15 @@ function hideEditDropDownMenu(){
 }
 
 function goBackToLastPage(){
-  window.location.replace(goBackButton.getAttribute("data-link"));
+  window.location.href = goBackButton.getAttribute("data-link");
 }
 
 function goToUserManagement(){
-   window.location.href = "manageUsers.php?back=" + window.location.href;
+   let params = new URLSearchParams();
+
+   params.set("back", window.location.href);
+
+   window.location.href = "manageUsers.php?" + params.toString();
 }
 
 //Set logoutbutton listener
