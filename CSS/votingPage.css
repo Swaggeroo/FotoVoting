@@ -60,11 +60,29 @@
 }
 
 .liked{
-    background: #08ad10 !important;
+    background: #fd360e !important;
+    -webkit-box-shadow: inset 0px 0px 10px #7d1400;
+    -moz-box-shadow: inset 0px 0px 10px #7d1400;
+    box-shadow: inset 0px 0px 10px #7d1400;
+}
+
+.liked:hover{
+    -webkit-box-shadow: inset 0px 0px 15px #7d1400;
+    -moz-box-shadow: inset 0px 0px 15px #7d1400;
+    box-shadow: inset 0px 0px 15px #7d1400;
 }
 
 .bested{
-    background: #08ad10 !important;
+    background: #d47e00 !important;
+    -webkit-box-shadow: inset 0px 0px 10px #975800;
+    -moz-box-shadow: inset 0px 0px 10px #975800;
+    box-shadow: inset 0px 0px 10px #975800;
+}
+
+.bested:hover{
+    -webkit-box-shadow: inset 0px 0px 15px #975800;
+    -moz-box-shadow: inset 0px 0px 15px #975800;
+    box-shadow: inset 0px 0px 15px #975800;
 }
 
 .deleteButton{
