@@ -59,7 +59,7 @@
 
                 for ($x = 0; $x < count($projectIDs); $x++){
                     echo "
-                        <a href=\"./votingPage.php?project=".$projectIDs[$x]["projectIDs"]."\">
+                        <a class='projectLink' href=\"./votingPage.php?project=".$projectIDs[$x]["projectIDs"]."\">
                             <div class=\"card projectButton\">
                                 <p>".$projectNames[$x]["projectNames"]."</p>
                             </div>

@@ -21,7 +21,7 @@
 //only load menu if User has Admin level
 if($_SESSION["userAccountLevel"] >= 2){
  echo "
- <!--Create Project Window--->
+ <!--Create Project Window-->
  <div id='blackBackgroundCreateProjectWindow'></div>
 
  <div id='createProjectWindow'>
