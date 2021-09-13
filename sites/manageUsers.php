@@ -44,6 +44,7 @@ session_start();
 
    <form id="deleteUserForm" action="../php/deleteUser.php" method="POST">
        <input type="hidden" value="" name="userID" id="delteUserIDInput"/>
+       <input type="hidden" value="" name="username" id="deleteUsernameInput">
    </form>
 
  <form id="addUserForm" action="../php/addUser.php" method="POST">

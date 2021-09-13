@@ -1,5 +1,6 @@
 const deleteUserForm = document.getElementById("deleteUserForm");
 const deleteUserIDInput = document.getElementById("delteUserIDInput");
+const deleteUsernameInput = document.getElementById("deleteUsernameInput");
 
 //Get all delete Buttons
 var deleteButtons = document.getElementsByClassName("deleteUser");
@@ -7,12 +8,16 @@ var deleteButtons = document.getElementsByClassName("deleteUser");
 var usernames = document.getElementsByClassName("username");
 
 function deleteUser(){
-  if(!confirm("Den Benutzer "+ usernames[parseInt(this.getAttribute("data-index"))].textContent +" wirklich löschen?")){
+  var username = usernames[parseInt(this.getAttribute("data-index"))];
+
+  if(!confirm("Den Benutzer "+ username +" wirklich löschen?")){
     return;
   }
 
   const userID = this.getAttribute("data-id");
 
+  //Set username in form
+  deleteUsernameInput.value = username;
   //Set userId in delte Form
   deleteUserIDInput.value = userID;
   //Send form
