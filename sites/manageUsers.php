@@ -74,6 +74,19 @@
         <input type="hidden" name="userID" value="" required>
         <input type="submit" value="Passwort setzen"/>
       </form>
+      <br>
+      <br>
+      <form action="../php/editUser.php" method="post">
+      UserAccountLevel:  <select name="newUserAccountLevel" required>
+            <option value="1">1</option>
+            <option value="2">2</option>
+        </select>
+        <input type="hidden" name="operation" value="password" required/>
+        <input type="hidden" name="userID" value="" required>
+       <input type="submit" value="AccountLevel setzen">
+      </form>
+      <br>
+      <br>
    </div>
 
  <form id="addUserForm" action="../php/addUser.php" method="POST">
