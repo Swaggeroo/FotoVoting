@@ -43,10 +43,38 @@
      include "#userNavigationBar.php";
    ?>
 
+<div id="editUserBlackBackground">
+</div>
+
    <form id="deleteUserForm" action="../php/deleteUser.php" method="POST">
-       <input type="hidden" value="" name="userID" id="delteUserIDInput"/>
-       <input type="hidden" value="" name="username" id="deleteUsernameInput">
+       <input type="hidden" value="" name="userID" id="delteUserIDInput" required/>
+       <input type="hidden" value="" name="username" id="deleteUsernameInput" required/>
    </form>
+
+   <div id="editUserDialog">
+      <!--Edit username Dialog-->
+      <div id='closeEditUserWindow'>
+       <span id='closeEditUserWindowButton'>&#10006;</span>
+      </div>
+
+      Nutzer bearbeiten:
+      <br>
+      <br>
+      <form action="../php/editUser.php" method="post">
+         <input type="text" value="" name="newUsername" placeholder="Neuer Benutzername" required/>
+         <input type="submit" value="Benutzname ändern"/>
+         <input type="hidden" name="operation" value="username" required/>
+         <input type="hidden" name="userID" value="" required>
+      </form>
+      <br>
+      <br>
+      <form action="../php/editUser.php" method="post">
+        <input type="password" name="newPassword" value="" placeholder="Neues Passwort" required/>
+        <input type="hidden" name="operation" value="password" required/>
+        <input type="hidden" name="userID" value="" required>
+        <input type="submit" value="Passwort setzen"/>
+      </form>
+   </div>
 
  <form id="addUserForm" action="../php/addUser.php" method="POST">
    <input type="text" name="userName" placeholder="Benutzername" required/>

@@ -77,7 +77,7 @@
     border-style: solid;
     border-color: #404040 transparent;
     border-width: 0 16px 15px;
-    top: -15px;
+    top: -12px;
     left: 30%;
     margin-left: -16px;
 }
@@ -157,6 +157,8 @@
   font-size: 1.3em;
   transition: opacity 0.2s;
   opacity: 0;
+  border: 2px solid white;
+  border-radius: 20px;
 }
 
 #createProjectWindow form{
