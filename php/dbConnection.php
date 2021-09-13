@@ -178,7 +178,7 @@ public function changeUserPassword($userID, $newPassword){
    $sqlQuery = "UPDATE user SET userPassword = ? WHERE userID = ?";
 
    $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
-   $sqlStatement->bind_param("is", $userID, $newPassword);
+   $sqlStatement->bind_param("si", $newPassword, $userID);
    $sqlStatement->execute();
 
    $sqlStatement->close();
@@ -188,10 +188,20 @@ public function changeUsersUserName($userID, $newUsername){
    $sqlQuery = "UPDATE user SET userName = ? WHERE userID = ?";
 
    $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
-   $sqlStatement->bind_param("is", $userID, $newUsername);
+   $sqlStatement->bind_param("si", $newUsername, $userID);
    $sqlStatement->execute();
 
    $sqlStatement->close();
+}
+
+public function changeUserAccoutLevel($userID, $newUserAccountLevel){
+  $sqlQuery = "UPDATE user SET userAccountLevel = ? WHERE userID = ?";
+
+  $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
+  $sqlStatement->bind_param("ii", $newUserAccountLevel, $userID);
+  $sqlStatement->execute();
+
+  $sqlStatement->close();
 }
 
 public function getAllUsers(): array

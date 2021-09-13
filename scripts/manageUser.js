@@ -8,10 +8,16 @@ const editButtons = document.getElementsByClassName("editUser");
 const editUserDialog = document.getElementById("editUserDialog");
 const editUserDialogBackground = document.getElementById("editUserBlackBackground");
 const closeEditUserDialogButton = document.getElementById("closeEditUserWindowButton");
+const userIDInputs = document.getElementsByClassName("userIDInput");
+const newUsernameEditInput = document.getElementById("newUsernameEditInput");
+const userAccountlevelEditInput = document.getElementById("userAccountlevelEditInput");
+
 //Get all delete Buttons
 const deleteButtons = document.getElementsByClassName("deleteUser");
 //Get all Usernames
 const usernames = document.getElementsByClassName("username");
+//Get all user Accounlevels
+const userAccountLevels = document.getElementsByClassName("userAccountLevel");
 
 function deleteUser(){
   var username = usernames[parseInt(this.getAttribute("data-index"))];
@@ -31,7 +37,20 @@ function deleteUser(){
 }
 
 function openEditUser(){
-  var username = usernames[parseInt(this.getAttribute("data-index"))];
+  var classListIndex = parseInt(this.getAttribute("data-index"));
+  var username = usernames[classListIndex].textContent;
+  var userID = parseInt(this.getAttribute("data-id"));
+  var userAccountLevel = parseInt(userAccountLevels[classListIndex].textContent);
+
+  //Set values in Form
+  for(var i = 0; i < userIDInputs.length; i++){
+    userIDInputs[i].value = userID;
+  }
+
+  //Set username
+  newUsernameEditInput.value = username;
+  //Set Accountlevel
+  userAccountlevelEditInput.selectedIndex = userAccountLevel - 1;
 
   showEditUserWindow();
 }

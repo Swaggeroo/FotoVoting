@@ -25,6 +25,8 @@
     $userID = trim(stripslashes(htmlspecialchars($_POST["userID"])));
     $operation = trim(stripslashes(htmlspecialchars($_POST["operation"])));
 
+    require "dbConnection.php";
+
     //Determine operation
     switch ($operation) {
       case 'password':
@@ -77,10 +79,36 @@
 
       break;
 
+      case 'userAccountLevel':
+
+      //Check if accountlevel is set
+      if(!isset($_POST["newUserAccountLevel"])){
+        error("No UserAccountLevel set!");
+      }
+
+      $newUserAccountLevel = trim(stripslashes(htmlspecialchars($_POST["newUserAccountLevel"])));
+
+      //Save userAccount level if not bigger thant own
+      if($newUserAccountLevel > $_SESSION["userAccountLevel"]){
+        error("Not allowed to set this Accountlevel");
+      }
+
+      $db = new db();
+
+      $db->changeUserAccoutLevel($userID, $newUserAccountLevel);
+
+
+      break;
+
       default:
       error("Operation invalid!");
       break;
     }
+
+    echo "<script>
+    alert('Erfolgreich geändert!');
+    window.location.replace('../sites/manageUsers.php');
+    </script>";
   }
 
  ?>
