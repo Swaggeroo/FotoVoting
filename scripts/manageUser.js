@@ -3,9 +3,9 @@ const deleteUserIDInput = document.getElementById("delteUserIDInput");
 const deleteUsernameInput = document.getElementById("deleteUsernameInput");
 
 //Get all delete Buttons
-var deleteButtons = document.getElementsByClassName("deleteUser");
+let deleteButtons = document.getElementsByClassName("deleteUser");
 //Get all Usernames
-var usernames = document.getElementsByClassName("username");
+let usernames = document.getElementsByClassName("username");
 
 function deleteUser(){
   var username = usernames[parseInt(this.getAttribute("data-index"))];
@@ -26,7 +26,7 @@ function deleteUser(){
 
 
 //Add all Eventlisteners for delete
-for(var i = 0; i < deleteButtons.length; i++){
+for(let i = 0; i < deleteButtons.length; i++){
   //save index for later
   deleteButtons[i].setAttribute("data-index", i);
   //-------

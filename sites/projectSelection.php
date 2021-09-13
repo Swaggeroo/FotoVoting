@@ -1,5 +1,5 @@
 <?php
-  //require "../php/checkPermission.php";
+  require "../php/checkPermission.php";
   if (!empty($_GET['message'])) {
       echo "<script>alert(\"".trim(stripslashes(htmlspecialchars($_GET['message'])))."\");window.location.replace(\"./projectSelection.php\");</script>";
   }
@@ -53,9 +53,13 @@
                 $projectIDs = $db->getProjectIDs();
                 $projectNames = $db->getProjectNames();
 
+                if(count($projectIDs) == 0){
+                  echo "Keine Projekte vorhanden!";
+                }
+
                 for ($x = 0; $x < count($projectIDs); $x++){
                     echo "
-                        <a href=\"./votingPage.php?project=".$projectIDs[$x]["projectIDs"]."\">
+                        <a class='projectLink' href=\"./votingPage.php?project=".$projectIDs[$x]["projectIDs"]."\">
                             <div class=\"card projectButton\">
                                 <p>".$projectNames[$x]["projectNames"]."</p>
                             </div>

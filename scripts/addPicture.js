@@ -8,10 +8,10 @@ actualBtn.addEventListener('change', function(){
 })
 
 function PreviewImage() {
-    var oFReader = new FileReader();
+    let oFReader = new FileReader();
     oFReader.readAsDataURL(document.getElementById("upload").files[0]);
 
     oFReader.onload = function (oFREvent) {
         document.getElementById("uploadPreview").src = oFREvent.target.result;
     };
-};
+}

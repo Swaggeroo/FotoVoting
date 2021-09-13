@@ -8,7 +8,13 @@ if(!isset($_SESSION["userLoggedIn"])){
 }
 
 if(!$_SESSION["userLoggedIn"]){
-  die("Sie haben keine Berechtigung, auf diese Seite zuzugreifen");
+  die("<script>alert('Du musst erst anmelden.');window.location.replace(\"../index.php\");</script>");
+}
+
+//Check if terms have been accepted
+if(!$_SESSION["acceptedTerms"]){
+  include "#acceptTerms.php";
+  die();
 }
 
 ?>

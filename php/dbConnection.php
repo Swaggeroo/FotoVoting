@@ -25,7 +25,7 @@ public function __destruct(){
 }
 
 
-public function createBasicDatabaseStructure():void{
+public function createBasicDatabaseStructure(){
     $sqlStatements = array(
         "CREATE TABLE user(
             userID INTEGER NOT NULL AUTO_INCREMENT,
@@ -103,7 +103,7 @@ public function getPasswordForUserID($userID):String{
      return $password;
 }
 
-public function addUser($username, $password, $userAccountLevel):void{
+public function addUser($username, $password, $userAccountLevel){
     $sqlQuery = "INSERT INTO user (userName, userPassword, userAccountLevel) VALUES (?, ?, ?)";
 
     $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
@@ -115,7 +115,56 @@ public function addUser($username, $password, $userAccountLevel):void{
     $sqlStatement->close();
 }
 
-public function deleteUser($userID):void{
+public function deleteUser($userID){
+    //DELETE User Content
+    //bests
+    $sqlQuery = "DELETE FROM picturebests WHERE userID = ?";
+    $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
+    $sqlStatement->bind_param("i", $userID);
+    $sqlStatement->execute();
+    $sqlStatement->close();
+
+    //likes
+    $sqlQuery = "DELETE FROM picturelikes WHERE userID = ?";
+    $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
+    $sqlStatement->bind_param("i", $userID);
+    $sqlStatement->execute();
+    $sqlStatement->close();
+
+    //Delete pictures from file system
+    $sqlQuery = "SELECT picFileName, projectID FROM pictures WHERE userID = ?";
+
+    $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
+    $sqlStatement->bind_param("i", $userID);
+    $sqlStatement->execute();
+    $result = $sqlStatement->get_result();
+
+    $counter = 0;
+    while($row = $result->fetch_assoc()){
+        $projectName = $this->getProjectName(intval($row[$counter]['projectID']));
+        $fileName = $row[$counter]['picFileName'];
+
+        $sqlStatement->close();
+
+        $file = "../uploads/".$projectName."/".$fileName;
+
+        if(file_exists(realpath($file))) {
+            unlink(realpath($file));
+        }
+
+        $counter++;
+    }
+
+
+
+    //pictures
+    $sqlQuery = "DELETE FROM pictures WHERE userID = ?";
+    $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
+    $sqlStatement->bind_param("i", $userID);
+    $sqlStatement->execute();
+    $sqlStatement->close();
+
+    //Delete User
    $sqlQuery = "DELETE FROM user WHERE userID = ?";
 
    $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
@@ -125,17 +174,17 @@ public function deleteUser($userID):void{
    $sqlStatement->close();
 }
 
-public function changeUserPassword($userID, $newPassword):void{
+public function changeUserPassword($userID, $newPassword){
    $sqlQuery = "UPDATE user SET userPassword = ? WHERE userID = ?";
 
    $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
    $sqlStatement->bind_param("is", $userID, $newPassword);
    $sqlStatement->execute();
 
-   $sqlStatement->close();;
+   $sqlStatement->close();
 }
 
-public function changeUsersUserName($userID, $newUsername):void{
+public function changeUsersUserName($userID, $newUsername){
    $sqlQuery = "UPDATE user SET userName = ? WHERE userID = ?";
 
    $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
@@ -145,7 +194,8 @@ public function changeUsersUserName($userID, $newUsername):void{
    $sqlStatement->close();
 }
 
-public function getAllUsers(){
+public function getAllUsers(): array
+{
    $sqlQuery = "SELECT userName,userID,userAccountLevel FROM user";
 
    $result = $this->dbKeyObject->query($sqlQuery);
@@ -261,7 +311,7 @@ public function addLike($picID, $userID):bool{
 }
 
 public function getProjectIDFromPicID($picID):int{
-    $sqlQuery = "SELECT projectID AS projectID FROM pictures WHERE pictureID = ?";
+    $sqlQuery = "SELECT projectID AS projectID FROM pictures WHERE picID = ?";
     $statement = $this->dbKeyObject->prepare($sqlQuery);
     $statement->bind_param("i", $picID);
     $statement->execute();
@@ -296,7 +346,7 @@ public function addBest($picID, $userID):bool{
     $projectID = $this->getProjectIDFromPicID($picID);
 
     if (!$this->userBested($projectID,$userID)){
-        $sqlQuery = "INSERT INTO pictureBests (pictureID, userID, projectID) VALUES (?, ?, ?)";
+        $sqlQuery = "INSERT INTO picturebests (pictureID, userID, projectID) VALUES (?, ?, ?)";
 
         $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
         $sqlStatement->bind_param("iii", $picID, $userID, $projectID);
@@ -353,7 +403,7 @@ public function getProjectName($projectID):String{
     return $projectName;
 }
 
-public function getProjectNames()
+public function getProjectNames(): array
 {
     $sqlQuery = "SELECT projectName AS projectNames FROM projects";
 
@@ -366,7 +416,7 @@ public function getProjectNames()
     return $rows;
 }
 
-public function getProjectIDs()
+public function getProjectIDs(): array
 {
     $sqlQuery = "SELECT projectID AS projectIDs FROM projects";
 
@@ -379,7 +429,8 @@ public function getProjectIDs()
     return $rows;
 }
 
-public function getPictureIDs($projectID){
+public function getPictureIDs($projectID): array
+{
     $sqlQuery = "SELECT picID AS picIDs FROM pictures WHERE projectID = ?";
 
     $statement = $this->dbKeyObject->prepare($sqlQuery);
@@ -395,7 +446,8 @@ public function getPictureIDs($projectID){
     return $rows;
 }
 
-public function getPictureAuthorIDs($projectID){
+public function getPictureAuthorIDs($projectID): array
+{
     $sqlQuery = "SELECT userID AS authIDs FROM pictures WHERE projectID = ?";
 
     $statement = $this->dbKeyObject->prepare($sqlQuery);
@@ -456,7 +508,8 @@ public function getUserName($userID) {
     return $userName;
 }
 
-public function hasUploaded($userID,$projectID){
+public function hasUploaded($userID,$projectID): bool
+{
     $sqlQuery = "SELECT COUNT(picID) AS uploadCount FROM pictures WHERE projectID = ? AND userID = ?";
     $statement = $this->dbKeyObject->prepare($sqlQuery);
     $statement->bind_param("ii", $projectID, $userID);
@@ -491,7 +544,8 @@ public function getUserAccountLevel($userID){
   return $userAccountLevel;
 }
 
-public function hasAcceptedTerms($userID){
+public function hasAcceptedTerms($userID): bool
+{
     $sqlQuery = "SELECT acceptedTerms FROM user WHERE userID = ?";
 
     $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
@@ -522,8 +576,102 @@ public function acceptTerms($userID){
     $sqlStatement->close();
 }
 
-    //TODO Remove Like
-    //TODO Remove Best
-    //TODO Remove Picture
+public function removeLike($userID,$picID){
+    $sqlQuery = "DELETE FROM picturelikes WHERE userID = ? AND pictureID = ?";
+
+    $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
+    $sqlStatement->bind_param("ii", $userID, $picID);
+    $sqlStatement->execute();
+
+    $sqlStatement->close();
+}
+
+public function removeBest($userID, $picID){
+    $sqlQuery = "DELETE FROM picturebests WHERE userID = ? AND pictureID = ?";
+
+    $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
+    $sqlStatement->bind_param("ii", $userID, $picID);
+    $sqlStatement->execute();
+
+    $sqlStatement->close();
+}
+
+public function getBestedID($userID, $projectID){
+    $sqlQuery = "SELECT pictureID AS pictureID FROM picturebests WHERE userID = ? AND projectID = ?";
+
+    $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
+    $sqlStatement->bind_param("ii", $userID, $projectID);
+
+    $sqlStatement->execute();
+
+    $result = $sqlStatement->get_result();
+
+    $picID = $result->fetch_assoc()["pictureID"];
+
+    $sqlStatement->close();
+
+    return $picID;
+}
+
+public function deletePicture($picID){
+    $sqlQuery = "SELECT picFileName, projectID FROM pictures WHERE picID = ?";
+
+    $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
+    $sqlStatement->bind_param("i", $picID);
+    $sqlStatement->execute();
+    $result = $sqlStatement->get_result();
+
+    $row = $result->fetch_assoc();
+
+    $projectName = $this->getProjectName(intval($row['projectID']));
+    $fileName = $row['picFileName'];
+
+    $sqlStatement->close();
+
+    $file = "../uploads/".$projectName."/".$fileName;
+
+    if(file_exists(realpath($file))) {
+        unlink(realpath($file));
+    }
+
+    $sqlQuery = "DELETE FROM picturelikes WHERE pictureID = ?";
+
+    $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
+    $sqlStatement->bind_param("i", $picID);
+    $sqlStatement->execute();
+
+    $sqlStatement->close();
+
+    $sqlQuery = "DELETE FROM picturebests WHERE pictureID = ?";
+
+    $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
+    $sqlStatement->bind_param("i", $picID);
+    $sqlStatement->execute();
+
+    $sqlStatement->close();
+
+    $sqlQuery = "DELETE FROM pictures WHERE picID = ?";
+
+    $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
+    $sqlStatement->bind_param("i", $picID);
+    $sqlStatement->execute();
+
+    $sqlStatement->close();
+}
+
+public function addProject($projectName){
+    $sqlQuery = "INSERT INTO projects (projectName) VALUES (?)";
+
+    $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
+    $sqlStatement->bind_param("s", $projectName);
+    if(!$sqlStatement->execute()){
+      $sqlStatement->close();
+      return false;
+    }
+
+    $sqlStatement->close();
+    return true;
+}
+
 }
 ?>

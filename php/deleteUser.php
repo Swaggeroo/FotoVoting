@@ -2,6 +2,8 @@
 
 require "checkPermission.php";
 
+require "../php/onlyAdminLevel.php";
+
 function error($errorMsg){
   die("<script>
   alert('".$errorMsg."');

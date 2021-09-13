@@ -1,6 +1,6 @@
 #userNavigationBar{
   width: 99%;
-  margin: 0%;
+  margin: 0;
   padding: 0.5%;
   background: black;
   position: sticky;
@@ -15,7 +15,7 @@
   width: auto;
   transform: rotate(180deg);
   text-align: center;
-  font-size: 1.8em;
+  font-size: 2.15em;
   line-height: 0.85em;
   cursor: pointer;
   text-shadow: none;
@@ -23,6 +23,7 @@
   font-weight: bold;
   color: inherit;
   display: inline-block;
+  user-select: none;
 }
 
 #leftNavigationBarFlex{
@@ -37,29 +38,85 @@
 
 #logOutButton{
   display: inline-block;
-  right: 0%;
+  right: 0;
   font-size: 1.2em;
   cursor: pointer;
   text-shadow: none;
   transition: 0.2s;
   font-weight: 600;
+  user-select: none;
 }
 
-#addButton{
+#navEdit{
   display: inline-block;
+  position: relative;
+}
+
+#NavBarEditDropDown{
+    position: absolute;
+    background: #404040;
+    color: #FFFFFF;
+    text-align: center;
+    border-radius: 10px;
+    padding: 0px;
+    z-index: 2;
+    margin-top: 16px;
+    padding: 10px;
+    opacity: 0.9;
+    box-shadow: 3px 3px 2px 1px rgba(0, 0, 0, 0.8);
+
+    display: none;
+}
+
+#NavBarEditDropDown:after{
+    content: '';
+    position: absolute;
+    display: block;
+    width: 0;
+    z-index: 3;
+    border-style: solid;
+    border-color: #404040 transparent;
+    border-width: 0 16px 15px;
+    top: -15px;
+    left: 30%;
+    margin-left: -16px;
+}
+
+#NavBarEditDropDown p{
+   font-size: 1.1em;
+   font-family: inherit;
+   user-select: none;
+   cursor: pointer;
+
+   border-bottom: 2px solid rgba(255, 255, 255, 0);
+   text-shadow: 1px 1px 2px rgba(255, 255, 255, 0);
+
+   transition: 0.3s;
+}
+
+#NavBarEditDropDown p:hover{
+   border-bottom: 2px solid rgba(255, 255, 255, 0.9);
+   text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+#NavBarEditButton{
   margin-right: 25px;
   font-size: 1.1em;
   border: 2px solid white;
-  padding: 3px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 6px;
+  padding-right: 6px;
   border-radius: 7px;
   font-weight: 600;
   text-shadow: none;
   box-shadow: none;
   transition: 0.2s;
   cursor: pointer;
+  user-select: none;
 }
 
-#addButton:hover{
+#NavBarEditButton:hover{
   text-shadow: -2px -2px 2px rgba(255,255,255, 0.6);
   box-shadow: 2px 2px 2px rgba(255, 255, 255, 0.6);
 }
@@ -70,4 +127,67 @@
 
 #userGoBackButton:hover{
   text-shadow: -2px -2px 2px rgba(255,255,255, 0.6);
+}
+
+#blackBackgroundCreateProjectWindow{
+  position: fixed;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  user-select: none;
+  transition: opacity 0.2s;
+  display: none;
+  opacity: 0;
+}
+
+#createProjectWindow{
+  display: none;
+  text-align: center;
+  position: fixed;
+  z-index: 4;
+  width: 40%;
+  background: black;
+  margin-left: 30%;
+  margin-right: 30%;
+  margin-top: 17%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  color: white;
+  font-size: 1.3em;
+  transition: opacity 0.2s;
+  opacity: 0;
+}
+
+#createProjectWindow form{
+  text-align: center;
+  margin-top: 4%;
+}
+
+#createProjectWindow form input{
+  font-size: 0.9em;
+  padding: 0.5%;
+}
+
+#createProjectWindow #closeCreateProjectWindow{
+  text-align: right;
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  font-size: 1.3em;
+}
+
+#createProjectWindow #closeCreateProjectWindowButton{
+  color: red;
+  cursor: pointer;
+  text-shadow: 2px 2px 3px rgba(255, 255, 255, 0);
+  transition: 0.2s;
+}
+
+#createProjectWindow #closeCreateProjectWindowButton:hover{
+  text-shadow: 2px 2px 3px rgba(255, 255, 255, 0.7);
+}
+
+#addProjectButton{
+  cursor: pointer;
 }
