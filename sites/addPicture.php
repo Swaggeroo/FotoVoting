@@ -48,16 +48,18 @@
 <body>
     <h1 align="center">Add Picture (<?php echo htmlspecialchars($projectName)?>)</h1>
 
-    <form align="center" enctype="multipart/form-data" action="../php/uploadPicture.php?project=<?php echo htmlspecialchars($_GET['project'])?>" method="POST">
-        <label for="upload" class="chosePicture">Choose Picture</label>
-        <span id="file-chosen">No file chosen</span><br><br>
-        <img src="" id="uploadPreview" width="90%" height="auto">
-        <input type="hidden" name="Max_File_Size" value="15000000">
-        <input type="file" name="upload" id="upload" accept=".jpg,.jpeg,.png" hidden><br>
-        <input type="checkbox" name="legalCheck" id="legalCheck" value="true" required>
-        <label for="legalCheck">Das Bild entspricht den <a href="../sites/Datenschutz.html" id="bedingungenLink">Upload-Bedingungen</a></label><br><br>
-        <button type="submit" class="submitButton">Upload</button>
-    </form>
+    <div align="center">
+        <form align="center" enctype="multipart/form-data" action="../php/uploadPicture.php?project=<?php echo htmlspecialchars($_GET['project'])?>" method="POST">
+            <label for="upload" class="chosePicture">Choose Picture</label>
+            <span id="file-chosen">No file chosen</span><br><br>
+            <img src="" id="uploadPreview" width="90%" height="auto">
+            <input type="hidden" name="Max_File_Size" value="15000000">
+            <input type="file" name="upload" id="upload" accept=".jpg,.jpeg,.png" hidden><br>
+            <input type="checkbox" name="legalCheck" id="legalCheck" value="true" required>
+            <label for="legalCheck">Das Bild entspricht den <a href="../sites/Datenschutz.html" id="bedingungenLink">Upload-Bedingungen</a></label><br><br>
+            <button type="submit" class="submitButton">Upload</button>
+        </form>
+    </div>
     <!--TODO legalCheck Page (Nutzungsbedingungen) -->
 
     <hr>
