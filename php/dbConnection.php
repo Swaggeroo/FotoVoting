@@ -673,5 +673,15 @@ public function addProject($projectName){
     return true;
 }
 
+public function changeProject($projectId,$newProjectName){
+    $sqlQuery = "UPDATE projects SET projectName = ? WHERE projectID = ?";
+
+    $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
+    $sqlStatement->bind_param("is", $newProjectName, $projectId);
+    $sqlStatement->execute();
+
+    $sqlStatement->close();
+}
+
 }
 ?>
