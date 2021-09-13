@@ -9,11 +9,17 @@ require "php/dbConnection.php";
 
 //check if variables are set
 if(!isset($_POST["username"])){
-  die("Error: No Username");
+  die("<script>
+   alert('Error: No Username');
+   location.replace('index.php');
+  </script>");
 }
 
 if(!isset($_POST["userpassword"])){
-  die("Error: No Password");
+  die("<script>
+   alert('Error: No password');
+   location.replace('index.php');
+  </script>");
 }
 
 //get variables
@@ -27,7 +33,7 @@ $db = new db();
 if(!$db->userNameExists($username)){
   die("<script>
    alert('Benutzername nicht gefunden');
-   location.href= 'index.html';
+   location.replace('index.php');
   </script>");
 }
 
@@ -54,7 +60,7 @@ $serverPasswordHash = $db->getPasswordForUserID($userID);
     }else{
         echo "<script>
    alert('Falsches Passwort!');
-   location.replace('index.html');
+   location.replace('index.php');
   </script>";
     }
 
