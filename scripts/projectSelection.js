@@ -13,3 +13,30 @@ function addBackTrackToLinks(){
 }
 
 window.addEventListener("load", addBackTrackToLinks);
+
+function deleteProject(projectID){
+    let answer = confirm("Willst du wirklich das Project löschen?")
+    if(answer){
+        console.log("Delete "+projectID);
+        let oReq = new XMLHttpRequest();
+        let parms = "projectID="+projectID;
+        oReq.open("POST","../php/deleteProjectManager.php");
+        oReq.addEventListener('load',function(){
+            window.location.reload();
+        })
+        oReq.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        oReq.send(parms);
+    }
+}
+
+function editProject(projectID,newName){
+    console.log("Edit "+projectID+" -> "+newName);
+    let oReq = new XMLHttpRequest();
+    let parms = "projectID="+projectID+"&newName="+newName;
+    oReq.open("POST","../php/editProjectManager.php");
+    oReq.addEventListener('load',function(){
+        window.location.reload();
+    })
+    oReq.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    oReq.send(parms);
+}
