@@ -124,7 +124,7 @@ if(strlen($backtrack) > 0){
                     echo "
                             <div class=\"picture-container\">
                                 <div class=\"bildmitbildunterschrift card animate__animated animate__bounceIn\" style=\"margin: 1em;\">";
-                    if(intval($_SESSION['userAccountLevel']) == 2){
+                    if(intval($_SESSION['userAccountLevel']) == 2 || $pictureAuthorIDs[$x]["authIDs"] == $userID){
                         echo"       <button class=\"deleteButton\" onclick=\"deletePic(".$pictureIDs[$x]["picIDs"].")\"><img src=\"../media/images/trashbin.png\" width='100%' height='100%'></button>";
                     }
                     echo "

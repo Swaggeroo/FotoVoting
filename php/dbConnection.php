@@ -709,5 +709,22 @@ public function deleteProject($projectID){
     $sqlStatement->close();
 }
 
+public function getUserIDFromPicID($picID){
+    $sqlQuery = "SELECT userID FROM pictures WHERE picID = ?";
+
+    $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
+    $sqlStatement->bind_param("i", $picID);
+
+    $sqlStatement->execute();
+
+    $result = $sqlStatement->get_result();
+
+    $userID = $result->fetch_assoc()["userID"];
+
+    $sqlStatement->close();
+
+    return $userID;
+}
+
 }
 ?>
