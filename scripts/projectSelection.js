@@ -33,7 +33,7 @@ function deleteProject(e){
 
     var projectID = this.getAttribute("data-id");
 
-    var projectName = projectNames[parseInt(his.getAttribute("data-index"))].textContent;
+    var projectName = projectNames[parseInt(this.getAttribute("data-index"))].textContent;
 
     let answer = confirm("Willst du wirklich das Projekt '"+ projectName +"' wirklich löschen?");
     if(answer){
