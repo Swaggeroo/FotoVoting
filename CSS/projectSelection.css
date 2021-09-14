@@ -10,7 +10,11 @@
   background-color: #ececec;
   padding-top: 0.5%;
   padding-bottom: 0.5%;
+<<<<<<< HEAD
   cursor: default;
+=======
+  margin-bottom: 1.5%;
+>>>>>>> bf7f16047b76fb33987edddebcd9fa7cce8f46cb
 }
 
 .deleteButton{
