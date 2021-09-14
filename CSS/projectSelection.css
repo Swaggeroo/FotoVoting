@@ -1,21 +1,51 @@
 #projekte p{
-  padding-top: 0.5%;
-  padding-bottom: 0.5%;
   font-weight: 200;
   font-size: 1.5em;
-  margin: 0.8em;
+  margin: 0%;
 }
+
+
 
 .projectButton{
   background-color: #ececec;
+  padding-top: 0.5%;
+  padding-bottom: 0.5%;
 }
 
 .deleteButton{
-  position: absolute;
-  top: 0;
-  right: 0;
   width: auto;
   height: 100%;
+  font-size: 2em;
+  color: red;
+  padding: 0%;
+  margin:0%;
+  display: inline-block;
+}
+
+.editButton{
+  width: auto;
+  height: 100%;
+  font-size: 2em;
+  color: black;
+  padding: 0%;
+  margin:0%;
+  display: inline-block;
+  margin-right: 15px;
+}
+
+.editButton:hover{
+
+}
+
+.deleteButton:hover{
+  
+}
+
+.controls{
+  position: absolute;
+  right: 1%;
+  top: 0%;
+  display: flex;
 }
 
 @media only screen and (max-width: 768px) {
