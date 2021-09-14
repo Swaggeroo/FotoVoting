@@ -37,15 +37,23 @@
   display: flex;
 }
 
-#logOutButton{
+#accountSettings{
+  position: relative;
   display: inline-block;
-  right: 0;
+}
+
+#currentUsernameButton{
   font-size: 1.2em;
+  font-weight: 600;
   cursor: pointer;
   text-shadow: none;
   transition: 0.2s;
-  font-weight: 600;
+
   user-select: none;
+}
+
+#accountSettings:hover{
+  text-shadow: -2px -2px 2px rgba(255,255,255, 0.6);
 }
 
 #navEdit{
@@ -53,7 +61,7 @@
   position: relative;
 }
 
-#NavBarEditDropDown{
+#NavBarEditDropDown, #accountSettingsDropDown{
     position: absolute;
     background: #404040;
     color: #FFFFFF;
@@ -70,7 +78,7 @@
     z-index: 2;
 }
 
-#NavBarEditDropDown:after{
+#NavBarEditDropDown:after, #accountSettingsDropDown:after{
     content: '';
     position: absolute;
     display: block;
@@ -82,10 +90,9 @@
     top: -12px;
     left: 30%;
     margin-left: -16px;
-    z-index: 1;
 }
 
-#NavBarEditDropDown p{
+#NavBarEditDropDown p, #accountSettingsDropDown p{
    font-size: 1.1em;
    font-family: inherit;
    user-select: none;
@@ -97,7 +104,7 @@
    transition: 0.3s;
 }
 
-#NavBarEditDropDown p:hover{
+#NavBarEditDropDown p:hover, #accountSettingsDropDown p:hover{
    border-bottom: 2px solid rgba(255, 255, 255, 0.9);
    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
 }
@@ -122,10 +129,6 @@
 #NavBarEditButton:hover{
   text-shadow: -2px -2px 2px rgba(255,255,255, 0.6);
   box-shadow: 2px 2px 2px rgba(255, 255, 255, 0.6);
-}
-
-#logOutButton:hover{
-  text-shadow: -2px -2px 2px rgba(255,255,255, 0.6);
 }
 
 #userGoBackButton:hover{

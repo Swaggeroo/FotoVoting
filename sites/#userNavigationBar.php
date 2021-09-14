@@ -77,10 +77,16 @@ if($_SESSION["userAccountLevel"] >= 2){
       }
      ?>
 
-   <div id="logOutButton">
-    Ausloggen
+   <div id="accountSettings">
+     <div id="currentUsernameButton">
+     <?php echo $_SESSION["username"]."&#x2BC6;" ?>
+    </div>
+     <div id='accountSettingsDropDown'>
+       <p id='changePasswordButton'>Passwort ändern</p>
+       <p id='logOutButton'>Ausloggen</p>
    </div>
  </div>
+</div>
 
 </div>
 <!--###############################################################-->

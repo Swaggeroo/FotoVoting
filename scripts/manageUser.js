@@ -22,7 +22,7 @@ const userAccountLevels = document.getElementsByClassName("userAccountLevel");
 function deleteUser(){
   var username = usernames[parseInt(this.getAttribute("data-index"))].textContent;
 
-  if(!confirm("Den Benutzer "+ username +" wirklich löschen?")){
+  if(!confirm("Den Benutzer '"+ username +"' wirklich löschen?")){
     return;
   }
 

@@ -7,6 +7,11 @@ const navigationEditButton = document.getElementById("NavBarEditButton");
 const navigationEditDropdown = document.getElementById("NavBarEditDropDown");
 var dropDownTimer;
 
+//Dropdown User
+const accountSettingsDropDown = document.getElementById("accountSettingsDropDown");
+const currentUsernameButton = document.getElementById("currentUsernameButton");
+var accountSettingsDropDownTimer;
+
 //Create project Buttons
 const closeCreateProjectWindowButton = document.getElementById("closeCreateProjectWindowButton");
 const blackBackgroundCreateProjectWindow = document.getElementById("blackBackgroundCreateProjectWindow");
@@ -21,6 +26,39 @@ function logOut(){
  window.location.replace("../logout.php");
 }
 
+
+//User dropdown
+function showAccountDropDownMenuFromNameButton(){
+  accountSettingsDropDown.style.display = "inline";
+
+  //Event listener for leaving
+  currentUsernameButton.addEventListener("mouseleave", function (){
+     startHideDropDownUserAccountMenuCountdownFromElement(accountSettingsDropDown);
+   });
+}
+
+function startHideDropDownUserAccountMenuCountdownFromElement(element){
+  //Clear old tiemr
+  disableUserAccountDropDownTimer();
+  //Set eventlisnter for disabling timer
+  element.addEventListener("mouseover", disableUserAccountDropDownTimer);
+  //set Timeout for disabling dropmenu
+  accountSettingsDropDownTimer = setTimeout(hideUserAccountDropDownMenu, 150);
+}
+
+function disableUserAccountDropDownTimer(){
+  clearTimeout(accountSettingsDropDownTimer);
+}
+
+function hideUserAccountDropDownMenu(){
+ accountSettingsDropDown.style.display = "none";
+}
+
+function hideDropDownUserAccountMenuFromEditButton(){
+   startHideDropDownUserAccountMenuCountdownFromElement(accountSettingsDropDown);
+}
+
+//Edit Drodown
 function showEditDropDownMenuFromEditButton(){
  navigationEditDropdown.style.display = "inline";
 
@@ -40,7 +78,7 @@ function startHideDropDownMenuCountdownFromElement(element){
   //Set eventlisnter for disabling timer
   element.addEventListener("mouseover", disableDropDownTimer);
   //set Timeout for disabling dropmenu
-  dropDownTimer = setTimeout(hideEditDropDownMenu, 200);
+  dropDownTimer = setTimeout(hideEditDropDownMenu, 150);
 }
 
 function disableDropDownTimer(){
@@ -110,6 +148,10 @@ navigationEditDropdown.addEventListener("mouseleave", hideDropDownMenuFromEditBu
 //Set eventlistener for Usermangament button
 goToUserManagementButton.addEventListener("click", goToUserManagement);
 }
+
+//Event listeners for user dropdown
+currentUsernameButton.addEventListener("mouseover", showAccountDropDownMenuFromNameButton);
+accountSettingsDropDown.addEventListener("mouseleave", hideDropDownUserAccountMenuFromEditButton);
 
 //Set eventlisteners for Create Project
 if(createProjectWindow != null){

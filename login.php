@@ -46,6 +46,7 @@ $serverPasswordHash = $db->getPasswordForUserID($userID);
         $_SESSION["userLoggedIn"] = true;
         $_SESSION["userID"] = $userID;
         $_SESSION["userAccountLevel"] = $db->getUserAccountLevel($userID);
+        $_SESSION["username"] = $username;
 
         if (!$db->hasAcceptedTerms($userID)){
          $_SESSION["acceptedTerms"] = false;
