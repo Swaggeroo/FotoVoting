@@ -68,7 +68,10 @@
                     echo "
                         <a class='projectLink' href=\"./votingPage.php?project=".$projectIDs[$x]["projectIDs"]."\">
                             <div class=\"card projectButton\" style='position: relative'>
-                                <button class=\"deleteButton\" onclick=\"deletePic(".$projectIDs[$x]["projectIDs"].")\"><img src=\"../media/images/trashbin.png\" width='100%' height='100%'></button>
+                                <div class=\"controls\" onclick=\"deletePic(".$projectIDs[$x]["projectIDs"].")\">
+                                <div class='editButton'>&#x270E;</div>
+                                <div class='deleteButton'>&#128465;</div>
+                                </div>
                                 <p>".$projectNames[$x]["projectNames"]."</p>
                             </div>
                         </a>
