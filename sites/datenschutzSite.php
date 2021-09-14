@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8"/>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Datenschutz</title>
 
@@ -27,39 +27,13 @@
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
 </head>
+
+
 <body>
-
-  <div align="center" style="width: 100%; margin-top: 2%;">
-    Du musst die Nutzungsbedingungen und Datenschutzerklärung akzeptieren!
-    <br>
-    <br>
-    <?php
-      include "../legal/Datenschutz.html";
-     ?>
-     <br>
-     <br>
-     <button id='accept'>Akzeptieren</button><button id='cancel'>Ablehnen</button>
-     <br>
-     <br>
-  </div>
-
-  <script>
-  document.getElementById("cancel").addEventListener("click",function (){
-     alert('Du musst es akzepiteren um die Webseite zu nutzen!');
-     location.replace('../logout.php');
-  });
-
-  document.getElementById("accept").addEventListener("click",function (){
-     let oReq = new XMLHttpRequest();
-     let parms = "userID=<?php echo $_SESSION["userID"]; ?>";
-     oReq.addEventListener("load",function() {
-          location.reload();
-     })
-     oReq.open("POST","../php/acceptTermsAjax.php");
-     oReq.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-     oReq.send(parms);
-  })
-  </script>
+    <div align="center">
+        <?php
+        include "../legal/Datenschutz.html";
+        ?>
+    </div>
 </body>
 
-</html>

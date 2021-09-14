@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8"/>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Datenschutz</title>
+    <title>UploadBedingungen</title>
 
     <!--basic Style-->
     <link rel="stylesheet" href="../style.css">
+
+    <link rel="stylesheet" href="../CSS/addPicture.css">
 
     <!--favicon-->
     <link rel="apple-touch-icon" sizes="57x57" href="../media/favicon/apple-icon-57x57.png">
@@ -27,39 +29,12 @@
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
 </head>
+
+
 <body>
-
-  <div align="center" style="width: 100%; margin-top: 2%;">
-    Du musst die Nutzungsbedingungen und Datenschutzerklärung akzeptieren!
-    <br>
-    <br>
+<div align="center">
     <?php
-      include "../legal/Datenschutz.html";
-     ?>
-     <br>
-     <br>
-     <button id='accept'>Akzeptieren</button><button id='cancel'>Ablehnen</button>
-     <br>
-     <br>
-  </div>
-
-  <script>
-  document.getElementById("cancel").addEventListener("click",function (){
-     alert('Du musst es akzepiteren um die Webseite zu nutzen!');
-     location.replace('../logout.php');
-  });
-
-  document.getElementById("accept").addEventListener("click",function (){
-     let oReq = new XMLHttpRequest();
-     let parms = "userID=<?php echo $_SESSION["userID"]; ?>";
-     oReq.addEventListener("load",function() {
-          location.reload();
-     })
-     oReq.open("POST","../php/acceptTermsAjax.php");
-     oReq.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-     oReq.send(parms);
-  })
-  </script>
+    include "../legal/UploadBedingungen.html";
+    ?>
+</div>
 </body>
-
-</html>

@@ -77,7 +77,7 @@
             <a href="https://github.com/BumBumGame">
                 <img src="https://img.shields.io/github/followers/BumBumGame?color=purple&label=BumBumGame&logo=github&style=flat-square">
             </a><br>
-            <a href="./sites/Datenschutz.html">Datenschutz</a>
+            <a href="./sites/datenschutzSite.php">Datenschutz</a>
             <!--TODO Nutzungsbedingungen-->
         </div>
     </footer>
