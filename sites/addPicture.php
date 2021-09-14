@@ -1,15 +1,38 @@
 <?php
   require "../php/checkPermission.php";
 
+  $backtrack = "";
+ //Save get parameter if valid
+ if(isset($_GET["back"])){
+   $backtrack = trim(stripslashes(htmlspecialchars($_GET["back"])));
+
+   //Check if backtrackPage is valid
+   $parsedUrl = parse_url($backtrack);
+   if(isset($parsedUrl["host"])){
+
+    if($parsedUrl["host"] != $_SERVER['HTTP_HOST']){
+      $backtrack = "";
+   }
+ }
+}
+
+$backtrackParameter = "";
+if(strlen($backtrack) > 0){
+   $backtrackParameter = "&back=".$backtrack;
+}
+
     require "../php/dbConnection.php";
 
     $db = new db();
-    if (!$db->projectExists($_GET['project'])) {
+
+    $project = trim(stripslashes(htmlspecialchars($_GET["project"])));
+
+    if (!$db->projectExists($project)) {
         $message = 'Project not found.';
         header("Location: ./projectSelection.php?message=".$message);
         die();
     }else{
-        $projectName = $db->getProjectName($_GET['project']);
+        $projectName = $db->getProjectName($project);
     }
 ?>
 <!DOCTYPE html>
@@ -46,15 +69,19 @@
     <meta name="theme-color" content="#ffffff">
 </head>
 <body>
+    <?php
+       include "#userNavigationBar.php";
+     ?>
+
     <h1 align="center">Add Picture (<?php echo htmlspecialchars($projectName)?>)</h1>
 
     <div align="center">
-        <form align="center" enctype="multipart/form-data" action="../php/uploadPicture.php?project=<?php echo htmlspecialchars($_GET['project'])?>" method="POST">
+        <form align="center" enctype="multipart/form-data" action="../php/uploadPicture.php?project=<?php echo htmlspecialchars($_GET['project']).$backtrackParameter; ?>" method="POST">
             <label for="upload" class="chosePicture">Choose Picture</label>
             <span id="file-chosen">No file chosen</span><br><br>
             <img src="" id="uploadPreview" width="90%" height="auto">
             <input type="hidden" name="Max_File_Size" value="15000000">
-            <input type="file" name="upload" id="upload" accept=".jpg,.jpeg,.png" hidden><br>
+            <input type="file" name="upload" id="upload" accept=".jpg,.jpeg,.png" hidden required><br>
             <input type="checkbox" name="legalCheck" id="legalCheck" value="true" required>
             <label for="legalCheck">Das Bild entspricht den <a href="./uploadBedingungenSite.php" id="bedingungenLink">Upload-Bedingungen</a></label><br><br>
             <button type="submit" class="submitButton">Upload</button>
