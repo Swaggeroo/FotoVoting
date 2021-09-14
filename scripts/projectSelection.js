@@ -52,6 +52,15 @@ window.addEventListener('beforeinstallprompt', (e) => {
     // Update UI to notify the user they can add to home screen
     addBtn.style.display = 'block';
 
+    deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+            console.log('User accepted the A2HS prompt');
+        } else {
+            console.log('User dismissed the A2HS prompt');
+        }
+        deferredPrompt = null;
+    });
+
     addBtn.addEventListener('click', (e) => {
         // hide our user interface that shows our A2HS button
         addBtn.style.display = 'none';
