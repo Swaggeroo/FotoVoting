@@ -607,7 +607,7 @@ public function removeBest($userID, $picID){
 }
 
 public function getBestedID($userID, $projectID){
-    $sqlQuery = "SELECT pictureID AS pictureID FROM picturebests WHERE userID = ? AND projectID = ?";
+    $sqlQuery = "SELECT pictureID FROM picturebests WHERE userID = ? AND projectID = ?";
 
     $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
     $sqlStatement->bind_param("ii", $userID, $projectID);
