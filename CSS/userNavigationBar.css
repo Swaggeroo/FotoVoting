@@ -9,6 +9,7 @@
   color: white;
   display: flex;
   justify-content: space-between;
+  z-index: 1;
 }
 
 #userGoBackButton{
@@ -66,6 +67,7 @@
     box-shadow: 3px 3px 2px 1px rgba(0, 0, 0, 0.8);
 
     display: none;
+    z-index: 1;
 }
 
 #NavBarEditDropDown:after{
@@ -80,6 +82,7 @@
     top: -12px;
     left: 30%;
     margin-left: -16px;
+    z-index: 1;
 }
 
 #NavBarEditDropDown p{

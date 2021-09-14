@@ -85,7 +85,7 @@ if(strlen($backtrack) > 0){
    ?>
 
     <h1 align="center" id="projectTitle"><?php echo htmlspecialchars($projectName) ?></h1>
-    <a id="addPictureButton" href="./addPicture.php?project=<?php echo htmlspecialchars($_GET["project"]) ?>" style="position: absolute; top: 15px; margin-left: 85%; font-size: xxx-large" >
+    <a id="addPictureButton" href="./addPicture.php?project=<?php echo htmlspecialchars($_GET["project"]) ?>">
         +
     </a>
 

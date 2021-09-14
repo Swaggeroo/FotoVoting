@@ -92,3 +92,22 @@
     width: 10%;
     height: auto;
 }
+
+#addPictureButton{
+  position: fixed;
+  bottom: 2%;
+  right: 2%;
+  width: 4%;
+  text-align: center;
+  border-radius: 50%;
+  color: black;
+  background: #00ff00;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0);
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0);
+  transition: 0.2s;
+}
+
+#addPictureButton:hover{
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.8);
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.7);
+}

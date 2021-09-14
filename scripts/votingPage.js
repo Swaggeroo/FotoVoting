@@ -71,5 +71,15 @@ function addBackTrackLinkToAddButton(){
   addPictureButton.href += "&" + params.toString();
 }
 
+function resizeAddButton(){
+      var breite = getComputedStyle(addPictureButton).width;
+
+      addPictureButton.style.height = breite;
+
+      addPictureButton.style.fontSize = parseFloat(breite)*0.87 + "px";
+}
+
 
 window.addEventListener("load", addBackTrackLinkToAddButton);
+window.addEventListener("resize", resizeAddButton);
+resizeAddButton();
