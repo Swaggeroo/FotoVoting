@@ -32,6 +32,20 @@
     <!--extended Style-->
     <link rel="stylesheet" href="CSS/login.css"/>
 
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('./serviceWorker.js',{ scope: '/provide/fotovote/FotoVoting/' }).then(function(registration) {
+                    // Registration was successful
+                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                }, function(err) {
+                    // registration failed :(
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+            });
+        }
+    </script>
+
     <!--favicon-->
     <link rel="apple-touch-icon" sizes="57x57" href="./media/favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="./media/favicon/apple-icon-60x60.png">
@@ -46,7 +60,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="./media/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="./media/favicon/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./media/favicon/favicon-16x16.png">
-    <link rel="manifest" href="media/favicon/manifest.webmanifest">
+    <link rel="manifest" href="manifest.webmanifest">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">

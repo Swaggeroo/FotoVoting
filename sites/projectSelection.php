@@ -38,7 +38,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="../media/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="../media/favicon/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../media/favicon/favicon-16x16.png">
-    <link rel="manifest" href="../media/favicon/manifest.webmanifest">
+    <link rel="manifest" href="../manifest.webmanifest">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
@@ -50,7 +50,7 @@
    ?>
 
     <h1 align = center>Projekte</h1>
-    <button class="add-button">Add to home screen</button>
+    <button class="add-button">Install as App</button>
     <div align="center" style="width: 100%;">
         <div id="projekte" style="width: 90%;">
             <?php
