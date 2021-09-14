@@ -56,7 +56,7 @@
             <input type="hidden" name="Max_File_Size" value="15000000">
             <input type="file" name="upload" id="upload" accept=".jpg,.jpeg,.png" hidden><br>
             <input type="checkbox" name="legalCheck" id="legalCheck" value="true" required>
-            <label for="legalCheck">Das Bild entspricht den <a href="../legal/Datenschutz.html" id="bedingungenLink">Upload-Bedingungen</a></label><br><br>
+            <label for="legalCheck">Das Bild entspricht den <a href="./uploadBedingungenSite.php" id="bedingungenLink">Upload-Bedingungen</a></label><br><br>
             <button type="submit" class="submitButton">Upload</button>
         </form>
     </div>
