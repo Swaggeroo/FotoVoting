@@ -20,9 +20,9 @@
 
 .add-button {
   position: absolute;
-  top: 1px;
+  bottom: 1px;
   left: 1px;
-  z-index: 1000;
+  z-index: 10;
 }
 
 @media only screen and (max-width: 768px) {
