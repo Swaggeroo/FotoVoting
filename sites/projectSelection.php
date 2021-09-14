@@ -49,6 +49,25 @@
      include "#userNavigationBar.php";
    ?>
 
+   <div id="editProjectBlackBackground">
+   </div>
+
+   <div id="editProjectDialog">
+      <!--Edit username Dialog-->
+      <div id='closeEditProjectWindow'>
+       <span id='closeEditProjectWindowButton'>&#10006;</span>
+      </div>
+
+      Projekt bearbeiten:
+      <br>
+      <br>
+         <input id="newProjectNameEditInput" type="text" value="" name="newUsername" placeholder="Neuer Projektname" required/>
+         <br>
+         <br>
+         <input id="changeProjectNameButton" type="submit" value="Projektname ändern"/>
+         <input id="projectIdEditInput" type="hidden"value="" required/>
+    </div>
+
     <h1 align = center>Projekte</h1>
     <button class="add-button">Install as App</button>
     <div align="center" style="width: 100%;">
@@ -69,10 +88,10 @@
                         <a class='projectLink' href=\"./votingPage.php?project=".$projectIDs[$x]["projectIDs"]."\">
                             <div class=\"card projectButton\" style='position: relative'>
                                 <div class=\"controls\">
-                                    <div class='editButton' onclick=\"editProject(".$projectIDs[$x]["projectIDs"].",".$projectNames[$x]["projectNames"].")\">&#x270E;</div>
-                                    <div class='deleteButton' onclick=\"deleteProject(".$projectIDs[$x]["projectIDs"].")\">&#128465;</div>
+                                    <div class='editButton' data-id='".$projectIDs[$x]["projectIDs"]."'>&#x270E;</div>
+                                    <div class='deleteButton' data-id='".$projectIDs[$x]["projectIDs"]."'>&#128465;</div>
                                 </div>
-                                <p>".$projectNames[$x]["projectNames"]."</p>
+                                <p class='projectNames'>".$projectNames[$x]["projectNames"]."</p>
                             </div>
                         </a>
                     ";

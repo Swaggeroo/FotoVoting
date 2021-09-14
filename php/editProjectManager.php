@@ -1,10 +1,10 @@
 <?php
-if(!isset($_SESSION)){
-    session_start();
-}
+ require "checkPermission.php";
+
+
 if(intval($_SESSION['userAccountLevel']) == 2){
     require "./dbConnection.php";
     $db = new db();
-    $db->changeProject(intval($_POST['projectID']),intval($_POST['newName']));
+    $db->changeProject(intval(trim(stripslashes(htmlspecialchars($_POST['projectID'])))), trim(stripslashes(htmlspecialchars($_POST['newName']))));
 }
 ?>
