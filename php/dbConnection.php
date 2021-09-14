@@ -616,7 +616,13 @@ public function getBestedID($userID, $projectID){
 
     $result = $sqlStatement->get_result();
 
-    $picID = $result->fetch_assoc()["pictureID"];
+    $result = $result->fetch_assoc();
+    
+    if($result == null){
+       $picID = -1;
+    }else{
+    $picID = $result["pictureID"];
+    }
 
     $sqlStatement->close();
 

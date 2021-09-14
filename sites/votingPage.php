@@ -115,7 +115,7 @@ if(strlen($backtrack) > 0){
                 for ($x = 0; $x < count($pictureIDs); $x++){
                     $bested = '';
                     $liked = '';
-                    if (intval($db->getBestedID($userID,$project)) == intval($pictureIDs[$x]["picIDs"])){
+                    if (intval($db->getBestedID($userID,$project)) != -1 && intval($db->getBestedID($userID,$project)) == intval($pictureIDs[$x]["picIDs"])){
                         $bested = 'bested';
                     }
                     if (intval($db->hasLiked(intval($pictureIDs[$x]["picIDs"]), $userID))){
