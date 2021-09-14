@@ -109,6 +109,8 @@ for(let i = 0; i < editButtons.length; i++){
    editButtons[i].addEventListener("click", openEditForm);
    deleteButtons[i].addEventListener("click", deleteProject);
 
+   projectLinks[i].addEventListener("mousedown" , function () { event.preventDefault()});
+
    //Set index
    editButtons[i].setAttribute("data-index", i);
    deleteButtons[i].setAttribute("data-index", i);

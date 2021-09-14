@@ -4,13 +4,21 @@
   margin: 0%;
 }
 
+#projekte{
+  user-select: none;
+}
 
+.projectLink{
+  user-select: none;
+}
 
 .projectButton{
   background-color: #ececec;
   padding-top: 0.5%;
   padding-bottom: 0.5%;
   cursor: default;
+  margin-top: 1%;
+  user-select: none;
 }
 
 .deleteButton{
@@ -61,6 +69,12 @@
   bottom: 1px;
   left: 1px;
   z-index: 10;
+}
+
+.projectNames{
+  width: 80%;
+  overflow-y: auto;
+  user-select: none;
 }
 
 #editProjectBlackBackground{
@@ -121,9 +135,30 @@
   text-shadow: 2px 2px 3px rgba(255, 255, 255, 0.7);
 }
 
+@media only screen and (max-width: 1200px) {
+  .controls{
+    font-size: 0.9em;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+.projectNames{
+  width: 70%;
+}
+}
+
 @media only screen and (max-width: 768px) {
   /* For mobile phones: */
   #projekte p{
     font-size: 1.7em;
   }
+
+  #projekte{
+    width: 98% !important;
+  }
+
+  .projectNames{
+    width: 60%;
+  }
+
 }
