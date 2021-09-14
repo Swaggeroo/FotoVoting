@@ -1,6 +1,26 @@
 <?php
 require "../php/checkPermission.php";
 
+$backtrack = "";
+//Save get parameter if valid
+if(isset($_GET["back"])){
+ $backtrack = trim(stripslashes(htmlspecialchars($_GET["back"])));
+
+ //Check if backtrackPage is valid
+ $parsedUrl = parse_url($backtrack);
+ if(isset($parsedUrl["host"])){
+
+  if($parsedUrl["host"] != $_SERVER['HTTP_HOST']){
+    $backtrack = "";
+ }
+}
+}
+
+$backtrackParameter = "";
+if(strlen($backtrack) > 0){
+ $backtrackParameter = "&back=".$backtrack;
+}
+
 header('Content-Type: text/plain; charset=utf-8');
 
 try {
@@ -31,13 +51,13 @@ try {
     $legalCheck = $_POST['legalCheck'];
     if ($legalCheck != 'true'){
         $message = 'You have to accept the requirements.';
-        header("Location: ../sites/votingPage.php?project=".$project."&message=".$message);
+        header("Location: ../sites/votingPage.php?project=".$project."&message=".$message.$backtrackParameter);
         die();
     }
 
     if ($db->hasUploaded($userID,$project)){
         $message = 'You already uploaded a picture.';
-        header("Location: ../sites/votingPage.php?project=".$project."&message=".$message);
+        header("Location: ../sites/votingPage.php?project=".$project."&message=".$message.$backtrackParameter);
         die();
     }
 
@@ -49,7 +69,7 @@ try {
     ) {
         $message = 'Invalid parameters.';
         echo $message;
-        header("Location: ../sites/votingPage.php?project=".$project."&message=".$message);
+        header("Location: ../sites/votingPage.php?project=".$project."&message=".$message.$backtrackParameter);
         die();
     }
 
@@ -61,18 +81,18 @@ try {
         case UPLOAD_ERR_NO_FILE:
             $message = 'No file sent.';
             echo $message;
-            header("Location: ../sites/votingPage.php?project=".$project."&message=".$message);
+            header("Location: ../sites/votingPage.php?project=".$project."&message=".$message.$backtrackParameter);
             die();
         case UPLOAD_ERR_INI_SIZE:
         case UPLOAD_ERR_FORM_SIZE:
             $message = 'Exceeded filesize limit. (15 MB)';
             echo $message;
-            header("Location: ../sites/votingPage.php?project=".$project."&message=".$message);
+            header("Location: ../sites/votingPage.php?project=".$project."&message=".$message.$backtrackParameter);
             die();
         default:
             $message = 'Unknown errors.';
             echo $message;
-            header("Location: ../sites/votingPage.php?project=".$project."&message=".$message);
+            header("Location: ../sites/votingPage.php?project=".$project."&message=".$message.$backtrackParameter);
             die();
     }
 
@@ -80,7 +100,7 @@ try {
     if ($_FILES['upload']['size'] > 15000000) {
         $message = 'Exceeded filesize limit. (15 MB)';
         echo $message;
-        header("Location: ../sites/votingPage.php?project=".$project."&message=".$message);
+        header("Location: ../sites/votingPage.php?project=".$project."&message=".$message.$backtrackParameter);
         die();
     }
 
@@ -97,7 +117,7 @@ try {
         )) {
         $message = 'Invalid file format.';
         echo $message;
-        header("Location: ../sites/votingPage.php?project=".$project."&message=".$message);
+        header("Location: ../sites/votingPage.php?project=".$project."&message=".$message.$backtrackParameter);
         die();
     }
 
@@ -119,7 +139,7 @@ try {
     )) {
         $message = 'Failed to move uploaded file.';
         echo $message;
-        header("Location: ../sites/votingPage.php?project=".$project."&message=".$message);
+        header("Location: ../sites/votingPage.php?project=".$project."&message=".$message.$backtrackParameter);
         die();
     }
 
@@ -129,7 +149,7 @@ try {
 
     $message = 'File is uploaded successfully.';
     echo $message;
-    header("Location: ../sites/votingPage.php?project=".$project."&message=".$message);
+    header("Location: ../sites/votingPage.php?project=".$project."&message=".$message.$backtrackParameter);
     die();
 
 } catch (RuntimeException $e) {
