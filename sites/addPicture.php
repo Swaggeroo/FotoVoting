@@ -93,7 +93,6 @@ if(strlen($backtrack) > 0){
             <button type="submit" class="submitButton">Upload</button>
         </form>
     </div>
-    <!--TODO legalCheck Page (Nutzungsbedingungen) -->
 
     <hr>
     <footer>
