@@ -1,5 +1,7 @@
 {
  "name": "FotoVoting",
+ "short_name": "FotoVoting",
+ "description": "App for Class for voting pictures",
  "icons": [
   {
    "src": "\/android-icon-36x36.png",
@@ -37,5 +39,9 @@
    "type": "image\/png",
    "density": "4.0"
   }
- ]
+ ],
+ "start_url": "../../index.php",
+ "display": "standalone",
+ "theme_color": "#000000",
+ "background_color": "#000000"
 }
