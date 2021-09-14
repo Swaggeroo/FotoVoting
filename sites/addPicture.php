@@ -106,7 +106,8 @@ if(strlen($backtrack) > 0){
             <a href="https://github.com/BumBumGame">
                 <img src="https://img.shields.io/github/followers/BumBumGame?color=purple&label=BumBumGame&logo=github&style=flat-square" alt="BumBumGame">
             </a><br>
-            <a href="./datenschutzSite.php">Datenschutz</a>
+            <a class="legalLink" href="./datenschutzSite.php">Datenschutz</a><br>
+            <a class="legalLink" href="./nutzungsbedingungenSite.php">Nutzungsbedingungen</a>
         </div>
     </footer>
 
