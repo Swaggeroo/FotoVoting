@@ -50,6 +50,7 @@
    ?>
 
     <h1 align = center>Projekte</h1>
+    <button class="add-button">Add to home screen</button>
     <div align="center" style="width: 100%;">
         <div id="projekte" style="width: 90%;">
             <?php
