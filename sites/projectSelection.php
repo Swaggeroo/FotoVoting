@@ -47,26 +47,30 @@
 
   <?php
      include "#userNavigationBar.php";
-   ?>
 
-   <div id="editProjectBlackBackground">
-   </div>
-
-   <div id="editProjectDialog">
-      <!--Edit username Dialog-->
-      <div id='closeEditProjectWindow'>
-       <span id='closeEditProjectWindowButton'>&#10006;</span>
+     if($_SESSION["userAccountLevel"] >= 2){
+      echo "
+      <div id='editProjectBlackBackground'>
       </div>
 
-      Projekt bearbeiten:
-      <br>
-      <br>
-         <input id="newProjectNameEditInput" type="text" value="" name="newUsername" placeholder="Neuer Projektname" required/>
+      <div id='editProjectDialog'>
+         <!--Edit username Dialog-->
+         <div id='closeEditProjectWindow'>
+          <span id='closeEditProjectWindowButton'>&#10006;</span>
+         </div>
+
+         Projekt bearbeiten:
          <br>
          <br>
-         <input id="changeProjectNameButton" type="submit" value="Projektname ändern"/>
-         <input id="projectIdEditInput" type="hidden"value="" required/>
-    </div>
+            <input id='newProjectNameEditInput' type='text' value='' name='newUsername' placeholder='Neuer Projektname' required/>
+            <br>
+            <br>
+            <input id='changeProjectNameButton' type='submit' value='Projektname ändern'/>
+            <input id='projectIdEditInput' type='hidden' value='' required/>
+       </div>
+      ";
+     }
+   ?>
 
     <h1 align = center>Projekte</h1>
     <button class="add-button">Install as App</button>
@@ -86,12 +90,16 @@
                 for ($x = 0; $x < count($projectIDs); $x++){
                     echo "
                         <a class='projectLink' href=\"./votingPage.php?project=".$projectIDs[$x]["projectIDs"]."\">
-                            <div class=\"card projectButton\" style='position: relative'>
-                                <div class=\"controls\">
+                            <div class=\"card projectButton\" style='position: relative'>";
+                            if($_SESSION["userAccountLevel"] >= 2){
+
+                          echo"<div class=\"controls\">
                                     <div class='editButton' data-id='".$projectIDs[$x]["projectIDs"]."'>&#x270E;</div>
                                     <div class='deleteButton' data-id='".$projectIDs[$x]["projectIDs"]."'>&#128465;</div>
-                                </div>
-                                <p class='projectNames'>".$projectNames[$x]["projectNames"]."</p>
+                                </div>";
+                            }
+
+                          echo "<p class='projectNames'>".$projectNames[$x]["projectNames"]."</p>
                             </div>
                         </a>
                     ";

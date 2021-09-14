@@ -102,6 +102,8 @@ function hideEditProjectWindow(){
 }
 
 //Event listener for UI
+//Only set event listener if Elements exist
+if(editProjectDialog != null){
 closeEditProjectWindowButton.addEventListener("click", hideEditProjectWindow);
 changeProjectNameButton.addEventListener("click", editProject);
 
@@ -109,11 +111,16 @@ for(let i = 0; i < editButtons.length; i++){
    editButtons[i].addEventListener("click", openEditForm);
    deleteButtons[i].addEventListener("click", deleteProject);
 
-   projectLinks[i].addEventListener("mousedown" , function () { event.preventDefault()});
-
    //Set index
    editButtons[i].setAttribute("data-index", i);
    deleteButtons[i].setAttribute("data-index", i);
+}
+
+}
+
+//Prevent default draging of links
+for(let i = 0; i < projectLinks.length; i++){
+   projectLinks[i].addEventListener("mousedown" , function () { event.preventDefault()});
 }
 //--------------------
 
