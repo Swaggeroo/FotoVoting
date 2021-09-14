@@ -2,6 +2,22 @@
   require "../php/checkPermission.php";
 
   require "../php/onlyAdminLevel.php";
+
+   $backtrack = "";
+  //Save get parameter if valid
+  if(isset($_GET["back"])){
+    $backtrack = trim(stripslashes(htmlspecialchars($_GET["back"])));
+
+    //Check if backtrackPage is valid
+    $parsedUrl = parse_url($backtrack);
+    if(isset($parsedUrl["host"])){
+
+     if($parsedUrl["host"] != $_SERVER['HTTP_HOST']){
+       $backtrack = "";
+    }
+  }
+}
+
  ?>
 
 <!DOCTYPE html>
@@ -46,7 +62,7 @@
 <div id="editUserBlackBackground">
 </div>
 
-   <form id="deleteUserForm" action="../php/deleteUser.php" method="POST">
+   <form id="deleteUserForm" action="../php/deleteUser.php<?php if(strlen($backtrack) > 0){ echo "?back=".$backtrack;}?>" method="POST">
        <input type="hidden" value="" name="userID" id="delteUserIDInput" required/>
        <input type="hidden" value="" name="username" id="deleteUsernameInput" required/>
    </form>
@@ -60,7 +76,7 @@
       Nutzer bearbeiten:
       <br>
       <br>
-      <form action="../php/adminEditUser.php" method="post">
+      <form action="../php/adminEditUser.php<?php if(strlen($backtrack) > 0){ echo "?back=".$backtrack;}?>" method="post">
          <input id="newUsernameEditInput" type="text" value="" name="newUsername" placeholder="Neuer Benutzername" required/>
          <input type="submit" value="Benutzname ändern"/>
          <input type="hidden" name="operation" value="username" required/>
@@ -68,7 +84,7 @@
       </form>
       <br>
       <br>
-      <form action="../php/adminEditUser.php" method="post">
+      <form action="../php/adminEditUser.php<?php if(strlen($backtrack) > 0){ echo "?back=".$backtrack;}?>" method="post">
         <input type="password" name="newPassword" value="" placeholder="Neues Passwort" required/>
         <input type="hidden" name="operation" value="password" required/>
         <input class="userIDInput" type="hidden" name="userID" value="" required>
@@ -76,7 +92,7 @@
       </form>
       <br>
       <br>
-      <form action="../php/adminEditUser.php" method="post">
+      <form action="../php/adminEditUser.php<?php if(strlen($backtrack) > 0){ echo "?back=".$backtrack;}?>" method="post">
       UserAccountLevel:  <select id="userAccountlevelEditInput" name="newUserAccountLevel" required>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -89,7 +105,7 @@
       <br>
    </div>
 
- <form id="addUserForm" action="../php/addUser.php" method="POST">
+ <form id="addUserForm" action="../php/addUser.php<?php if(strlen($backtrack) > 0){ echo "?back=".$backtrack;}?>" method="POST">
    <input type="text" name="userName" placeholder="Benutzername" required/>
    <input type="password" name="userPassword" placeholder="Passwort" required/>
     UserAccountLevel: <select name="userAccountLevel">

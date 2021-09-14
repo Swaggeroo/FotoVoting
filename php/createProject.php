@@ -9,11 +9,11 @@
      $backtrack = trim(stripslashes(htmlspecialchars($_GET["back"])));
 
      //Check if backtrackPage is valid
-     $parsedUrl = parse_url($backtrackPage);
+     $parsedUrl = parse_url($backtrack);
      if(isset($parsedUrl["host"])){
 
       if($parsedUrl["host"] != $_SERVER['HTTP_HOST']){
-        $backtrackPage = "";
+        $backtrack = "";
      }
    }
 
