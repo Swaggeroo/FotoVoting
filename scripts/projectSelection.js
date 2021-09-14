@@ -41,6 +41,7 @@ function editProject(projectID,newName){
     oReq.send(parms);
 }
 
+/*
 let deferredPrompt;
 const addBtn = document.querySelector('.add-button');
 addBtn.style.display = 'none';
@@ -67,4 +68,4 @@ window.addEventListener('beforeinstallprompt', (e) => {
             deferredPrompt = null;
         });
     });
-});
+});*/
