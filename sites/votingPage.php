@@ -1,7 +1,29 @@
 <?php
   require "../php/checkPermission.php";
+
+  $backtrack = "";
+ //Save get parameter if valid
+ if(isset($_GET["back"])){
+   $backtrack = trim(stripslashes(htmlspecialchars($_GET["back"])));
+
+   //Check if backtrackPage is valid
+   $parsedUrl = parse_url($backtrack);
+   if(isset($parsedUrl["host"])){
+
+    if($parsedUrl["host"] != $_SERVER['HTTP_HOST']){
+      $backtrack = "";
+   }
+ }
+}
+
+$backtrackParameter = "";
+if(strlen($backtrack) > 0){
+   $backtrackParameter = "&back=".$backtrack;
+}
+
+
   if (!empty($_GET['message'])) {
-      echo "<script>alert(\"".trim(stripslashes(htmlspecialchars($_GET['message'])))."\");window.location.replace(\"./votingPage.php?project=".trim(stripslashes(htmlspecialchars($_GET['project'])))."\");</script>";
+      echo "<script>alert(\"".trim(stripslashes(htmlspecialchars($_GET['message'])))."\");window.location.replace(\"./votingPage.php?project=".trim(stripslashes(htmlspecialchars($_GET['project']))).$backtrackParameter."\");</script>";
       if (empty($_GET['project'])) {
           $message = 'Invalid parameters.';
           header("Location: ./projectSelection.php?message=".$message);
@@ -12,12 +34,12 @@
   require "../php/dbConnection.php";
 
   $db = new db();
-  if (!$db->projectExists($_GET['project'])) {
+  if (!$db->projectExists(trim(stripslashes(htmlspecialchars($_GET['project']))))) {
       $message = 'Project not found.';
       header("Location: ./projectSelection.php?message=".$message);
       die();
   }else{
-      $projectName = $db->getProjectName($_GET['project']);
+      $projectName = $db->getProjectName(trim(stripslashes(htmlspecialchars($_GET['project']))));
   }
 ?>
 <!DOCTYPE html>
@@ -57,13 +79,13 @@
     <meta name="theme-color" content="#ffffff">
 </head>
 <body>
-  
+
   <?php
      include "#userNavigationBar.php";
    ?>
 
     <h1 align="center" id="projectTitle"><?php echo htmlspecialchars($projectName) ?></h1>
-    <a href="./addPicture.php?project=<?php echo htmlspecialchars($_GET["project"]) ?>" style="position: absolute; top: 15px; margin-left: 85%; font-size: xxx-large" >
+    <a id="addPictureButton" href="./addPicture.php?project=<?php echo htmlspecialchars($_GET["project"]) ?>" style="position: absolute; top: 15px; margin-left: 85%; font-size: xxx-large" >
         +
     </a>
 

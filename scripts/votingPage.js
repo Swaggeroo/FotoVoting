@@ -1,3 +1,5 @@
+const addPictureButton = document.getElementById("addPictureButton");
+
 function best(picID, projectID){
     console.log(picID, projectID);
     let element = document.getElementById("best"+picID);
@@ -60,3 +62,14 @@ function deletePic (picID){
         oReq.send(parms);
     }
 }
+
+function addBackTrackLinkToAddButton(){
+  let params = new URLSearchParams();
+
+  params.set("back", window.location.href);
+
+  addPictureButton.href += "&" + params.toString();
+}
+
+
+window.addEventListener("load", addBackTrackLinkToAddButton);
