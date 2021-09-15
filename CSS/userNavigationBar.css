@@ -156,7 +156,7 @@
   opacity: 0;
 }
 
-#createProjectWindow{
+#createProjectWindow, #changeUserPasswordWindow{
   display: none;
   text-align: center;
   position: fixed;
@@ -165,7 +165,7 @@
   background: black;
   margin-left: 30%;
   margin-right: 30%;
-  margin-top: 17%;
+  margin-top: 10%;
   padding-top: 1%;
   padding-bottom: 1%;
   color: white;
@@ -176,17 +176,23 @@
   border-radius: 20px;
 }
 
-#createProjectWindow form{
+#createProjectWindow form, #changeUserPasswordWindow form{
   text-align: center;
   margin-top: 4%;
 }
 
-#createProjectWindow form input{
+#createProjectWindow form input, #changeUserPasswordWindow form input{
   font-size: 0.9em;
   padding: 0.5%;
+  width: 80%;
+  text-align: center;
 }
 
-#createProjectWindow #closeCreateProjectWindow{
+#createProjectWindow form input[type=submit], #createProjectWindow form input[type=button], #changeUserPasswordWindow form input[type=submit], #changeUserPasswordWindow form input[type=button]{
+  width: 50%;
+}
+
+#createProjectWindow #closeCreateProjectWindow, #changeUserPasswordWindow #closeChangePasswordWindow{
   text-align: right;
   width: 80%;
   margin-left: 10%;
@@ -194,14 +200,14 @@
   font-size: 1.3em;
 }
 
-#createProjectWindow #closeCreateProjectWindowButton{
+#createProjectWindow #closeCreateProjectWindowButton, #changeUserPasswordWindow #closeChangeUserPasswordWindowButton{
   color: red;
   cursor: pointer;
   text-shadow: 2px 2px 3px rgba(255, 255, 255, 0);
   transition: 0.2s;
 }
 
-#createProjectWindow #closeCreateProjectWindowButton:hover{
+#createProjectWindow #closeCreateProjectWindowButton:hover, #changeUserPasswordWindow #closeChangeUserPasswordWindowButton:hover{
   text-shadow: 2px 2px 3px rgba(255, 255, 255, 0.7);
 }
 

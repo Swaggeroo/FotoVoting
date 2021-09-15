@@ -19,6 +19,14 @@ const createProjectWindow = document.getElementById("createProjectWindow");
 const openCreateProjectWindowButton = document.getElementById("openCreateProjectWindowButton");
 const createProjectForm = document.getElementById("createProjectForm");
 
+//Change Password Buttons
+const closeChangeUserPasswordWindowButton = document.getElementById("closeChangeUserPasswordWindowButton");
+const changeUserPasswordWindow = document.getElementById("changeUserPasswordWindow");
+const changeUserPasswordForm = document.getElementById("changeUserPasswordForm");
+const openChangePasswordButton = document.getElementById("changePasswordButton");
+
+const changePasswordFormButton = document.getElementById("changePasswordFormButton");
+
 //DropDown Buttons
 const goToUserManagementButton = document.getElementById("goToUserManagementButton");
 
@@ -123,6 +131,63 @@ function closeCreateProjectWindow(){
 
  }
 
+function openChangePasswordWindow(){
+  //Set display to normal
+  blackBackgroundCreateProjectWindow.style.display = "inline";
+  changeUserPasswordWindow.style.display = "inline";
+  //Set opacity
+  setTimeout(function (){
+    blackBackgroundCreateProjectWindow.style.opacity = "1";
+    changeUserPasswordWindow.style.opacity = "1";
+  },10);
+}
+
+function closeChangePasswordWindow(){
+  blackBackgroundCreateProjectWindow.style.opacity = "0";
+  changeUserPasswordWindow.style.opacity = "0";
+
+  setTimeout(function () {
+    blackBackgroundCreateProjectWindow.style.display = "none";
+    changeUserPasswordWindow.style.display = "none";
+  }, 200);
+ }
+
+ function setBackTrackToChangeUserPassword(){
+   let params = new URLSearchParams();
+
+   params.set("back", window.location.href);
+
+   changeUserPasswordForm.action += "?" + params.toString();
+ }
+
+ function checkChangePassword(){
+   var newPassword = document.getElementById("newPasswordInput").value.trim();
+   var newPasswordConfirm = document.getElementById("newPasswordConfirmInput").value.trim();
+
+   if(newPassword != newPasswordConfirm){
+     alert("Die beiden Passwörder stimmen nicht überein!");
+   }else{
+     changeUserPasswordForm.submit();
+   }
+ }
+
+function checkGetParameter(){
+  var urlParams = new URLSearchParams(window.location.search);
+
+  var showChangePass = urlParams.get("showChangePass");
+
+  if(showChangePass != null){
+    if(showChangePass == "1"){
+      openChangePasswordWindow();
+      urlParams.set("showChangePass", 0);
+
+      var newUrl = location.protocol + "//" + location.host + location.pathname + "?" + urlParams.toString();
+
+      history.pushState({}, "", newUrl);
+    }
+  }
+}
+
  function setBackTrackToCreateProject(){
    let params = new URLSearchParams();
 
@@ -153,9 +218,16 @@ goToUserManagementButton.addEventListener("click", goToUserManagement);
 currentUsernameButton.addEventListener("mouseover", showAccountDropDownMenuFromNameButton);
 accountSettingsDropDown.addEventListener("mouseleave", hideDropDownUserAccountMenuFromEditButton);
 
+openChangePasswordButton.addEventListener("click", openChangePasswordWindow);
+closeChangeUserPasswordWindowButton.addEventListener("click", closeChangePasswordWindow);
+window.addEventListener("load", setBackTrackToChangeUserPassword);
+changePasswordFormButton.addEventListener("click", checkChangePassword);
+
 //Set eventlisteners for Create Project
 if(createProjectWindow != null){
 closeCreateProjectWindowButton.addEventListener("click", closeCreateProjectWindow);
 openCreateProjectWindowButton.addEventListener("click", openCreateProjectWindow);
 window.addEventListener("load", setBackTrackToCreateProject);
 }
+
+checkGetParameter();

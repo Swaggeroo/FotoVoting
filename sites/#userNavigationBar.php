@@ -16,13 +16,13 @@
 
 ?>
 
+<!--Create Project Window-->
+<div id='blackBackgroundCreateProjectWindow'></div>
 
 <?php
 //only load menu if User has Admin level
 if($_SESSION["userAccountLevel"] >= 2){
  echo "
- <!--Create Project Window-->
- <div id='blackBackgroundCreateProjectWindow'></div>
 
  <div id='createProjectWindow'>
    <div id='closeCreateProjectWindow'>
@@ -41,6 +41,26 @@ if($_SESSION["userAccountLevel"] >= 2){
 }
  ?>
 
+<!--Change username Form-->
+<div id='changeUserPasswordWindow'>
+  <div id='closeChangePasswordWindow'>
+   <span id='closeChangeUserPasswordWindowButton'>&#10006;</span>
+  </div>
+
+  Projekt hinzufügen:
+  <form id='changeUserPasswordForm' action='../php/userChangePassword.php' method='POST'>
+    <input type="password" name="oldPassword" placeholder="Altes Passwort" required/>
+    <br>
+    <br>
+    <input id="newPasswordInput" type="password" name="newPassword" placeholder="Neues Passwort" required/>
+    <br>
+    <br>
+    <input id="newPasswordConfirmInput" type="password" name="newPasswordConfirm" placeholder="Neues Passwort bestätigen" required/>
+    <br>
+    <br>
+    <input type='button' id='changePasswordFormButton' value='Passwort ändern'/>
+  </form>
+</div>
 
 <!--###############################################################-->
 <!--User navigation Bar -->
@@ -79,7 +99,7 @@ if($_SESSION["userAccountLevel"] >= 2){
 
    <div id="accountSettings">
      <div id="currentUsernameButton">
-     <?php echo $_SESSION["username"]."&#x2BC6;" ?>
+     <?php echo $_SESSION["username"]." &#x2BC6;" ?>
     </div>
      <div id='accountSettingsDropDown'>
        <p id='changePasswordButton'>Passwort ändern</p>
