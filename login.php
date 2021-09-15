@@ -39,6 +39,8 @@ if(!$db->userNameExists($username)){
 
 $userID = $db->getUserIdForUsername($username);
 
+$username = $db->getUserName($userID);
+
 $serverPasswordHash = $db->getPasswordForUserID($userID);
 
     //Check Password
