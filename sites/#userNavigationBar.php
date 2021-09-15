@@ -47,7 +47,7 @@ if($_SESSION["userAccountLevel"] >= 2){
    <span id='closeChangeUserPasswordWindowButton'>&#10006;</span>
   </div>
 
-  Projekt hinzufügen:
+  Passwort ändern:
   <form id='changeUserPasswordForm' action='../php/userChangePassword.php' method='POST'>
     <input type="password" name="oldPassword" placeholder="Altes Passwort" required/>
     <br>
