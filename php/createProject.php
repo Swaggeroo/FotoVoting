@@ -12,7 +12,7 @@
      $parsedUrl = parse_url($backtrack);
      if(isset($parsedUrl["host"])){
 
-      if($parsedUrl["host"] != $_SERVER['HTTP_HOST']){
+      if($parsedUrl["host"] != "mhsl.eu"){
         $backtrack = "";
      }
    }
