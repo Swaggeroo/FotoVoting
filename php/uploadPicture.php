@@ -110,7 +110,7 @@ try {
     }
 
     // You should also check filesize here.
-    if ($_FILES['upload']['size'] > 15000000) {
+    if ($_FILES['upload']['size'] > 120000000) {
         $message = 'Exceeded filesize limit. (15 MB)';
         echo $message;
         header("Location: ../sites/votingPage.php?project=".$project."&message=".$message.$backtrackParameter);

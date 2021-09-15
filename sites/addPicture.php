@@ -86,7 +86,7 @@ if(strlen($backtrack) > 0){
             <label for="upload" class="chosePicture">Choose Picture</label>
             <span id="file-chosen">No file chosen</span><br><br>
             <img src="" id="uploadPreview" width="90%" height="auto">
-            <input type="hidden" name="Max_File_Size" value="15000000">
+            <input type="hidden" name="Max_File_Size" value="120000000">
             <input type="file" name="upload" id="upload" accept=".jpg,.jpeg,.png" hidden required><br>
             <input type="checkbox" name="legalCheck" id="legalCheck" value="true" required>
             <label for="legalCheck">Das Bild entspricht den <a href="./uploadBedingungenSite.php" id="bedingungenLink">Upload-Bedingungen</a></label><br><br>
