@@ -72,7 +72,7 @@ public function createBasicDatabaseStructure(){
 }
 
 public function getUserIdForUsername($username):int{
-     $sqlQuery = "SELECT userID FROM user WHERE userName = ?";
+     $sqlQuery = "SELECT userID FROM user WHERE LOWER(userName) = LOWER(?)";
 
      $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
      $sqlStatement->bind_param("s", $username);
@@ -226,7 +226,7 @@ public function getAllUsers(): array
 }
 
 public function getUserNameCount($userName):int{
-   $sqlQuery = "SELECT COUNT(userName) AS userNameCount FROM user WHERE userName = ?";
+   $sqlQuery = "SELECT COUNT(userName) AS userNameCount FROM user WHERE LOWER(userName) = LOWER(?)";
 
    $statement = $this->dbKeyObject->prepare($sqlQuery);
    $statement->bind_param("s", $userName);
@@ -617,7 +617,7 @@ public function getBestedID($userID, $projectID){
     $result = $sqlStatement->get_result();
 
     $result = $result->fetch_assoc();
-    
+
     if($result == null){
        $picID = -1;
     }else{
