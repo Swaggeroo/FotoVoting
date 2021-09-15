@@ -121,7 +121,8 @@
                 <img src="https://img.shields.io/github/followers/BumBumGame?color=purple&label=BumBumGame&logo=github&style=flat-square" alt="BumBumGame">
             </a><br>
             <a class="legalLink" href="./datenschutzSite.php">Datenschutz</a><br>
-            <a class="legalLink" href="./nutzungsbedingungenSite.php">Nutzungsbedingungen</a>
+            <a class="legalLink" href="./nutzungsbedingungenSite.php">Nutzungsbedingungen</a><br>
+            <a class="legalLink" href="./impressumSite.php">Impressum</a>
         </div>
     </footer>
 
