@@ -700,6 +700,11 @@ public function changeProject($projectId, $newProjectName){
 }
 
 public function deleteProject($projectID){
+    $picIDs = $this->getPictureIDs($projectID);
+    for ($x = 0; $x < count($picIDs); $x++){
+        $this->deletePicture($picIDs[$x]['picIDs']);
+    }
+
     $sqlQuery = "DELETE FROM projects WHERE projectID = ?";
 
     $sqlStatement = $this->dbKeyObject->prepare($sqlQuery);
