@@ -134,7 +134,7 @@ window.addEventListener('beforeinstallprompt', (e) => {
     // Stash the event so it can be triggered later.
     deferredPrompt = e;
     // Update UI to notify the user they can add to home screen
-    addBtn.style.display = 'block';
+    addBtn.style.display = 'initial';
 
     addBtn.addEventListener('click', (e) => {
         // hide our user interface that shows our A2HS button
@@ -152,3 +152,14 @@ window.addEventListener('beforeinstallprompt', (e) => {
         });
     });
 });
+
+
+function resizeAddButton(){
+    var breite = getComputedStyle(addBtn).width;
+
+    addBtn.style.height = breite;
+
+    addBtn.style.fontSize = parseFloat(breite)*0.87 + "px";
+}
+window.addEventListener("resize", resizeAddButton);
+resizeAddButton()

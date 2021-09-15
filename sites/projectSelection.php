@@ -72,9 +72,9 @@
      }
    ?>
 
-    <h1 align = center>Projekte</h1>
-    <button class="add-button">Install as App</button>
-    <div align="center" style="width: 100%;">
+  <h1 align = center>Projekte</h1>
+  <a class="add-button animate__animated animate__bounceIn">&#8659</a>
+  <div align="center" style="width: 100%;">
         <div id="projekte" style="width: 90%;">
             <?php
                 require "../php/dbConnection.php";
