@@ -1,4 +1,9 @@
 const addPictureButton = document.getElementById("addPictureButton");
+let pictureDiv = document.getElementsByClassName("bildmitbildunterschrift");
+
+for (let i = 0; i <pictureDiv.length;i++){
+    pictureDiv[i].addEventListener('contextmenu', event => event.preventDefault());
+}
 
 function best(picID, projectID){
     console.log(picID, projectID);
