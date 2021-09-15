@@ -34,6 +34,7 @@
     <br>
     <br>
     <?php
+      include "../legal/Nutzungsbedingungen.html";
       include "../legal/Datenschutz.html";
      ?>
      <br>
