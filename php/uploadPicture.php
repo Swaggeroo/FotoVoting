@@ -23,6 +23,19 @@ if(strlen($backtrack) > 0){
 
 header('Content-Type: text/plain; charset=utf-8');
 
+
+function saveCompressedImage($imgUrl, $outputLink, $quality){
+
+          $info = getimagesize($imgUrl);
+          if ($info['mime'] == 'image/jpeg') $image = imagecreatefromjpeg($imgUrl);
+          elseif ($info['mime'] == 'image/png') $image = imagecreatefrompng($imgUrl);
+          if(imagejpeg($image, $outputLink, $quality)){
+            return true;
+          }else{
+            return false;
+          }
+}
+
 try {
 
     if (empty($_GET['project'])){
@@ -130,20 +143,19 @@ try {
         mkdir($path, 0777, true);
     }
     $fileName = sha1_file($_FILES['upload']['tmp_name']);
-    if (!move_uploaded_file(
+    if (!saveCompressedImage(
         $_FILES['upload']['tmp_name'],
         sprintf($format,
             $fileName,
-            $ext
-        )
-    )) {
+            "jpeg"
+        ), 95)) {
         $message = 'Failed to move uploaded file.';
         echo $message;
         header("Location: ../sites/votingPage.php?project=".$project."&message=".$message.$backtrackParameter);
         die();
     }
 
-    $fullFileName = $fileName.'.'.$ext;
+    $fullFileName = $fileName.'.jpeg';
 
     $db->addPicture($fullFileName,$project,$userID);
 
