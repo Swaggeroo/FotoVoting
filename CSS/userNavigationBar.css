@@ -78,6 +78,15 @@
     z-index: 2;
 }
 
+#accountSettingsDropDown{
+  right: 12%;
+  width: 150px;
+}
+
+#accountSettingsDropDown:after{
+  left: 80% !important;
+}
+
 #NavBarEditDropDown:after, #accountSettingsDropDown:after{
     content: '';
     position: absolute;
