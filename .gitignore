@@ -1,6 +1,7 @@
 /.idea/
 *.iml
-/uploads/
+/uploads/*
+!/uploads/.htaccess
 
 # Default ignored files
 /shelf/
