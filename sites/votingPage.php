@@ -128,7 +128,7 @@ if(strlen($backtrack) > 0){
                         echo"       <button class=\"deleteButton\" onclick=\"deletePic(".$pictureIDs[$x]["picIDs"].")\"><img src=\"../media/images/trashbin.png\" width='100%' height='100%'></button>";
                     }
                     echo "
-                                    <img src=\"../uploads/".$projectName."/".$db->getPictureFileName(intval($pictureIDs[$x]["picIDs"]))."\" alt=\"Name\" style=\"width:100%;height:auto;\">
+                                    <img src=\"../php/getPicture.php?projectName=".$projectName."&fileName=".$db->getPictureFileName(intval($pictureIDs[$x]["picIDs"]))."\" alt=\"Name\" style=\"width:100%;height:auto;\">
                                     <span class=\"nameTag\">".$db->getUserName(intval($pictureAuthorIDs[$x]["authIDs"]))."</span>
                                 </div>
                                 <div class=\"flex-container wrap row\">
