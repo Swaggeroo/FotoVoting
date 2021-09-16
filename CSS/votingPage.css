@@ -1,5 +1,7 @@
 .bildmitbildunterschrift {
     width: 90%;
+    max-width: 650px;
+    max-height: 700px;
     position: relative;
 }
 
@@ -91,6 +93,35 @@
     right: 0;
     width: 5.5rem;
     height: auto;
+}
+
+.picture-container{
+    max-width: 650px;
+    max-height: 700px;
+}
+
+.limPictureSize{
+    max-height: 700px;
+    max-width: 100%;
+}
+
+.flex-container{
+    display: flex;
+    justify-content:center;
+    align-content: center;
+    align-items: center;
+}
+
+.row{
+    flex-direction: row;
+}
+
+.column{
+    flex-direction: column;
+}
+
+.wrap{
+    flex-wrap: wrap;
 }
 
 #addPictureButton{
