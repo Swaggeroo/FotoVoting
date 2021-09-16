@@ -142,7 +142,6 @@ if(strlen($backtrack) > 0){
                 }
             ?>
         </div>
-        <br><br><br><br><br><br><br><br><br><br>
     </div>
 
     <hr>
