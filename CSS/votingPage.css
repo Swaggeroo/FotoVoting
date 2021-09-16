@@ -1,5 +1,7 @@
 .bildmitbildunterschrift {
     width: 90%;
+    max-width: 650px;
+    max-height: 700px;
     position: relative;
 }
 
@@ -95,7 +97,12 @@
 
 .picture-container{
     max-width: 650px;
-    max-height: 800px;
+    max-height: 700px;
+}
+
+.limPictureSize{
+    max-height: 700px;
+    max-width: 100%;
 }
 
 .flex-container{
