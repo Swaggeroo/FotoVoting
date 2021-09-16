@@ -96,7 +96,7 @@ if(strlen($backtrack) > 0){
     </a>
 
     <div align="center" style="width: 100%;">
-        <div id="pictures" style="width: 90%;">
+        <div id="pictures" class="flex-container row wrap" style="width: 90%;">
             <?php
                 $project = $_GET["project"];
                 if (empty($project)){
