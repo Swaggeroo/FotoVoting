@@ -30,8 +30,10 @@ function saveCompressedImage($imgUrl, $outputLink, $quality){
           if ($info['mime'] == 'image/jpeg') $image = imagecreatefromjpeg($imgUrl);
           elseif ($info['mime'] == 'image/png') $image = imagecreatefrompng($imgUrl);
           if(imagejpeg($image, $outputLink, $quality)){
+            imagedestroy($image);
             return true;
           }else{
+            imagedestroy($image);
             return false;
           }
 }
