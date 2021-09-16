@@ -123,17 +123,19 @@ if(strlen($backtrack) > 0){
                     }
                     echo "
                             <div class=\"picture-container\">
-                                <div class=\"bildmitbildunterschrift card animate__animated animate__bounceIn\" style=\"margin: 1em;\">";
+                                <div style='max-width: 650px'>
+                                    <div class=\"bildmitbildunterschrift card animate__animated animate__bounceIn\" style=\"margin: 1em;\">";
                     if(intval($_SESSION['userAccountLevel']) == 2 || $pictureAuthorIDs[$x]["authIDs"] == $userID){
-                        echo"       <button class=\"deleteButton\" onclick=\"deletePic(".$pictureIDs[$x]["picIDs"].")\"><img src=\"../media/images/trashbin.png\" width='100%' height='100%'></button>";
+                        echo"           <button class=\"deleteButton\" onclick=\"deletePic(".$pictureIDs[$x]["picIDs"].")\"><img src=\"../media/images/trashbin.png\" width='100%' height='100%'></button>";
                     }
                     echo "
-                                    <img class=\"limPictureSize\" src=\"../php/getPicture.php?projectName=".$projectName."&fileName=".$db->getPictureFileName(intval($pictureIDs[$x]["picIDs"]))."\" alt=\"Name\" style=\"width:auto;height:auto;\">
-                                    <span class=\"nameTag\">".$db->getUserName(intval($pictureAuthorIDs[$x]["authIDs"]))."</span>
-                                </div>
-                                <div class=\"flex-container wrap row\">
-                                    <button class=\"votingButton like card ".$liked."\" id='like".$pictureIDs[$x]["picIDs"]."' onclick=\"like(".$pictureIDs[$x]["picIDs"].")\">&#10084;Like (".$db->getLikes(intval($pictureIDs[$x]["picIDs"])).")</button>
-                                    <button class=\"votingButton best card ".$bested."\" id='best".$pictureIDs[$x]["picIDs"]."' onclick=\"best(".$pictureIDs[$x]["picIDs"].",".$project.")\">&#11088;Best (".$db->getBests(intval($pictureIDs[$x]["picIDs"])).")</button>
+                                        <img class=\"limPictureSize\" src=\"../php/getPicture.php?projectName=".$projectName."&fileName=".$db->getPictureFileName(intval($pictureIDs[$x]["picIDs"]))."\" alt=\"Name\" style=\"width:auto;height:auto;\">
+                                        <span class=\"nameTag\">".$db->getUserName(intval($pictureAuthorIDs[$x]["authIDs"]))."</span>
+                                    </div>
+                                    <div class=\"flex-container wrap row\">
+                                        <button class=\"votingButton like card ".$liked."\" id='like".$pictureIDs[$x]["picIDs"]."' onclick=\"like(".$pictureIDs[$x]["picIDs"].")\">&#10084;Like (".$db->getLikes(intval($pictureIDs[$x]["picIDs"])).")</button>
+                                        <button class=\"votingButton best card ".$bested."\" id='best".$pictureIDs[$x]["picIDs"]."' onclick=\"best(".$pictureIDs[$x]["picIDs"].",".$project.")\">&#11088;Best (".$db->getBests(intval($pictureIDs[$x]["picIDs"])).")</button>
+                                    </div>
                                 </div>
                             </div>
                         ";

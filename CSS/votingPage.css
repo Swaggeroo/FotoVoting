@@ -98,6 +98,7 @@
 .picture-container{
     max-width: 650px;
     max-height: 700px;
+    display: contents;
 }
 
 .limPictureSize{
