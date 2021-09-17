@@ -1,7 +1,21 @@
 <?php
+if(!isset($_SESSION)){
+ session_start();
+}
+header("Cache-Control: private, max-age=10800, pre-check=10800");
+header("Pragma: private");
+header("Expires: " . date(DATE_RFC822,strtotime(" 2 day")));
+
 require "checkPermission.php";
 
 $uploadPath = "../uploads";
+
+// the browser will send a $_SERVER['HTTP_IF_MODIFIED_SINCE'] if it has a cached copy
+if(isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])){
+  // if the browser has a cached version of this image, send 304
+  header('Last-Modified: '.$_SERVER['HTTP_IF_MODIFIED_SINCE'],true,304);
+  exit;
+}
 
 //Get data for png
 if(!isset($_GET["projectName"])){
